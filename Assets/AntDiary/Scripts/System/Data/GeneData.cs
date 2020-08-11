@@ -10,8 +10,10 @@ namespace AntDiary
     public class GeneData : MonoBehaviour
     {
         /// <summary>
-        /// 有効化された遺伝子のID一覧。
+        /// 有効化された遺伝子のGUID一覧。
         /// </summary>
         [Key(0)] public List<string> ActivatedGenes { get; set; } = new List<string>();
+        
+        //TODO: スキルポイント的なやつ
     }
 }

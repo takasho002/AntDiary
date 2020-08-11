@@ -19,5 +19,6 @@ namespace AntDiary
 
         [Key(10)] public float s_CurrentTime { get; set; }
         [Key(11)] public NestData s_NestData { get; set; }
+        [Key(12)] public GeneData s_GeneData { get; set; }
     }
 }

@@ -44,6 +44,9 @@ namespace AntDiary
     [Serializable]
     public class Gene
     {
+        /// <summary>
+        /// 任意に設定できるID。解放時の動作を定義する際に使用。
+        /// </summary>
         [SerializeField] private string id;
 
         public string Id
@@ -68,6 +71,9 @@ namespace AntDiary
             set => description = value;
         }
 
+        /// <summary>
+        /// 自動的に付与される遺伝子固有のGUID。識別に使用。
+        /// </summary>
         [SerializeField] private string guid;
 
         public string Guid
