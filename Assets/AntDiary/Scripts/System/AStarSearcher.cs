@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace AntDiary{
 	public class AStarSearcher{
@@ -15,10 +14,8 @@ namespace AntDiary{
 			get;
 			private set;
 		}
-
 		
 		
-
 		public AStarSearcher(NodeGraph graph){
 			_graph = graph;
 			Route = null;
@@ -27,7 +24,14 @@ namespace AntDiary{
 			
 		}
 
+		/// <summary>
+		/// 経路探索を行う
+		/// 結果はRouteに入る
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
 		public void SearchRoute(Node from, Node to){
+			
 			Route = new List<Node>();
 			if(from == to){
 				Completed = true;
@@ -43,17 +47,17 @@ namespace AntDiary{
 				return;
 			}
 
-			Debug.Log("AStarResult");
+			
 			AStarNode parent = goal;
 			while(parent != null){
 				Route.Add(parent.Node);
 				// Debug.Log(parent);
 				parent = parent.Parent;
 			}
-			Debug.Log("ResultFin");
 			Route.Reverse();
 			
 			Completed = true;
+			
 		}
 
 		private AStarNode SearchProcess(AStarNode root){ 

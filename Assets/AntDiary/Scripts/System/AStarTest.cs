@@ -31,11 +31,18 @@ public class AStarTest : MonoBehaviour{
 		
 		Debug.Log("graphOk");
 		
+		Debug.Log("AStarSearchStart");
+		var stopWatch = new System.Diagnostics.Stopwatch();
+		stopWatch.Start();
+
 		//探索ごとにAStarSearcherインスタンスを作る
 		AStarSearcher searcher = new AStarSearcher(nodeGraph);
 		
 		//経路探索をする
 		searcher.SearchRoute(nodeB, nodeE);
+		
+		stopWatch.Stop();
+		Debug.Log(stopWatch.ElapsedMilliseconds + "ms");
 		
 		Debug.Log("Route:");
 		//結果はsearcher.Routeに入る
