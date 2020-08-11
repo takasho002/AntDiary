@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace AntDiary{
 	public class AStarSearcher{
@@ -42,11 +43,14 @@ namespace AntDiary{
 				return;
 			}
 
+			Debug.Log("AStarResult");
 			AStarNode parent = goal;
 			while(parent != null){
 				Route.Add(parent.Node);
+				// Debug.Log(parent);
 				parent = parent.Parent;
 			}
+			Debug.Log("ResultFin");
 			Route.Reverse();
 			
 			Completed = true;

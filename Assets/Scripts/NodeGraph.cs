@@ -53,6 +53,7 @@ namespace AntDiary{
 
 		/// <summary>
 		/// 	与えられたNode同士を接続する
+		/// 	すでに接続されていた場合は道を置き換える
 		/// 	nodesのサイズが2未満だとエラー
 		/// </summary>
 		/// <param name="nodes"></param>
@@ -63,7 +64,7 @@ namespace AntDiary{
 			}
 
 			//2つを取り出す組み合わせ
-			for(int i = 0; i < nodes.Length - 1; i++){
+			for(int i = 0; i < nodes.Length; i++){
 				for(int j = i + 1; j < nodes.Length; j++){
 					var nodeA = nodes[i];
 					var nodeB = nodes[j];

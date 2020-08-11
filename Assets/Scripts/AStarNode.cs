@@ -35,6 +35,10 @@ namespace AntDiary{
 			HeuristicCost = Vector2.Distance(node.Pos, to.Pos);
 			
 		}
-		
+
+		public override string ToString(){
+			
+			return $"node:{Node.Uid} c:{Cost} h:{HeuristicCost}: tc:{TotalCost} from:{(Parent == null ? "null" : Parent.Node.Uid.ToString())}";
+		}
 	}
 }

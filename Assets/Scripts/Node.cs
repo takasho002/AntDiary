@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -25,12 +26,26 @@ namespace AntDiary{
         }
 
         internal void Connect(Node node, PathParam pathParam){
-            _connectedNodes.Add(node, pathParam);
+            // if(_connectedNodes.ContainsKey(node)){
+            //     _connectedNodes.
+            // }
+            _connectedNodes[node] = pathParam;
+            // _connectedNodes.Add(node, pathParam);
         }
 
         internal void Disconnect(Node node){
             _connectedNodes.Remove(node);
         }
         
+        
+
+
+        public override string ToString(){
+            String connStr = "";
+            foreach(var pair in _connectedNodes){
+                connStr += $"{pair.Key.Uid}({pair.Value.GetCost}), ";
+            }
+            return $"{Uid}: {Pos.ToString()}   connection:[{connStr}]";
+        }
     }
 }
