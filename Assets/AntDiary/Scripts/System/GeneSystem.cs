@@ -41,11 +41,27 @@ namespace AntDiary
         /// </summary>
         public IEnumerable<GeneTree> Trees => treeEntries.Select(e => e.GeneTreeAsset);
 
-        public GeneSystem()
+        public void Awake()
         {
             if (!RegisterSingletonInstance())
             {
                 throw new InvalidOperationException("Duplicate GeneSystem singleton instance");
+            }
+        }
+
+        private void Start()
+        {
+            InitializeGeneTrees();
+        }
+
+        /// <summary>
+        /// Gene間の接続情報を適用します。
+        /// </summary>
+        private void InitializeGeneTrees()
+        {
+            foreach (var geneTree in Trees)
+            {
+                geneTree.ApplyEdges();
             }
         }
 
