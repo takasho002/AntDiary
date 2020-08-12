@@ -183,7 +183,7 @@ namespace AntDiary.Editor
         }
     }
 
-    public class GeneNode : Node
+    public class GeneNode : UnityEditor.Experimental.GraphView.Node
     {
         public Gene TargetGene { get; private set; }
         public Port InPort { get; }

@@ -47,7 +47,7 @@ namespace AntDiary
             }
         }
 
-        [SerializeField] private AntFactory[] antFactories;
+        [SerializeField] private AntFactory[] antFactories = default;
         private List<Ant> SpawnedAnts = new List<Ant>();
 
         private void Start()

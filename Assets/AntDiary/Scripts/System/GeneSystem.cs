@@ -34,7 +34,7 @@ namespace AntDiary
 
         #endregion
 
-        [SerializeField] private GeneTreeEntry[] treeEntries;
+        [SerializeField] private GeneTreeEntry[] treeEntries = default;
         
         /// <summary>
         /// GeneSystemに登録されている遺伝子ツリーのリスト
@@ -85,16 +85,16 @@ namespace AntDiary
         /// 遺伝子ツリーのデータを格納したアセット。
         /// </summary>
         public GeneTree GeneTreeAsset => geneTreeAsset;
-        
-        [SerializeField] private GeneTree geneTreeAsset;
+
+        [SerializeField] private GeneTree geneTreeAsset = default;
 
         /// <summary>
         /// 遺伝子が解放されたときの動作を定義するメソッドのデリゲート。
         /// 引数はGeneのID。
         /// </summary>
         public ReleaseGeneUnityEvent ReleaseGene => releaseGene;
-        
-        [SerializeField] private ReleaseGeneUnityEvent releaseGene;
+
+        [SerializeField] private ReleaseGeneUnityEvent releaseGene = default;
     }
     [Serializable] public class ReleaseGeneUnityEvent : UnityEvent<string>{}
 }

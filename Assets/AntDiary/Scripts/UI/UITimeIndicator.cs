@@ -10,8 +10,8 @@ namespace AntDiary
     {
         private TimeSystem TimeSystem => TimeSystem.Instance;
 
-        [SerializeField] private Text monthNameText;
-        [SerializeField] private Text remainMinutesText;
+        [SerializeField] private Text monthNameText = default;
+        [SerializeField] private Text remainMinutesText = default;
         [SerializeField] private string remainMinutesTextFormat = "{0}: 残り{1}分";
         [SerializeField] private string[] seasonNames = new string[4];
         [SerializeField] private string[] monthNames = new string[12];

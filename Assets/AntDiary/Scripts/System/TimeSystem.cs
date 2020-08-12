@@ -65,10 +65,10 @@ namespace AntDiary
                 {
                     case TimeSystemUpdateMode.Scaled:
                         return Time.time;
-                        break;
+                        
                     case TimeSystemUpdateMode.Unscaled:
                         return Time.unscaledTime;
-                        break;
+                        
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -83,10 +83,10 @@ namespace AntDiary
                 {
                     case TimeSystemUpdateMode.Scaled:
                         return Time.deltaTime;
-                        break;
+                        
                     case TimeSystemUpdateMode.Unscaled:
                         return Time.unscaledDeltaTime;
-                        break;
+                        
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

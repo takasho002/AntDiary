@@ -6,7 +6,7 @@ namespace AntDiary
 {
     public class DebugAntFactory : AntFactory<DebugAntData>
     {
-        [SerializeField] private GameObject debugAntPrefab;
+        [SerializeField] private GameObject debugAntPrefab = default;
         public override Ant InstantiateAnt(DebugAntData antData)
         {
             var antObject = Instantiate(debugAntPrefab, antData.Position, Quaternion.identity);

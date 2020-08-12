@@ -11,8 +11,8 @@ namespace AntDiary
     /// </summary>
     public class MainSystem : MonoBehaviour
     {
-        [SerializeField] private bool showDebugMenu;
-        [SerializeField] private MonoBehaviour[] debugMenuPages;
+        [SerializeField] private bool showDebugMenu = default;
+        [SerializeField] private MonoBehaviour[] debugMenuPages = default;
         private List<IDebugMenu> DebugMenuPages = new List<IDebugMenu>();
         
         private SaveSystem saveSystem = new SaveSystem();
@@ -63,7 +63,6 @@ namespace AntDiary
         private string debugMenuPage = "";
         private Rect debugMenuWindowRect = new Rect(20, 20, 400, 20);
         private Vector2 debugMenuDragStarted;
-        private bool debugMenuIsDragging = false;
 
         private void OnGUIDebugWindow(int id)
         {
