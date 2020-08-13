@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,6 +25,27 @@ namespace AntDiary
 
         private List<UIGeneTreeNode> treeNodes = new List<UIGeneTreeNode>();
         private List<UIGeneTreeEdge> treeEdges = new List<UIGeneTreeEdge>();
+        
+        public GeneTree CurrentGeneTree { get; private set; }
+        public Gene SelectedGene { get; private set; }
+
+        public IObservable<Gene> OnSelectedGeneChanged => onSelectedGeneChanged;
+        private Subject<Gene> onSelectedGeneChanged = new Subject<Gene>();
+        
+        
+        /// <summary>
+        /// 指定したGeneを選択状態にする。
+        /// </summary>
+        /// <param name="gene"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void SelectGene(Gene gene)
+        {
+            if (!CurrentGeneTree) return;
+            if(!CurrentGeneTree.Genes.Contains(gene)) throw new ArgumentException("指定したGeneは現在のGeneTreeに含まれていません。");
+            if (SelectedGene == gene) return;
+            SelectedGene = gene;
+            onSelectedGeneChanged.OnNext(gene);
+        }
 
 
         /// <summary>
@@ -45,6 +67,9 @@ namespace AntDiary
             }
 
             treeEdges.Clear();
+
+            CurrentGeneTree = geneTree;
+            SelectedGene = null;
 
             var rootNodes = geneTree.Genes.Where(g => g.IsRootGene);
             //Depth, Orderを計算
@@ -70,7 +95,7 @@ namespace AntDiary
             if (orders.Count <= depth) orders.Add(0);
             
             UIGeneTreeNode n = Instantiate(geneTreeNodePrefab, elementsRoot).GetComponent<UIGeneTreeNode>();
-            n.Initialize(gene, depth, orders[depth]);
+            n.Initialize(this, gene, depth, orders[depth]);
             treeNodes.Add(n);
             
             orders[depth]++;

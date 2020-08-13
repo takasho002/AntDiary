@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073babef4ac53484a9a39872dc31115d, type: 3}
-  m_Name: GeneTree_Debug
+  m_Name: GeneTree_Debug1
   m_EditorClassIdentifier: 
+  displayName: "\u30C7\u30D0\u30C3\u30B01"
   genes:
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
@@ -19,120 +20,120 @@ MonoBehaviour:
     guid: d0277a1b-4ef5-4d50-974c-3011c7d9883a
     position:
       serializedVersion: 2
-      x: 66
-      y: -4
-      width: 246
-      height: 148
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: f5f3dff1-51b0-4500-8938-49ab631c5202
     position:
       serializedVersion: 2
-      x: 395
-      y: 196
-      width: 209
-      height: 150
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 9ea48639-2720-4f89-8a96-5915145cce65
     position:
       serializedVersion: 2
-      x: 755
-      y: -317
-      width: 215
-      height: 149
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 8def97ba-86d3-4248-9f8f-db9147478db8
     position:
       serializedVersion: 2
-      x: 752
-      y: -31
-      width: 211
-      height: 149
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 1207c1f3-a501-4d3c-a2ff-6ecfc6a9988b
     position:
       serializedVersion: 2
-      x: 818
-      y: 179
-      width: 209
-      height: 151
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: e21660a9-4e40-4c97-9742-f7a03962903c
     position:
       serializedVersion: 2
-      x: 818
-      y: 364
-      width: 215
-      height: 150
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 6eff1330-dde8-4381-b36a-5763c3a8e20d
     position:
       serializedVersion: 2
-      x: 77
-      y: -589
-      width: 241
-      height: 148
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: cfd7c859-6a9b-47e7-8847-76e4656735b4
     position:
       serializedVersion: 2
-      x: 450
-      y: -279
-      width: 241
-      height: 148
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 293f57e5-f9c2-40a0-840f-545710908f92
     position:
       serializedVersion: 2
-      x: 404
-      y: -568
-      width: 255
-      height: 148
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 97008f2c-6072-4066-9776-6ae6235b7f35
     position:
       serializedVersion: 2
-      x: 747
-      y: -578
-      width: 266
-      height: 148
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: 4455c7dd-2a04-4eaf-ba60-24b936411e8d
     position:
       serializedVersion: 2
-      x: 1199
-      y: -779
-      width: 215
-      height: 150
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
     guid: e95f25af-32ce-4195-b9ab-9d123e84da29
     position:
       serializedVersion: 2
-      x: 1180
-      y: -514
-      width: 239
-      height: 147
+      x: 0
+      y: 0
+      width: NaN
+      height: NaN
   edges:
   - parentGeneGuid: d0277a1b-4ef5-4d50-974c-3011c7d9883a
     childGeneGuid: cfd7c859-6a9b-47e7-8847-76e4656735b4
