@@ -9,8 +9,12 @@ namespace AntDiary
     [CreateAssetMenu(menuName = "AntDiary/GeneTree", fileName = "GeneTree")]
     public class GeneTree : ScriptableObject
     {
+        [SerializeField] private string displayName;
         [SerializeField] private List<Gene> genes = new List<Gene>();
         [SerializeField] private List<GeneEdge> edges = new List<GeneEdge>();
+
+        public string DisplayName => displayName;
+
         public List<Gene> Genes => genes;
         public List<GeneEdge> Edges => edges;
 
@@ -102,6 +106,8 @@ namespace AntDiary
         public bool IsRootGene => ParentGene == null;
         public Gene ParentGene { get; set; }
         [field:NonSerialized] public List<Gene> ChildGenes { get; set; } = new List<Gene>();
+
+        public bool IsActivated => GameContext.Current.s_GeneData.ActivatedGenes.Contains(guid);
     }
 
     /// <summary>
