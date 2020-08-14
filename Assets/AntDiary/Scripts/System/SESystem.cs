@@ -17,7 +17,7 @@ namespace AntDiary
         {
             //audiosource = GetComponent<AudioSource>();
             //secategories = GetComponents<SECategory>();
-            PlaySE("");
+            //PlaySE("");
         }
 
         /// <summary>
