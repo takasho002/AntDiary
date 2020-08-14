@@ -6,11 +6,12 @@ namespace AntDiary
 {
     public class NestDebugRoomFactory : NestElementFactory<NestDebugRoomData>
     {
-        [SerializeField]
-        private GameObject debugRoomPrefab;
+        [SerializeField] private GameObject debugRoomPrefab = default;
+
         public override NestElement InstantiateNestElement(NestDebugRoomData elementData)
         {
-            var r = Instantiate(debugRoomPrefab, elementData.Position, Quaternion.identity).GetComponent<NestDebugRoom>();
+            var r = Instantiate(debugRoomPrefab, elementData.Position, Quaternion.identity)
+                .GetComponent<NestDebugRoom>();
             r.Initialize(elementData);
             return r;
         }

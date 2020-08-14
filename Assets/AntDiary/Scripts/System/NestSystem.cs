@@ -60,6 +60,7 @@ namespace AntDiary
                 //すでにロード済み
                 LoadData();
             }
+
             //次にセーブデータが変更（ロード）されたときに、巣を更新する
             SaveUnit.OnCurrentSaveUnitChanged.Subscribe(su => LoadData());
         }
@@ -74,39 +75,40 @@ namespace AntDiary
             {
                 Destroy(ant.gameObject);
             }
+
             SpawnedAnts.Clear();
-            
+
             //生成済みの部屋や道を破棄
             foreach (var element in NestElements)
             {
                 Destroy(element.gameObject);
             }
+
             NestElements.Clear();
-            
+
             ElementEdges.Clear();
-            
-            
+
+
             //セーブデータから巣情報をロード
-            
+
             //アリを生成
             foreach (var antData in Data.Ants)
             {
                 var ant = InstantiateAnt(antData, false);
             }
-            
+
             //道、部屋を生成
             foreach (var elementData in Data.Structure.NestElements)
             {
                 var element = InstantiateNestElement(elementData, false);
             }
-            
+
             //Element間の接続をロード
             foreach (var edgeData in Data.Structure.ElementEdges)
             {
                 var edge = new NestPathElementEdge(NestElements, edgeData);
                 ElementEdges.Add(edge);
             }
-
         }
 
 
@@ -132,8 +134,8 @@ namespace AntDiary
 
             return ant;
         }
-        
-        
+
+
         /// <summary>
         /// NestElementDataをもとに、対応するNestElementFactoryを用いてNestElementのインスタンスを生成する。
         /// </summary>
@@ -143,7 +145,8 @@ namespace AntDiary
         public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true)
         {
             Debug.Log(elementData.GetType());
-            var nestElement = nestElementFactories.FirstOrDefault(f => f.DataType == elementData.GetType())?.InstantiateNestElement(elementData);
+            var nestElement = nestElementFactories.FirstOrDefault(f => f.DataType == elementData.GetType())
+                ?.InstantiateNestElement(elementData);
             if (nestElement != null)
             {
                 if (registerToGameContext)
@@ -160,15 +163,17 @@ namespace AntDiary
         public NestPathElementEdge ConnectElements(NestPathNode a, NestPathNode b)
         {
             var edge = new NestPathElementEdge(a, b);
-            
+
             ElementEdges.Add(edge);
             Data.Structure.ElementEdges.Add(edge.Data);
             return edge;
         }
 
         #region Debug
+
         public string pageTitle { get; } = "巣統合システム";
         private bool showGraph = false;
+
         public void OnGUIPage()
         {
             GUILayout.Label($"データのロード: {(Data != null ? "済" : "未")}");
@@ -180,11 +185,13 @@ namespace AntDiary
                 {
                     InstantiateAnt(new DebugAntData());
                 }
+
                 if (GUILayout.Button("デバッグ部屋のスポーン"))
                 {
-                    InstantiateNestElement(new NestDebugRoomData(){Position = new Vector2(NestElements.Count * 4 - 10, 0)});
+                    InstantiateNestElement(new NestDebugRoomData()
+                        {Position = new Vector2(NestElements.Count * 4 - 10, 0)});
                 }
-                
+
                 if (GUILayout.Button("NestElement間を接続"))
                 {
                     var nodeA = NestElements[0].GetNodes().First(n => n.IsExposed);

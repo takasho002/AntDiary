@@ -7,8 +7,8 @@ namespace AntDiary
 {
     public class NestDebugRoom : NestRoom<NestDebugRoomData>
     {
-        [SerializeField] private Collider2D blockingShape;
-        [SerializeField] private Rect boundingRect;
+        [SerializeField] private Collider2D blockingShape = default;
+        [SerializeField] private Rect boundingRect = default;
 
         private NestPathNode[] nodes;
         private NestPathLocalEdge[] edges;
