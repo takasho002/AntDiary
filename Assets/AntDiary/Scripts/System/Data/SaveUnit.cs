@@ -54,7 +54,8 @@ namespace AntDiary
                 Version = "debug",
                 s_GameContext = new GameContext()
                 {
-                    s_NestData = new NestData()
+                    s_NestData = new NestData(),
+                    s_GeneData = new GeneData()
                 }
             };
             return su;
