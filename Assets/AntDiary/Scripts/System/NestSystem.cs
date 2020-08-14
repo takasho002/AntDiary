@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace AntDiary
@@ -135,6 +136,20 @@ namespace AntDiary
             return ant;
         }
 
+        /// <summary>
+        /// InstantiateAntで生成したアリを破棄します。
+        /// セーブデータから該当のアリを削除します。
+        /// GameObjectの破棄までは担当しないので、呼び出し側でDestroyしてください。
+        /// </summary>
+        /// <param name="ant"></param>
+        public void RemoveAnt(Ant ant)
+        {
+            if (Data.Ants.Contains(ant.Data))
+            {
+                Data.Ants.Remove(ant.Data);
+            }
+        }
+
 
         /// <summary>
         /// NestElementDataをもとに、対応するNestElementFactoryを用いてNestElementのインスタンスを生成する。
@@ -158,6 +173,32 @@ namespace AntDiary
             }
 
             return nestElement;
+        }
+
+        /// <summary>
+        /// InstantiateNestElement()で追加したNestElementを削除します。
+        /// セーブデータからNestElementを削除し、関連するElement間接続を破棄します。
+        /// GameObjectの破棄までは担当しないので、呼び出し側でDestroyしてください
+        /// </summary>
+        /// <param name="element"></param>
+        public void RemoveNestElement(NestElement element)
+        {
+            if (Data.Structure.NestElements.Contains(element.Data))
+            {
+                Data.Structure.NestElements.Remove(element.Data);
+                //Element間接続がある場合はその接続も破棄
+                var l = ElementEdges.Where(e => e.A.Host == element || e.B.Host == element).ToList();
+                foreach (var e in l)
+                {
+                    if (Data.Structure.ElementEdges.Contains(e.Data))
+                    {
+                        Data.Structure.ElementEdges.Remove(e.Data);
+                    }
+                    ElementEdges.Remove(e);
+                }
+                
+            }
+
         }
 
         public NestPathElementEdge ConnectElements(NestPathNode a, NestPathNode b)
