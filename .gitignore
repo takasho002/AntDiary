@@ -10,10 +10,6 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
-# ignore sound and graphic asset
-*.wav
-*.mp3
-*.png
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -63,3 +59,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Rider
+/.idea/
+.DS_Store
