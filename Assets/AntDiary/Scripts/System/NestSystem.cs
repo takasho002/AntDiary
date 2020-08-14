@@ -48,7 +48,10 @@ namespace AntDiary
         }
 
         [SerializeField] private AntFactory[] antFactories = default;
-        private List<Ant> SpawnedAnts = new List<Ant>();
+        [SerializeField] private NestElementFactory[] nestElementFactories = default;
+        private List<Ant> SpawnedAnts { get; } = new List<Ant>();
+        private List<NestElement> NestElements { get; } = new List<NestElement>();
+        private List<NestPathElementEdge> ElementEdges { get; } = new List<NestPathElementEdge>();
 
         private void Start()
         {
@@ -73,12 +76,37 @@ namespace AntDiary
             }
             SpawnedAnts.Clear();
             
+            //生成済みの部屋や道を破棄
+            foreach (var element in NestElements)
+            {
+                Destroy(element.gameObject);
+            }
+            NestElements.Clear();
+            
+            ElementEdges.Clear();
+            
+            
             //セーブデータから巣情報をロード
+            
+            //アリを生成
             foreach (var antData in Data.Ants)
             {
                 var ant = InstantiateAnt(antData, false);
             }
             
+            //道、部屋を生成
+            foreach (var elementData in Data.Structure.NestElements)
+            {
+                var element = InstantiateNestElement(elementData, false);
+            }
+            
+            //Element間の接続をロード
+            foreach (var edgeData in Data.Structure.ElementEdges)
+            {
+                var edge = new NestPathElementEdge(NestElements, edgeData);
+                ElementEdges.Add(edge);
+            }
+
         }
 
 
@@ -104,21 +132,92 @@ namespace AntDiary
 
             return ant;
         }
+        
+        
+        /// <summary>
+        /// NestElementDataをもとに、対応するNestElementFactoryを用いてNestElementのインスタンスを生成する。
+        /// </summary>
+        /// <param name="elementData">生成に使用するNestElementData。</param>
+        /// <param name="registerToGameContext">新たにGameContextに登録するかどうか。セーブデータからの生成などの際に限りfalseを指定する。</param>
+        /// <returns>生成されたGameObjectのもつNestElementコンポーネント。</returns>
+        public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true)
+        {
+            Debug.Log(elementData.GetType());
+            var nestElement = nestElementFactories.FirstOrDefault(f => f.DataType == elementData.GetType())?.InstantiateNestElement(elementData);
+            if (nestElement != null)
+            {
+                if (registerToGameContext)
+                {
+                    Data.Structure.NestElements.Add(elementData);
+                }
+
+                NestElements.Add(nestElement);
+            }
+
+            return nestElement;
+        }
+
+        public NestPathElementEdge ConnectElements(NestPathNode a, NestPathNode b)
+        {
+            var edge = new NestPathElementEdge(a, b);
+            
+            ElementEdges.Add(edge);
+            Data.Structure.ElementEdges.Add(edge.Data);
+            return edge;
+        }
 
         #region Debug
         public string pageTitle { get; } = "巣統合システム";
+        private bool showGraph = false;
         public void OnGUIPage()
         {
             GUILayout.Label($"データのロード: {(Data != null ? "済" : "未")}");
             if (Data != null)
             {
                 GUILayout.Label($"SpawnedAnts: {SpawnedAnts.Count}");
+                GUILayout.Label($"NestElements: {NestElements.Count}");
                 if (GUILayout.Button("デバッグアリのスポーン"))
                 {
                     InstantiateAnt(new DebugAntData());
                 }
+                if (GUILayout.Button("デバッグ部屋のスポーン"))
+                {
+                    InstantiateNestElement(new NestDebugRoomData(){Position = new Vector2(NestElements.Count * 4 - 10, 0)});
+                }
+                
+                if (GUILayout.Button("NestElement間を接続"))
+                {
+                    var nodeA = NestElements[0].GetNodes().First(n => n.IsExposed);
+                    var nodeB = NestElements[1].GetNodes().Last(n => n.IsExposed);
+                    ConnectElements(nodeA, nodeB);
+                }
+
+                showGraph = GUILayout.Toggle(showGraph, "経路グラフを表示");
             }
         }
+
+        private void OnDrawGizmos()
+        {
+            foreach (var e in NestElements)
+            {
+                Gizmos.color = Color.green;
+                foreach (var edge in e.GetLocalEdges())
+                {
+                    var a = edge.A.WorldPosition;
+                    var b = edge.B.WorldPosition;
+                    Gizmos.DrawLine(a, b);
+                }
+            }
+
+            Gizmos.color = Color.red;
+            foreach (var edge in ElementEdges)
+            {
+                var a = edge.A.WorldPosition;
+                var b = edge.B.WorldPosition;
+                Gizmos.DrawLine(a, b);
+            }
+        }
+
         #endregion
     }
 }
