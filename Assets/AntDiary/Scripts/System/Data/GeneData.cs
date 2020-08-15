@@ -7,7 +7,7 @@ using UnityEngine;
 namespace AntDiary
 {
     [MessagePackObject()]
-    public class GeneData : MonoBehaviour
+    public class GeneData
     {
         /// <summary>
         /// 有効化された遺伝子のGUID一覧。
