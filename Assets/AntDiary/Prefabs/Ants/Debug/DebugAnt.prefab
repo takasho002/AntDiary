@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5942265581793713461}
   - component: {fileID: 1379007370299781532}
+  - component: {fileID: -6840840769307973323}
   m_Layer: 0
   m_Name: DebugAnt
   m_TagString: Untagged
@@ -43,3 +44,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc1650d382824740a3e8aef598e6d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6840840769307973323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3766229703136058862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76f1d7e605df6143a4f9367fc6c8353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHoldingFood: 0
+  targetFeed: {x: 0, y: 0}
+  targetNest: {x: 0, y: 0}
+  targetNestEntrance: {x: 0, y: 0}
+  target: {x: 0, y: 0}
+  nowPlace: {x: 0, y: 0}
+  time: 10
+  distance: {x: 0, y: 0}
+  way: {x: 2, y: 2}
+  v: []
+  i: 0

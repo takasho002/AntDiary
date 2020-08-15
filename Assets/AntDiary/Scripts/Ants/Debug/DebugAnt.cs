@@ -8,8 +8,9 @@ namespace AntDiary
     {
         // Start is called before the first frame update
         void Start()
-        {
+        {   
             Debug.Log("DebugAnt: I was born!");
+
         }
 
         // Update is called once per frame
