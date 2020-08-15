@@ -36,11 +36,11 @@ namespace AntDiary
             Vector2 y = new Vector2(0, boundingRect.height * 0.5f);
             nodes = new[]
             {
-                new NestPathNode(this, center),
-                new NestPathNode(this, center + x, "right"),
-                new NestPathNode(this, center + y, "top"),
-                new NestPathNode(this, center - x, "left"),
-                new NestPathNode(this, center - y, "bottom"),
+                new NestPathRoomNode(this, center),
+                new NestPathRoomNode(this, center + x, "right"),
+                new NestPathRoomNode(this, center + y, "top"),
+                new NestPathRoomNode(this, center - x, "left"),
+                new NestPathRoomNode(this, center - y, "bottom"),
             };
 
             edges = new[]

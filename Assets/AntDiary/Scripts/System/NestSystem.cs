@@ -50,9 +50,17 @@ namespace AntDiary
 
         [SerializeField] private AntFactory[] antFactories = default;
         [SerializeField] private NestElementFactory[] nestElementFactories = default;
-        private List<Ant> SpawnedAnts { get; } = new List<Ant>();
-        private List<NestElement> NestElements { get; } = new List<NestElement>();
-        private List<NestPathElementEdge> ElementEdges { get; } = new List<NestPathElementEdge>();
+        
+        public BuildingSystem BuildingSystem { get; set; }
+        
+        private readonly List<Ant> spawnedAnts = new List<Ant>();
+        public IReadOnlyList<Ant> SpawnedAnt => spawnedAnts;
+        
+        private readonly List<NestElement> nestElements = new List<NestElement>();
+        public IReadOnlyList<NestElement> NestElements => nestElements;
+        
+        private readonly List<NestPathElementEdge> elementEdges = new List<NestPathElementEdge>();
+        public IReadOnlyList<NestPathElementEdge> ElementEdges => elementEdges;
 
         private void Start()
         {
@@ -64,6 +72,8 @@ namespace AntDiary
 
             //次にセーブデータが変更（ロード）されたときに、巣を更新する
             SaveUnit.OnCurrentSaveUnitChanged.Subscribe(su => LoadData());
+            
+            BuildingSystem = new BuildingSystem(this);
         }
 
         /// <summary>
@@ -72,22 +82,22 @@ namespace AntDiary
         private void LoadData()
         {
             //生成済みのアリを破棄
-            foreach (var ant in SpawnedAnts)
+            foreach (var ant in spawnedAnts)
             {
                 Destroy(ant.gameObject);
             }
 
-            SpawnedAnts.Clear();
+            spawnedAnts.Clear();
 
             //生成済みの部屋や道を破棄
-            foreach (var element in NestElements)
+            foreach (var element in nestElements)
             {
                 Destroy(element.gameObject);
             }
 
-            NestElements.Clear();
+            nestElements.Clear();
 
-            ElementEdges.Clear();
+            elementEdges.Clear();
 
 
             //セーブデータから巣情報をロード
@@ -107,8 +117,8 @@ namespace AntDiary
             //Element間の接続をロード
             foreach (var edgeData in Data.Structure.ElementEdges)
             {
-                var edge = new NestPathElementEdge(NestElements, edgeData);
-                ElementEdges.Add(edge);
+                var edge = new NestPathElementEdge(nestElements, edgeData);
+                elementEdges.Add(edge);
             }
         }
 
@@ -121,7 +131,7 @@ namespace AntDiary
         /// <returns>生成されたGameObjectのもつAntコンポーネント。</returns>
         public Ant InstantiateAnt(AntData antData, bool registerToGameContext = true)
         {
-            Debug.Log(antData.GetType());
+            //Debug.Log(antData.GetType());
             var ant = antFactories.FirstOrDefault(f => f.DataType == antData.GetType())?.InstantiateAnt(antData);
             if (ant != null)
             {
@@ -130,7 +140,7 @@ namespace AntDiary
                     Data.Ants.Add(antData);
                 }
 
-                SpawnedAnts.Add(ant);
+                spawnedAnts.Add(ant);
             }
 
             return ant;
@@ -159,7 +169,7 @@ namespace AntDiary
         /// <returns>生成されたGameObjectのもつNestElementコンポーネント。</returns>
         public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true)
         {
-            Debug.Log(elementData.GetType());
+            //Debug.Log(elementData.GetType());
             var nestElement = nestElementFactories.FirstOrDefault(f => f.DataType == elementData.GetType())
                 ?.InstantiateNestElement(elementData);
             if (nestElement != null)
@@ -169,7 +179,7 @@ namespace AntDiary
                     Data.Structure.NestElements.Add(elementData);
                 }
 
-                NestElements.Add(nestElement);
+                nestElements.Add(nestElement);
             }
 
             return nestElement;
@@ -187,25 +197,39 @@ namespace AntDiary
             {
                 Data.Structure.NestElements.Remove(element.Data);
                 //Element間接続がある場合はその接続も破棄
-                var l = ElementEdges.Where(e => e.A.Host == element || e.B.Host == element).ToList();
+                var l = elementEdges.Where(e => e.A.Host == element || e.B.Host == element).ToList();
                 foreach (var e in l)
                 {
                     if (Data.Structure.ElementEdges.Contains(e.Data))
                     {
                         Data.Structure.ElementEdges.Remove(e.Data);
                     }
-                    ElementEdges.Remove(e);
+                    elementEdges.Remove(e);
                 }
                 
             }
 
         }
 
+        /// <summary>
+        /// 外部で生成したNestElementをNestSystemに登録する。
+        /// あらかじめNestElement.Initializeで適切なNestElementDataが注入されている必要がある。
+        /// </summary>
+        /// <param name="element"></param>
+        public void AddNestElement(NestElement element)
+        {
+            if(nestElements.Contains(element)) throw new ArgumentException("指定されたNestElementはすでに登録されています。");
+            if(element.Data == null) throw new ArgumentException("NestElementDataが設定されていません。あらかじめ適切なNestElementDataを注入してください。");
+            if(Data.Structure.NestElements.Contains(element.Data)) throw new ArgumentException("指定されたNestElementのDataはすでに登録されています。");
+            nestElements.Add(element);
+            Data.Structure.NestElements.Add(element.Data);
+        }
+
         public NestPathElementEdge ConnectElements(NestPathNode a, NestPathNode b)
         {
             var edge = new NestPathElementEdge(a, b);
 
-            ElementEdges.Add(edge);
+            elementEdges.Add(edge);
             Data.Structure.ElementEdges.Add(edge.Data);
             return edge;
         }
@@ -220,8 +244,8 @@ namespace AntDiary
             GUILayout.Label($"データのロード: {(Data != null ? "済" : "未")}");
             if (Data != null)
             {
-                GUILayout.Label($"SpawnedAnts: {SpawnedAnts.Count}");
-                GUILayout.Label($"NestElements: {NestElements.Count}");
+                GUILayout.Label($"SpawnedAnts: {spawnedAnts.Count}");
+                GUILayout.Label($"NestElements: {nestElements.Count}");
                 if (GUILayout.Button("デバッグアリのスポーン"))
                 {
                     InstantiateAnt(new DebugAntData());
@@ -230,13 +254,13 @@ namespace AntDiary
                 if (GUILayout.Button("デバッグ部屋のスポーン"))
                 {
                     InstantiateNestElement(new NestDebugRoomData()
-                        {Position = new Vector2(NestElements.Count * 4 - 10, 0)});
+                        {Position = new Vector2(nestElements.Count * 4 - 10, 0)});
                 }
 
                 if (GUILayout.Button("NestElement間を接続"))
                 {
-                    var nodeA = NestElements[0].GetNodes().First(n => n.IsExposed);
-                    var nodeB = NestElements[1].GetNodes().Last(n => n.IsExposed);
+                    var nodeA = nestElements[0].GetNodes().First(n => n.IsExposed);
+                    var nodeB = nestElements[1].GetNodes().Last(n => n.IsExposed);
                     ConnectElements(nodeA, nodeB);
                 }
 
@@ -246,7 +270,7 @@ namespace AntDiary
 
         private void OnDrawGizmos()
         {
-            foreach (var e in NestElements)
+            foreach (var e in nestElements)
             {
                 Gizmos.color = Color.green;
                 foreach (var edge in e.GetLocalEdges())
@@ -258,7 +282,7 @@ namespace AntDiary
             }
 
             Gizmos.color = Color.red;
-            foreach (var edge in ElementEdges)
+            foreach (var edge in elementEdges)
             {
                 var a = edge.A.WorldPosition;
                 var b = edge.B.WorldPosition;

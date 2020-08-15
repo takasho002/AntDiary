@@ -7,7 +7,7 @@ namespace AntDiary
     /// <summary>
     /// NestElementsにおけるパスのノードを示す。
     /// </summary>
-    public class NestPathNode
+    public abstract class NestPathNode
     {
         public NestElement Host { get; }
         
@@ -31,5 +31,12 @@ namespace AntDiary
                 IsExposed = true;
             }
         }
+
+        /// <summary>
+        /// あるNestPathNodeとElementを越えた接続が可能であるか調べる。
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public abstract bool IsConnectable(NestPathNode other);
     }
 }
