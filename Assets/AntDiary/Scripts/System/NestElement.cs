@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ namespace AntDiary
 
         public abstract IEnumerable<NestPathNode> GetNodes();
         public abstract IEnumerable<NestPathLocalEdge> GetLocalEdges();
+        
+        
     }
 
     public abstract class NestElement<T> : NestElement where T : NestElementData
@@ -43,6 +46,7 @@ namespace AntDiary
             if (IsInitialized) return;
             SelfData = antData;
             IsInitialized = true;
+            gameObject.layer = LayerMask.NameToLayer("NestElement");
             OnInitialized();
         }
 

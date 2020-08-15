@@ -18,16 +18,16 @@ namespace AntDiary
             //道のノードとだけ接続可能
             if (other is NestPathRoadNode)
             {
-                switch (this.Name)
+                switch (other.Name)
                 {
                     case "right":
-                        return other.Name == "left";
+                        return this.Name == "left";
                     case "top":
-                        return other.Name == "bottom";
+                        return this.Name == "bottom";
                     case "left":
-                        return other.Name == "right";
+                        return this.Name == "right";
                     case "bottom":
-                        return other.Name == "top";
+                        return this.Name == "top";
                     default:
                         return true;
                     

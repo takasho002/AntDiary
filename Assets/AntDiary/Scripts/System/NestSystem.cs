@@ -5,6 +5,7 @@ using System.Linq;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AntDiary
 {
@@ -50,15 +51,15 @@ namespace AntDiary
 
         [SerializeField] private AntFactory[] antFactories = default;
         [SerializeField] private NestElementFactory[] nestElementFactories = default;
-        
+
         public BuildingSystem BuildingSystem { get; set; }
-        
+
         private readonly List<Ant> spawnedAnts = new List<Ant>();
         public IReadOnlyList<Ant> SpawnedAnt => spawnedAnts;
-        
+
         private readonly List<NestElement> nestElements = new List<NestElement>();
         public IReadOnlyList<NestElement> NestElements => nestElements;
-        
+
         private readonly List<NestPathElementEdge> elementEdges = new List<NestPathElementEdge>();
         public IReadOnlyList<NestPathElementEdge> ElementEdges => elementEdges;
 
@@ -72,7 +73,7 @@ namespace AntDiary
 
             //次にセーブデータが変更（ロード）されたときに、巣を更新する
             SaveUnit.OnCurrentSaveUnitChanged.Subscribe(su => LoadData());
-            
+
             BuildingSystem = new BuildingSystem(this);
         }
 
@@ -196,6 +197,7 @@ namespace AntDiary
             if (Data.Structure.NestElements.Contains(element.Data))
             {
                 Data.Structure.NestElements.Remove(element.Data);
+                nestElements.Remove(element);
                 //Element間接続がある場合はその接続も破棄
                 var l = elementEdges.Where(e => e.A.Host == element || e.B.Host == element).ToList();
                 foreach (var e in l)
@@ -204,11 +206,11 @@ namespace AntDiary
                     {
                         Data.Structure.ElementEdges.Remove(e.Data);
                     }
+
+                    e.Clear();
                     elementEdges.Remove(e);
                 }
-                
             }
-
         }
 
         /// <summary>
@@ -218,9 +220,11 @@ namespace AntDiary
         /// <param name="element"></param>
         public void AddNestElement(NestElement element)
         {
-            if(nestElements.Contains(element)) throw new ArgumentException("指定されたNestElementはすでに登録されています。");
-            if(element.Data == null) throw new ArgumentException("NestElementDataが設定されていません。あらかじめ適切なNestElementDataを注入してください。");
-            if(Data.Structure.NestElements.Contains(element.Data)) throw new ArgumentException("指定されたNestElementのDataはすでに登録されています。");
+            if (nestElements.Contains(element)) throw new ArgumentException("指定されたNestElementはすでに登録されています。");
+            if (element.Data == null)
+                throw new ArgumentException("NestElementDataが設定されていません。あらかじめ適切なNestElementDataを注入してください。");
+            if (Data.Structure.NestElements.Contains(element.Data))
+                throw new ArgumentException("指定されたNestElementのDataはすでに登録されています。");
             nestElements.Add(element);
             Data.Structure.NestElements.Add(element.Data);
         }
@@ -234,10 +238,19 @@ namespace AntDiary
             return edge;
         }
 
+        public IEnumerable<IPathNode> FindRoute(NestPathNode from, NestPathNode to)
+        {
+            AStarSearcher searcher = new AStarSearcher(null);
+            searcher.SearchRoute(from, to);
+            return searcher.Route;
+        }
+
+
         #region Debug
 
         public string pageTitle { get; } = "巣統合システム";
         private bool showGraph = false;
+        private IEnumerable<IPathNode> latestRoute;
 
         public void OnGUIPage()
         {
@@ -251,17 +264,84 @@ namespace AntDiary
                     InstantiateAnt(new DebugAntData());
                 }
 
-                if (GUILayout.Button("デバッグ部屋のスポーン"))
+                if (GUILayout.Button("デバッグ巣の生成"))
                 {
-                    InstantiateNestElement(new NestDebugRoomData()
-                        {Position = new Vector2(nestElements.Count * 4 - 10, 0)});
+                    //生成済みの巣のクリア
+                    var ne = nestElements.ToList();
+                    foreach (var e in ne)
+                    {
+                        RemoveNestElement(e);
+                    }
+                    /*
+                    var n1 = InstantiateNestElement(new DebugRoomData()
+                        {Position = new Vector2(-3, 0)}).GetNodes().First(n => n.Name == "right");
+                    var n2 = InstantiateNestElement(new DebugRoomData()
+                        {Position = new Vector2(3, 0)}).GetNodes().First(n => n.Name == "left");;
+                    
+                    var road = InstantiateNestElement(new DebugRoadData()
+                        {From = n1.WorldPosition + new Vector2(0.2f, 0), To = n2.WorldPosition + new Vector2(-0.2f, 0)});
+                    
+                    var roadNodes = road.GetNodes();
+                    var r1 = roadNodes.ElementAt(0);
+                    var r2 = roadNodes.ElementAt(1);
+
+                    ConnectElements(n1, r1);
+                    ConnectElements(r2, n2);
+*/
+                    for (int y = 0; y < 3; y++)
+                    for (int x = 0; x < 3; x++)
+                    {
+                        float posx = x * 4f - 1.5f * 4f;
+                        float posy = y * 3f - 1f * 3f;
+                        InstantiateNestElement(new DebugRoomData()
+                            {Position = new Vector2(posx, posy)});
+                    }
+                    
+                    for (int y = 0; y < 3; y++)
+                    for (int x = 0; x < 2; x++)
+                    {
+                        int i = y * 3 + x;
+                        var n1 = NestElements[i].GetNodes().First(n => n.Name == "right");
+                        var n2 = NestElements[i+1].GetNodes().First(n => n.Name == "left");
+                        
+                        var road = InstantiateNestElement(new DebugRoadData()
+                            {From = n1.WorldPosition + new Vector2(0.1f, 0), To = n2.WorldPosition + new Vector2(-0.1f, 0)});
+                        var roadNodes = road.GetNodes();
+                        var r1 = roadNodes.ElementAt(0);
+                        var r2 = roadNodes.ElementAt(1);
+
+                        ConnectElements(n1, r1);
+                        ConnectElements(r2, n2);
+                    }
+                    
+                                        
+                    for (int y = 0; y < 2; y++)
+                    for (int x = 0; x < 1; x++)
+                    {
+                        int i = y * 3 + x;
+                        var n1 = NestElements[i].GetNodes().First(n => n.Name == "top");
+                        var n2 = NestElements[i+3].GetNodes().First(n => n.Name == "bottom");
+                        
+                        var road = InstantiateNestElement(new DebugRoadData()
+                            {From = n1.WorldPosition + new Vector2(0, 0.1f), To = n2.WorldPosition + new Vector2(0, -0.1f)});
+                        var roadNodes = road.GetNodes();
+                        var r1 = roadNodes.ElementAt(0);
+                        var r2 = roadNodes.ElementAt(1);
+
+                        ConnectElements(n1, r1);
+                        ConnectElements(r2, n2);
+                    }
+
                 }
 
-                if (GUILayout.Button("NestElement間を接続"))
+                if (GUILayout.Button("ランダムな経路探索のテスト"))
                 {
-                    var nodeA = nestElements[0].GetNodes().First(n => n.IsExposed);
-                    var nodeB = nestElements[1].GetNodes().Last(n => n.IsExposed);
-                    ConnectElements(nodeA, nodeB);
+                    var ne = NestElements[Random.Range(0, NestElements.Count)];
+                    var node1 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));
+                    ne = NestElements[Random.Range(0, NestElements.Count)];
+                    var node2 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));
+                    
+                    latestRoute = FindRoute(node1, node2);
                 }
 
                 showGraph = GUILayout.Toggle(showGraph, "経路グラフを表示");
@@ -288,6 +368,18 @@ namespace AntDiary
                 var b = edge.B.WorldPosition;
                 Gizmos.DrawLine(a, b);
             }
+
+            if (latestRoute != null)
+            {
+                Gizmos.color = Color.yellow;
+                for (int i = 0; i < latestRoute.Count() - 1; i++)
+                {
+                    var a = latestRoute.ElementAt(i);
+                    var b = latestRoute.ElementAt(i+1);
+                    Gizmos.DrawLine(a.WorldPosition, b.WorldPosition);
+                }
+            }
+            
         }
 
         #endregion

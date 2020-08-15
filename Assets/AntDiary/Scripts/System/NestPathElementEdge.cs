@@ -41,6 +41,8 @@ namespace AntDiary
 
             A = nodeA;
             B = nodeB;
+            
+            RegisterToNode();
         }
 
         public NestPathElementEdge(NestPathNode a, NestPathNode b)
@@ -58,6 +60,17 @@ namespace AntDiary
                 NodeNameA = a.Name,
                 NodeNameB = b.Name
             };
+            
+            RegisterToNode();
         }
+
+        /// <summary>
+        /// Element間の接続をクリアします。これをしないと正常に経路探索されません
+        /// </summary>
+        public void Clear()
+        {
+            UnregisterFromNode();
+        }
+        
     }
 }

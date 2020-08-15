@@ -3,8 +3,29 @@ using System.Collections.Generic;
 using AntDiary;
 using UnityEngine;
 
-public abstract class NestPathEdge
+public abstract class NestPathEdge : IPathEdge
 {
     public abstract NestPathNode A { get; }
+    IPathNode IPathEdge.B => B;
+
+    public float Cost => Mathf.Max(0.01f, (A.WorldPosition - B.WorldPosition).magnitude);
+
+    IPathNode IPathEdge.A => A;
+
     public abstract NestPathNode B { get; }
+
+    protected void RegisterToNode()
+    {
+        A.RegisterEdge(this);
+        B.RegisterEdge(this);
+    }
+
+    protected void UnregisterFromNode()
+    {
+        A.UnregisterEdge(this);
+        B.UnregisterEdge(this);
+    }
+    
+
+
 }

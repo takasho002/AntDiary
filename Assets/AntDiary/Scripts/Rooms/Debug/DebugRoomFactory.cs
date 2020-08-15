@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public class NestDebugRoomFactory : NestElementFactory<NestDebugRoomData>
+    public class DebugRoomFactory : NestElementFactory<DebugRoomData>
     {
         [SerializeField] private GameObject debugRoomPrefab = default;
 
-        public override NestElement InstantiateNestElement(NestDebugRoomData elementData)
+        public override NestElement InstantiateNestElement(DebugRoomData elementData)
         {
             var r = Instantiate(debugRoomPrefab, elementData.Position, Quaternion.identity)
-                .GetComponent<NestDebugRoom>();
+                .GetComponent<DebugRoom>();
             r.Initialize(elementData);
             return r;
         }

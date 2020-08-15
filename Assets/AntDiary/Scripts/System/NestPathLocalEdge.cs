@@ -15,6 +15,8 @@ namespace AntDiary
             if(a.Host != b.Host) throw new ArgumentException("異なるNestElementに含まれるNestPathNodeどうしを接続することはできません。");
             A = a;
             B = b;
+            
+            RegisterToNode();
         }
     }
 }

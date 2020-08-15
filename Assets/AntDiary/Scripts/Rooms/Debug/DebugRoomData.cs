@@ -6,7 +6,7 @@ using UnityEngine;
 namespace AntDiary
 {
     [MessagePackObject()]
-    public class NestDebugRoomData : NestRoomData
+    public class DebugRoomData : RoomData
     {
         
     }
