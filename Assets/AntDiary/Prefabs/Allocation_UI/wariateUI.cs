@@ -20,16 +20,16 @@ public class wariateUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void Update()
     {
         grayScrollbar.fillAmount = otherScrollbar1.fillAmount + otherScrollbar2.fillAmount;
-        Max = (1 - grayScrollbar.fillAmount) * 400-200;
+        Max = (1 - grayScrollbar.fillAmount) * 300-150;
         if (transform.localPosition.x>Max)
         {
             transform.localPosition = new Vector3(Max,transform.localPosition.y,transform.localPosition.z) ;
         }
-        else if(transform.localPosition.x<-200)
+        else if(transform.localPosition.x<-150)
         {
-            transform.localPosition = new Vector3(-200, transform.localPosition.y, transform.localPosition.z);
+            transform.localPosition = new Vector3(-150, transform.localPosition.y, transform.localPosition.z);
         }
-        scrollbar.fillAmount = (transform.localPosition.x + 200) / 400;
+        scrollbar.fillAmount = (transform.localPosition.x + 150) / 300;
     }
     public void OnBeginDrag(PointerEventData data)//ドラッグはじめ
     {
