@@ -8,7 +8,6 @@ public class Winter : MonoBehaviour
 {
 
     public Text Wintertext;
-    private int counttime;
 
     private float season;
     private void Start()

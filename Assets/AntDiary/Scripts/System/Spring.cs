@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using AntDiary;
+using UnityEngine.Audio;
 
 public class Spring : MonoBehaviour
 {
 
     public Text Springtext;
-    private int counttime;
-
+    private float PlayBGMornot;
     private float season;
     private void Start()
     {
+      PlayBGMornot = 0;
       season=0;
       Springtext.text = "";  
     }
@@ -28,6 +29,14 @@ public class Spring : MonoBehaviour
     {
         if(season==0){
             Springtext.text = "Spring";
+            if(PlayBGMornot == 0){
+               //GameObject.Find("spring_bgm_fixed1.mp3");
+                PlayBGMornot = PlayBGMornot+1;
+            }
+            if(season!=0){
+            Springtext.text = "";
+            PlayBGMornot = 0;
+        }
         }
     } 
 }
