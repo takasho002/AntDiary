@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4762942447006042948}
   - component: {fileID: 2182987387248750700}
+  - component: {fileID: 3651479368237573578}
   m_Layer: 0
   m_Name: Chochikubeya_Esaari_1
   m_TagString: Chochikubeya
@@ -81,3 +82,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3651479368237573578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218808131439811034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3701765db9a69584b850297d897c1a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stockAmount: 0
