@@ -8,7 +8,7 @@ namespace AntDiary
     [MessagePackObject()]
     public class DebugRoadData : NestElementData
     {
-        [Key(0)] public Vector2 From { get; set; }
-        [Key(1)] public Vector2 To { get; set; }
+        [Key(10)] public Vector2 From { get; set; }
+        [Key(11)] public Vector2 To { get; set; }
     }
 }
