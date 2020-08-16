@@ -5,10 +5,8 @@ using UnityEngine;
 public class DebugAntMoveByKey : MonoBehaviour
 {
     public GameObject targetObj;
-    public int feedAmount;
     public bool isHoldingFood;
 
-    private Chochikuko chochikuko;
     private Vector3 targetPos;
     private Vector3 nowPos;
 
@@ -16,7 +14,6 @@ public class DebugAntMoveByKey : MonoBehaviour
     void Start()
     {
         nowPos = targetObj.transform.position;
-        chochikuko = targetObj.GetComponent <Chochikuko>();
     }
 
     // Update is called once per frame
@@ -41,15 +38,5 @@ public class DebugAntMoveByKey : MonoBehaviour
         }
 
         targetPos = transform.position;
-        if (Vector3.Distance(targetPos, nowPos) < 1)
-        {
-            Debug.Log("touched");
-            if (isHoldingFood)
-            {
-                chochikuko.stockAmount += feedAmount;
-                feedAmount = 0;
-                isHoldingFood = false;
-            }
-        }
     }
 }
