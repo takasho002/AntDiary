@@ -29,10 +29,11 @@ namespace AntDiary
 
         protected override void OnInitialized()
         {
+            var position = transform.position;
             nodes = new[]
             {
-                new NestPathRoadNode(this, SelfData.From - (Vector2) transform.position, "plain"),
-                new NestPathRoadNode(this, SelfData.To - (Vector2) transform.position, "plain")
+                new NestPathRoadNode(this, SelfData.From - (Vector2) position, "plain"),
+                new NestPathRoadNode(this, SelfData.To - (Vector2) position, "plain")
             };
 
             edges = new[]

@@ -8,7 +8,7 @@ public abstract class NestPathEdge : IPathEdge
     public abstract NestPathNode A { get; }
     IPathNode IPathEdge.B => B;
 
-    public float Cost => Mathf.Max(0.01f, (A.WorldPosition - B.WorldPosition).magnitude);
+    public float Cost => (A.WorldPosition - B.WorldPosition).magnitude;
 
     IPathNode IPathEdge.A => A;
 

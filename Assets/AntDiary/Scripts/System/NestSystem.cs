@@ -249,7 +249,7 @@ namespace AntDiary
         #region Debug
 
         public string pageTitle { get; } = "巣統合システム";
-        private bool showGraph = false;
+        private bool showGraph = true;
         private IEnumerable<IPathNode> latestRoute;
 
         public void OnGUIPage()
@@ -272,24 +272,9 @@ namespace AntDiary
                     {
                         RemoveNestElement(e);
                     }
-                    /*
-                    var n1 = InstantiateNestElement(new DebugRoomData()
-                        {Position = new Vector2(-3, 0)}).GetNodes().First(n => n.Name == "right");
-                    var n2 = InstantiateNestElement(new DebugRoomData()
-                        {Position = new Vector2(3, 0)}).GetNodes().First(n => n.Name == "left");;
                     
-                    var road = InstantiateNestElement(new DebugRoadData()
-                        {From = n1.WorldPosition + new Vector2(0.2f, 0), To = n2.WorldPosition + new Vector2(-0.2f, 0)});
-                    
-                    var roadNodes = road.GetNodes();
-                    var r1 = roadNodes.ElementAt(0);
-                    var r2 = roadNodes.ElementAt(1);
-
-                    ConnectElements(n1, r1);
-                    ConnectElements(r2, n2);
-*/
                     for (int y = 0; y < 3; y++)
-                    for (int x = 0; x < 3; x++)
+                    for (int x = 0; x < 4; x++)
                     {
                         float posx = x * 4f - 1.5f * 4f;
                         float posy = y * 3f - 1f * 3f;
@@ -298,14 +283,14 @@ namespace AntDiary
                     }
                     
                     for (int y = 0; y < 3; y++)
-                    for (int x = 0; x < 2; x++)
+                    for (int x = 0; x < 3; x++)
                     {
-                        int i = y * 3 + x;
+                        int i = y * 4 + x;
                         var n1 = NestElements[i].GetNodes().First(n => n.Name == "right");
                         var n2 = NestElements[i+1].GetNodes().First(n => n.Name == "left");
                         
                         var road = InstantiateNestElement(new DebugRoadData()
-                            {From = n1.WorldPosition + new Vector2(0.1f, 0), To = n2.WorldPosition + new Vector2(-0.1f, 0)});
+                            {From = n1.WorldPosition, To = n2.WorldPosition});
                         var roadNodes = road.GetNodes();
                         var r1 = roadNodes.ElementAt(0);
                         var r2 = roadNodes.ElementAt(1);
@@ -316,14 +301,14 @@ namespace AntDiary
                     
                                         
                     for (int y = 0; y < 2; y++)
-                    for (int x = 0; x < 1; x++)
+                    for (int x = 0; x < 4; x++)
                     {
-                        int i = y * 3 + x;
+                        int i = y * 4 + x;
                         var n1 = NestElements[i].GetNodes().First(n => n.Name == "top");
-                        var n2 = NestElements[i+3].GetNodes().First(n => n.Name == "bottom");
+                        var n2 = NestElements[i+4].GetNodes().First(n => n.Name == "bottom");
                         
                         var road = InstantiateNestElement(new DebugRoadData()
-                            {From = n1.WorldPosition + new Vector2(0, 0.1f), To = n2.WorldPosition + new Vector2(0, -0.1f)});
+                            {From = n1.WorldPosition, To = n2.WorldPosition});
                         var roadNodes = road.GetNodes();
                         var r1 = roadNodes.ElementAt(0);
                         var r2 = roadNodes.ElementAt(1);
@@ -350,6 +335,7 @@ namespace AntDiary
 
         private void OnDrawGizmos()
         {
+            if (!showGraph) return;
             foreach (var e in nestElements)
             {
                 Gizmos.color = Color.green;

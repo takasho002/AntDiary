@@ -62,7 +62,7 @@ namespace AntDiary{
 
 		private AStarNode SearchProcess(AStarNode root){ 
 			List<AStarNode> openNodes = new List<AStarNode>();
-			List<AStarNode> closedNodes = new List<AStarNode>();
+			List<IPathNode> closedNodes = new List<IPathNode>();
 			openNodes.Add(root);
 			
 			
@@ -81,6 +81,13 @@ namespace AntDiary{
 					var cost = aStarNode.Cost + edge.Cost;
 					
 					var other = edge.GetOtherNode(aStarNode.Node);
+					
+					//CloseされたノードはOpenしない
+					if (closedNodes.Contains(other))
+					{
+						continue;
+					}
+					
 					AStarNode childNode = new AStarNode(other, aStarNode, cost, aStarNode.DestNode);
 					
 					if(other == aStarNode.DestNode){
@@ -91,7 +98,9 @@ namespace AntDiary{
 				}
 
 				openNodes.Remove(aStarNode);
-				closedNodes.Add(aStarNode);
+				
+				//Closeする
+				closedNodes.Add(aStarNode.Node);
 				
 			}
 
