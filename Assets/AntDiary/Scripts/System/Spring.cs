@@ -26,7 +26,7 @@ public class Spring : MonoBehaviour
 
     private void Springcheck()
     {
-        if(season==3){
+        if(season==0){
             Springtext.text = "Spring";
         }
     } 

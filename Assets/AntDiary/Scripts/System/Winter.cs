@@ -26,7 +26,7 @@ public class Winter : MonoBehaviour
 
     private void Wintercheck()
     {
-        if(season==0){
+        if(season==3){
             Wintertext.text = "Winter";
         }
     } 
