@@ -16,6 +16,7 @@ namespace AntDiary
         //仕事の型リスト
         private List<Type> antjobs;
         private int jobCount;
+        int total;
         //理想の割合
         public float[] idealrate;
         private NestData nestdata => NestSystem.Instance?.Data;
@@ -85,7 +86,7 @@ namespace AntDiary
             }
 
             //生きているアリの総数と仕事ごとの数をカウント
-            int total = 0;
+            total = 0;
             foreach (var ant in nestdata.Ants)
             {
                 Type antjob = ant.GetType();
