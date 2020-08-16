@@ -9,9 +9,6 @@ public class Chochikuko : MonoBehaviour
     public Sprite Esanashi;
     private SpriteRenderer spriteRenderer;
 
-    //  貯蓄庫の在庫量をここで管理する
-    [HideInInspector] public int stockAmount;
-
     // デバッグ用に季節とアリのステータスを指定
     public int season;
     public int status;
@@ -21,7 +18,6 @@ public class Chochikuko : MonoBehaviour
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         // 貯蓄庫の初期の貯蓄量を0とする
-        stockAmount = 0;
         NestSystem.Instance.Data.StoredFood = 0;
     }
 
@@ -41,7 +37,7 @@ public class Chochikuko : MonoBehaviour
         if (script.isHoldingFood)
         {
             // 貯蓄部屋のストックが0から増える際はspriteを餌ありに変更
-            if (stockAmount == 0)
+            if (NestSystem.Instance.Data.StoredFood == 0)
             {
                 spriteRenderer.sprite = Esaari;
             }
