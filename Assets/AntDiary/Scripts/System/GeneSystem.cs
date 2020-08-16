@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,17 +36,47 @@ namespace AntDiary
         #endregion
 
         [SerializeField] private GeneTreeEntry[] treeEntries = default;
+
+        private bool isTreesInitialized = false;
+        
+        public IObservable<Gene> OnGeneActivated => onGeneActivated;
+        private Subject<Gene> onGeneActivated = new Subject<Gene>(); 
         
         /// <summary>
         /// GeneSystemに登録されている遺伝子ツリーのリスト
         /// </summary>
-        public IEnumerable<GeneTree> Trees => treeEntries.Select(e => e.GeneTreeAsset);
+        public IEnumerable<GeneTree> Trees
+        {
+            get
+            {
+                InitializeGeneTrees();
+                return treeEntries.Select(e => e.GeneTreeAsset);
+            }
+        }
 
-        public GeneSystem()
+        public void Awake()
         {
             if (!RegisterSingletonInstance())
             {
                 throw new InvalidOperationException("Duplicate GeneSystem singleton instance");
+            }
+        }
+
+        private void Start()
+        {
+            InitializeGeneTrees();
+        }
+
+        /// <summary>
+        /// Gene間の接続情報を適用します。
+        /// </summary>
+        private void InitializeGeneTrees()
+        {
+            if (isTreesInitialized) return;
+            isTreesInitialized = true;
+            foreach (var geneTree in Trees)
+            {
+                geneTree.ApplyEdges();
             }
         }
 
@@ -55,12 +86,12 @@ namespace AntDiary
         /// <param name="gene">解放するGene</param>
         /// <returns>解放に成功したかどうか。</returns>
         /// </summary>
-        public bool Release(GeneTree tree, Gene gene)
+        public bool Activate(GeneTree tree, Gene gene)
         {
             if(!Trees.Contains(tree)) throw new ArgumentException("指定したGeneTreeはGeneSystemに登録されていません。");
             if (!tree.Genes.Contains(gene)) throw new ArgumentException("指定したGeneはGeneTreeに含まれていません。");
             
-            if (!Data.ActivatedGenes.Contains(gene.ParentGene.Guid))
+            if (gene.ParentGene != null && !Data.ActivatedGenes.Contains(gene.ParentGene.Guid))
             {
                 //親ノードの遺伝子が解放されていなければ、解放できない
                 return false;
@@ -69,6 +100,7 @@ namespace AntDiary
             var entry = treeEntries.FirstOrDefault(e => e.GeneTreeAsset == tree);
             entry?.ReleaseGene.Invoke(gene.Id);
             Data.ActivatedGenes.Add(gene.Guid);
+            onGeneActivated.OnNext(gene);
             return true;
 
             //TODO: スキルポイント的なやつの消費
