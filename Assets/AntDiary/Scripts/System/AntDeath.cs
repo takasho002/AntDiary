@@ -14,6 +14,7 @@ namespace AntDiary
         //アリprefabのantクラスをセット
         [SerializeField] private Ant ant = default;
         [SerializeField] private Animator animator = default;
+        private NestSystem nestsystem => NestSystem.Instance;
 
         void Start()
         {
@@ -24,10 +25,10 @@ namespace AntDiary
         void Update()
         {
             //AntDataからHPを読んで0以下か判定
-            if (/*ant.Data.HP=<0 && !ant.Data.Dead*/true)
+            if (/*ant.Data.HP=<0 &&*/ ant.Data.IsAlive)
             {
                 //HPが0以下ならステータスを死亡にしアニメーション再生
-                //ant.Data.Dead = true;
+                ant.Data.IsAlive = false;
                 //animator.SetTrigger("Dead");
             }
         }
@@ -38,9 +39,9 @@ namespace AntDiary
         /// </summary>
         void Despawn()
         {
-            if (/*ant.Data.Dead*/true)
+            if (!ant.Data.IsAlive)
             {
-                NestSystem.Instance.Data.Ants.Remove(ant.Data);
+                //nestsystem.RemoveAnt(ant.Data);
                 Destroy(this.gameObject);
             }
         }
