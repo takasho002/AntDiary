@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Root
   - Chochikubeya
+<<<<<<< HEAD
   - DebugMes
+=======
+  - Ants
+>>>>>>> upstream/master
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - NestElement
   - 
   - 
   - 
