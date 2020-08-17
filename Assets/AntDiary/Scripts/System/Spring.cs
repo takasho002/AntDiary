@@ -9,7 +9,7 @@ public class Spring : MonoBehaviour
 {
 
     public Text Springtext;
-    private float PlaySpringBGMornot;
+    private int PlaySpringBGMornot;
     private float season;
     private void Start()
     {
@@ -31,7 +31,7 @@ public class Spring : MonoBehaviour
             Springtext.text = "Spring";
             if(PlaySpringBGMornot == 0){
                //GameObject.Find("spring_bgm_fixed1.mp3");
-                PlaySpringBGMornot = PlaySpringBGMornot+1;
+                PlaySpringBGMornot = 1;
             }
         }else{
             PlaySpringBGMornot = 0;
