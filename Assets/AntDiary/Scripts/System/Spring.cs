@@ -9,11 +9,11 @@ public class Spring : MonoBehaviour
 {
 
     public Text Springtext;
-    private float PlayBGMornot;
+    private float PlaySpringBGMornot;
     private float season;
     private void Start()
     {
-      PlayBGMornot = 0;
+      PlaySpringBGMornot = 0;
       season=0;
       Springtext.text = "";  
     }
@@ -29,14 +29,12 @@ public class Spring : MonoBehaviour
     {
         if(season==0){
             Springtext.text = "Spring";
-            if(PlayBGMornot == 0){
+            if(PlaySpringBGMornot == 0){
                //GameObject.Find("spring_bgm_fixed1.mp3");
-                PlayBGMornot = PlayBGMornot+1;
+                PlaySpringBGMornot = PlaySpringBGMornot+1;
             }
-            if(season!=0){
-            Springtext.text = "";
-            PlayBGMornot = 0;
-        }
+        }else{
+            PlaySpringBGMornot = 0;
         }
     } 
 }
