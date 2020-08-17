@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Root
   - Chochikubeya
+  - DebugMes
   layers:
   - Default
   - TransparentFX
