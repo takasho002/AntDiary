@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: -8975690504368707414}
   - component: {fileID: 6129966079009735475}
   m_Layer: 0
-  m_Name: FeedtranceAnt
-  m_TagString: Untagged
+  m_Name: FeedTransportAnt
+  m_TagString: FeedTransportAnt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 9222311918125022646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,7 +44,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -165,11 +165,11 @@ MonoBehaviour:
   targetNestEntrance: {x: 0, y: 0}
   target: {x: 0, y: 0}
   nowPlace: {x: 0, y: 0}
+  v: []
+  i: 0
   time: 10
   distance: {x: 0, y: 0}
   way: {x: 2, y: 2}
-  v: []
-  i: 0
 --- !u!114 &6129966079009735475
 MonoBehaviour:
   m_ObjectHideFlags: 0

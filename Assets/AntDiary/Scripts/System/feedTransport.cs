@@ -21,14 +21,26 @@ public class feedTransport : MonoBehaviour
     public Vector2 nowPlace;
 
     //AStarへのnodeの初期化
-           //経路探索のプログラムにぶち込む為の操作
+    　 //経路探索のプログラムにぶち込む為の操作
+    　 //経路全体を示す変数名"nodeGraph"
        NodeGraph nodeGraph;
+
+       //試験的に3つのnodoを作ってみる(実際には使わない)
        Node nodeNest;
 	   Node nodeFeed;
 	   Node nodeNestEntrance;
+
+
        //探索ごとにAStarSearcherインスタンスを作る
+       //ここに経路探索の結果を入れる
        AStarSearcher searcher;
 
+       // 探索結果をもとに曲がり角の座標を保存する配列
+       public List<Vector2> v;
+       //その引数i
+    　　public int i;
+
+    //
     //対象までかかる時間
     public int time = 10;
     //対象までの距離
@@ -38,23 +50,20 @@ public class feedTransport : MonoBehaviour
     //運搬能力
     //public int ability = 1;
     
-    // 探索結果をもとに曲がり角の座標を保存する配列
-    public List<Vector2> v;
-    //その引数i
-    public int i;
+    
     // Start is called before the first frame update
     
     void Start()
     {
-        // Rigidbody2Dを取得する
-       Rigidbody2D rd = GetComponent<Rigidbody2D>();
        //目的地の設定
+
+       //GameObject.Find()の引数を変更することでそれぞれのアリに適用可能
        //餌の位置
        targetFeed = GameObject.Find("feed").transform.position;
        //巣の位置
        targetNest = GameObject.Find("nest").transform.position;
        //現在置
-       nowPlace = GameObject.Find("DebugAnt").transform.position;
+       nowPlace = GameObject.Find("FeedTransportAnt").transform.position;
 
        //経路探索のプログラムにぶち込むためのnode作成
        nodeGraph = new NodeGraph();
@@ -64,8 +73,9 @@ public class feedTransport : MonoBehaviour
        //試しにtargetNestEntrance（巣の出入り口）なるものを曲がり角として用意してみる
        targetNestEntrance = GameObject.Find("nestEntrance").transform.position;
        nodeNestEntrance = nodeGraph.CreateNode(targetNestEntrance);
-       
-      // nodeGraph.ConnectNodes(new []{nodeNest, nodeNestEntrance,nodeFeed});
+       //nodeをそれぞれつなげる作業
+       //nodeGraph.ConnectNodes(new []{from,to});→ fromからtoへnodeをつなげる
+       //nodeGraph.ConnectNodes(new []{A, B,C});→ABCの循環円を作成
        nodeGraph.ConnectNodes(new []{nodeNest, nodeNestEntrance});
        nodeGraph.ConnectNodes(new []{nodeNestEntrance,nodeFeed});
        //探索ごとにAStarSearcherインスタンスを作る
@@ -83,7 +93,7 @@ public class feedTransport : MonoBehaviour
 
        //ありの状態の取得
        //初期位置
-       nowPlace = GameObject.Find("DebugAnt").transform.position;
+       nowPlace = GameObject.Find("FeedTransportAnt").transform.position;
        //対象までにかかる時間
        time = 500;
        //node間の移動を計算し足していく値
@@ -91,10 +101,10 @@ public class feedTransport : MonoBehaviour
        i = 1;
        target = v[i];
        way = explore(target);
-       float x = way.x;
-       float y = way.y;
-       Debug.Log(x);
-       Debug.Log(y);
+       //float x = way.x;
+       //float y = way.y;
+       //Debug.Log(x);
+       //Debug.Log(y);
        //運搬能力
        //ability = 1;
     }
@@ -145,7 +155,7 @@ public class feedTransport : MonoBehaviour
     }
 
 
-    //経路探索の結果
+    //経路探索の結果をもとにありんこに足すベクトルの計算
     public Vector2 explore(Vector2 target){
         //対象までの距離
        distance = target - nowPlace;
