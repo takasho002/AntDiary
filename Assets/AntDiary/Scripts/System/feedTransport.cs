@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AntDiary;
+//using hogehoge;　//アリ情報の取得プログラム
 
 //餌運びプログラム
 //同じところを往復するプログラムを作成
@@ -17,6 +18,7 @@ public class feedTransport : MonoBehaviour
     public Vector2 targetNest;
     public Vector2 targetNestEntrance;
     public Vector2 target;
+    public Vector2 from;
 
     public Vector2 nowPlace;
 
@@ -35,14 +37,14 @@ public class feedTransport : MonoBehaviour
        //ここに経路探索の結果を入れる
        AStarSearcher searcher;
 
-       // 探索結果をもとに曲がり角の座標を保存する配列
+       // 探索結果をもとに曲がり角の座標を保存するリスト型配列
        public List<Vector2> v;
        //その引数i
     　　public int i;
 
     //
     //対象までかかる時間
-    public int time = 10;
+    public float speed;
     //対象までの距離
     public Vector2 distance = new Vector2(0,0);
     //経路探索結果をもとにしたスピード
@@ -95,8 +97,10 @@ public class feedTransport : MonoBehaviour
        //ありの状態の取得
        //初期位置
        nowPlace = transform.position;
-       //対象までにかかる時間
-       time = 500;
+       //アリのスピード取得
+       //public float speed = hogehoge.speed;
+       //試験用スピード //これは後で削除
+       speed = 0.01f;
        //node間の移動を計算し足していく値
        //最初は1番目の目的地へと向かう
        i = 1;
@@ -128,6 +132,7 @@ public class feedTransport : MonoBehaviour
                 //次の目的地へ移動させる
                 i++;
                 target = v[i];
+
                 way = explore(target);
                 Debug.Log("次の目的地は" + way);
                 // gotoTarget();
@@ -139,16 +144,14 @@ public class feedTransport : MonoBehaviour
             }
            }else{ //餌を持っているなら
            //目的地が巣ではないのなら
-             if(target != targetNest){
+             if(target != v[0]){
                 //巣へ近づけさせる
                 i--;
                 target = v[i];
                 way = explore(target);
-                // gotoTarget();
                 }else{//巣に到着したら
                 //餌をおく
                 leaveFeed();
-                // gotoTarget();
                }
            }   
         }
@@ -161,7 +164,8 @@ public class feedTransport : MonoBehaviour
         //対象までの距離
        distance = target - nowPlace;
        //対象までの進む道(この場合スピードと同義) これを足していく
-       way = distance / time;
+       way.x = speed* distance.x/distance.magnitude;
+       way.y = speed* distance.y/distance.magnitude;
        return way;
     }
 
@@ -179,6 +183,7 @@ public class feedTransport : MonoBehaviour
         //運搬能力に応じて運べる量を決定
         //今は省略
         //巣へ帰還する道の探索
+        from = v[i];
         i--;
         target = v[i];
         way = explore(target);
