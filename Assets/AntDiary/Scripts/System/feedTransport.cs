@@ -41,6 +41,8 @@ public class feedTransport : MonoBehaviour
        public List<Vector2> v;
        //その引数i
     　　public int i;
+        //リスト型配列の大きさI
+        public int I=-1;
 
     //
     //対象までかかる時間
@@ -91,13 +93,14 @@ public class feedTransport : MonoBehaviour
             //vにnode.Posで値を取得する
             v.Add(node.Pos);
 			Debug.Log(node.ToString());
+            I++; //vの大きさ
 		}
 
 
        //ありの状態の取得
        //初期位置
        nowPlace = transform.position;
-       //アリのスピード取得
+       //アリのスピード取得(未取得)
        //public float speed = hogehoge.speed;
        //試験用スピード //これは後で削除
        speed = 0.01f;
@@ -128,7 +131,7 @@ public class feedTransport : MonoBehaviour
            //餌を持ってなければ
            if(isHoldingFood == false){
                //餌場じゃなければ               
-            if(target != targetFeed){ 
+            if(target != v[I]){ 
                 //次の目的地へ移動させる
                 i++;
                 target = v[i];
