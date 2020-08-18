@@ -57,13 +57,14 @@ public class feedTransport : MonoBehaviour
     {
        //目的地の設定
 
-       //GameObject.Find()の引数を変更することでそれぞれのアリに適用可能
+       //餌と巣の位置情報はテスト用(後で削除または変更する可能性あり)
        //餌の位置
        targetFeed = GameObject.Find("feed").transform.position;
        //巣の位置
        targetNest = GameObject.Find("nest").transform.position;
        //現在置
-       nowPlace = GameObject.Find("FeedTransportAnt").transform.position;
+       //自身の座標を取得
+       nowPlace = transform.position;
 
        //経路探索のプログラムにぶち込むためのnode作成
        nodeGraph = new NodeGraph();
@@ -93,7 +94,7 @@ public class feedTransport : MonoBehaviour
 
        //ありの状態の取得
        //初期位置
-       nowPlace = GameObject.Find("FeedTransportAnt").transform.position;
+       nowPlace = transform.position;
        //対象までにかかる時間
        time = 500;
        //node間の移動を計算し足していく値
