@@ -18,7 +18,7 @@ namespace AntDiary
             //道のノードとだけ接続可能
             if (other is NestPathRoadNode)
             {
-                if (this.Name == "wild" || other.Name == "wild") return true;
+                if (this.Name.StartsWith("wild") || other.Name.StartsWith("wild")) return true;
                 
                 switch (other.Name)
                 {

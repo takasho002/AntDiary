@@ -81,6 +81,11 @@ namespace AntDiary
         public IEnumerable<NestElement> BuildingElements =>
             nestElements.Where(e => (e.Data is NestBuildableElementData d) && d.IsUnderConstruction);
 
+        /// <summary>
+        /// 巣に存在するすべてのIPathNodeを取得する。
+        /// </summary>
+        public IEnumerable<NestPathNode> NestPathNodes => NestElements.SelectMany(e => e.GetNodes());
+
         private void Start()
         {
             if (SaveUnit.Current != null)

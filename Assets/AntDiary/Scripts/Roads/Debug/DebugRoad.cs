@@ -32,8 +32,8 @@ namespace AntDiary
             var position = transform.position;
             nodes = new[]
             {
-                new NestPathRoadNode(this, SelfData.From - (Vector2) position, "wild"),
-                new NestPathRoadNode(this, SelfData.To - (Vector2) position, "wild")
+                new NestPathRoadNode(this, SelfData.From - (Vector2) position, "wild_a"),
+                new NestPathRoadNode(this, SelfData.To - (Vector2) position, "wild_b")
             };
 
             edges = new[]

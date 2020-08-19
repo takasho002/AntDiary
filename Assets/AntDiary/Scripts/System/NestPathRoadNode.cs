@@ -17,7 +17,7 @@ namespace AntDiary
         {
             if (other is NestPathRoadNode || other is NestPathRoomNode)
             {
-                if (this.Name == "wild" || other.Name == "wild") return true;
+                if (this.Name.StartsWith("wild") || other.Name.StartsWith("wild")) return true;
                 switch (other.Name)
                 {
                     case "right":
