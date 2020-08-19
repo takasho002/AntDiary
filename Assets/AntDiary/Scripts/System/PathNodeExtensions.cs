@@ -10,7 +10,7 @@ namespace AntDiary
     {
         public static IEnumerable<IPathNode> GetConnectedNodes(this IPathNode target)
         {
-            return target.Edges.Select(e => e.GetOtherNode(target));
+            return target.Edges.Where(e => e.CanGetThrough).Select(e => e.GetOtherNode(target));
         }
 
         public static IPathNode GetOtherNode(this IPathEdge target, IPathNode one)

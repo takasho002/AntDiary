@@ -12,5 +12,10 @@ namespace AntDiary
         IPathNode A { get; }
         IPathNode B { get; }
         float Cost { get; }
+        
+        /// <summary>
+        /// 通行の可否。
+        /// </summary>
+        bool CanGetThrough { get; }
     }
 }

@@ -8,6 +8,6 @@ namespace AntDiary
     [MessagePackObject()]
     public class DebugRoomData : RoomData
     {
-        
+        //Keyは30~
     }
 }

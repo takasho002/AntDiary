@@ -55,13 +55,31 @@ namespace AntDiary
         public BuildingSystem BuildingSystem { get; set; }
 
         private readonly List<Ant> spawnedAnts = new List<Ant>();
+        
+        /// <summary>
+        /// 巣に存在するすべてのアリを取得する。
+        /// </summary>
         public IReadOnlyList<Ant> SpawnedAnt => spawnedAnts;
 
         private readonly List<NestElement> nestElements = new List<NestElement>();
+        
+        /// <summary>
+        /// 巣に存在するすべてのNestElementを取得する。
+        /// </summary>
         public IReadOnlyList<NestElement> NestElements => nestElements;
 
         private readonly List<NestPathElementEdge> elementEdges = new List<NestPathElementEdge>();
+        
+        /// <summary>
+        /// NestElement間の接続をすべて取得する。
+        /// </summary>
         public IReadOnlyList<NestPathElementEdge> ElementEdges => elementEdges;
+
+        /// <summary>
+        /// 建築中のNestElementをすべて取得する。
+        /// </summary>
+        public IEnumerable<NestElement> BuildingElements =>
+            nestElements.Where(e => (e.Data is NestBuildableElementData d) && d.IsUnderConstruction);
 
         private void Start()
         {
@@ -279,7 +297,7 @@ namespace AntDiary
                         float posx = x * 4f - 1.5f * 4f;
                         float posy = y * 3f - 1f * 3f;
                         InstantiateNestElement(new DebugRoomData()
-                            {Position = new Vector2(posx, posy)});
+                            {Position = new Vector2(posx, posy), IsUnderConstruction = false});
                     }
 
                     for (int y = 0; y < 3; y++)
@@ -290,7 +308,7 @@ namespace AntDiary
                         var n2 = NestElements[i + 1].GetNodes().First(n => n.Name == "left");
 
                         var road = InstantiateNestElement(new DebugRoadData()
-                            {From = n1.WorldPosition, To = n2.WorldPosition});
+                            {From = n1.WorldPosition, To = n2.WorldPosition, IsUnderConstruction = false});
                         var roadNodes = road.GetNodes();
                         var r1 = roadNodes.ElementAt(0);
                         var r2 = roadNodes.ElementAt(1);
@@ -308,7 +326,7 @@ namespace AntDiary
                         var n2 = NestElements[i + 4].GetNodes().First(n => n.Name == "bottom");
 
                         var road = InstantiateNestElement(new DebugRoadData()
-                            {From = n1.WorldPosition, To = n2.WorldPosition});
+                            {From = n1.WorldPosition, To = n2.WorldPosition, IsUnderConstruction = false});
                         var roadNodes = road.GetNodes();
                         var r1 = roadNodes.ElementAt(0);
                         var r2 = roadNodes.ElementAt(1);
