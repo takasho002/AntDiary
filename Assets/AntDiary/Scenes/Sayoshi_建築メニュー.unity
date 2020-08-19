@@ -544,6 +544,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1638339953}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &814610958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
@@ -606,6 +607,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+=======
+>>>>>>> Origin/割り当てUI
 --- !u!1 &870597360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,6 +2045,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+<<<<<<< HEAD
 --- !u!114 &1906209574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2098,6 +2102,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+=======
+>>>>>>> Origin/割り当てUI
 --- !u!1 &1940418686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,6 +2178,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940418686}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
 --- !u!1 &1968394517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
@@ -2296,6 +2303,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+=======
+>>>>>>> Origin/割り当てUI
 --- !u!1001 &1993545589
 PrefabInstance:
   m_ObjectHideFlags: 0
