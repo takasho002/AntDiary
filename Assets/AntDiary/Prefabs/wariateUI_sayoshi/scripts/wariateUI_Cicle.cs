@@ -6,12 +6,11 @@ using UnityEngine.UI;
 
 public class wariateUI_Cicle : MonoBehaviour
 {
-    public Image redBar;
+    public Image redBar;//棒グラフの赤いバーを格納、下も同じ
     public Image yellowBar;
     public Image greenBar;
-    public Image blueBar;
 
-    public Image redCircle;
+    public Image redCircle;//円グラフの赤い部分のimageを格納、下も同様
     public Image yellowCircle;
     public Image greenCircle;
     // Start is called before the first frame update
