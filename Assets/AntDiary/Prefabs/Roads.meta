@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sprites/UI.meta
+guid: eef4fa31dd4dfb34690d0363eaf8d952
+=======
 guid: a458937cda41d68459fabefa54a6a256
+>>>>>>> upstream/master:Assets/AntDiary/Prefabs/Roads.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
