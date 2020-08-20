@@ -9,6 +9,32 @@ namespace AntDiary
     public class NestPathElementEdge : NestPathEdge
     {
         public NestPathElementEdgeData Data { get; }
+
+        //建築中のノードとつながっているときは通過できない
+        public override bool CanGetThrough
+        {
+            get
+            {
+                if (A.Host.Data is NestBuildableElementData dataA)
+                {
+                    if (dataA.IsUnderConstruction)
+                    {
+                        return false;
+                    }
+                }
+                
+                if (B.Host.Data is NestBuildableElementData dataB)
+                {
+                    if (dataB.IsUnderConstruction)
+                    {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+        }
+        
         public override NestPathNode A { get; }
         public override NestPathNode B { get; }
 

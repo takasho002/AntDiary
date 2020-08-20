@@ -15,6 +15,23 @@ namespace AntDiary
         
         public override bool IsConnectable(NestPathNode other)
         {
+            if (other is NestPathRoadNode || other is NestPathRoomNode)
+            {
+                if (this.Name.StartsWith("wild") || other.Name.StartsWith("wild")) return true;
+                switch (other.Name)
+                {
+                    case "right":
+                        return this.Name == "left";
+                    case "top":
+                        return this.Name == "bottom";
+                    case "left":
+                        return this.Name == "right";
+                    case "bottom":
+                        return this.Name == "top";
+                    default:
+                        return true;
+                }
+            }
             return true;
         }
     }

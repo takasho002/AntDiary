@@ -36,7 +36,7 @@ namespace AntDiary
             Vector2 y = new Vector2(0, boundingRect.height * 0.5f);
             nodes = new[]
             {
-                //new NestPathRoomNode(this, center),
+                new NestPathRoomNode(this, center),
                 new NestPathRoomNode(this, center + x, "right"),
                 new NestPathRoomNode(this, center + y, "top"),
                 new NestPathRoomNode(this, center - x, "left"),
@@ -45,15 +45,18 @@ namespace AntDiary
 
             edges = new[]
             {
-                /*new NestPathLocalEdge(nodes[0], nodes[1]),
+                new NestPathLocalEdge(nodes[0], nodes[1]),
                 new NestPathLocalEdge(nodes[0], nodes[2]),
                 new NestPathLocalEdge(nodes[0], nodes[3]),
-                new NestPathLocalEdge(nodes[0], nodes[4]),*/
+                new NestPathLocalEdge(nodes[0], nodes[4]),
+                
                 new NestPathLocalEdge(nodes[1], nodes[2]),
                 new NestPathLocalEdge(nodes[2], nodes[3]),
-                new NestPathLocalEdge(nodes[3], nodes[0]),
-                new NestPathLocalEdge(nodes[0], nodes[1]),
+                new NestPathLocalEdge(nodes[3], nodes[4]),
+                new NestPathLocalEdge(nodes[4], nodes[1]),
             };
         }
+
+        public override float RequiredResources { get; }
     }
 }

@@ -77,7 +77,10 @@ namespace AntDiary{
 				AStarNode aStarNode = openNodes[0];
 
 				var connectedNodes = aStarNode.Node.GetConnectedNodes();
-				foreach(var edge in aStarNode.Node.Edges){
+				foreach(var edge in aStarNode.Node.Edges)
+				{
+					//通貨不能エッジはスキップ
+					if (!edge.CanGetThrough) continue;
 					var cost = aStarNode.Cost + edge.Cost;
 					
 					var other = edge.GetOtherNode(aStarNode.Node);

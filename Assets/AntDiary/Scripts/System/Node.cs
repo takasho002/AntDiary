@@ -74,5 +74,6 @@ namespace AntDiary{
         public IPathNode A { get; }
         public IPathNode B { get; }
         public float Cost { get; }
+        public bool CanGetThrough => true;
     }
 }

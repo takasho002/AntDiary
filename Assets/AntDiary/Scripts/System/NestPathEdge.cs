@@ -9,6 +9,7 @@ public abstract class NestPathEdge : IPathEdge
     IPathNode IPathEdge.B => B;
 
     public float Cost => (A.WorldPosition - B.WorldPosition).magnitude;
+    public abstract bool CanGetThrough { get; }
 
     IPathNode IPathEdge.A => A;
 

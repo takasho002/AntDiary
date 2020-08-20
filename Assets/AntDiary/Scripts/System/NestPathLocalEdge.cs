@@ -5,8 +5,12 @@ using UnityEngine;
 
 namespace AntDiary
 {
+    /// <summary>
+    /// NestElement内部の経路ノード同士の接続を示す。
+    /// </summary>
     public class NestPathLocalEdge : NestPathEdge
     {
+        public override bool CanGetThrough => true;
         public override NestPathNode A { get; }
         public override NestPathNode B { get; }
         

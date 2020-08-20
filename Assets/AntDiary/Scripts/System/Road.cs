@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public abstract class Room<T> : NestBuildableElement<T> where T : RoomData
+    public abstract class Road<T> : NestBuildableElement<T> where T : RoadData
     {
         
     }
