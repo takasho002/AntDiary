@@ -30,7 +30,7 @@ public class Winter : MonoBehaviour
         if(season==3){
             Wintertext.text = "Winter";
             if(PlayWinterBGMornot == 0){
-               //GameObject.Find("冬BGM");
+              GameObject.Find("winter1.wav");
                 PlayWinterBGMornot = 1;
             }
         }else{
