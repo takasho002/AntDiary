@@ -14,12 +14,7 @@ public class FadeOut : MonoBehaviour
     double FadeOutSeconds = 3.0;
     double FadeDeltaTime = 0;
 
-    //この関数は実際には使用しない。テストで使用しているため、あとで消す。
-    void Start()
-    {
-        //BGMsystem関数の引数に次に流すBGMのファイル名を入れればフェードアウトして切り替わる
-        BGMsystem("test2");
-    }
+    //BGMsystem("拡張子抜き、ファイル名");　で使用
 
     public void BGMsystem(string bgmName)
     {
