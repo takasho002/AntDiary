@@ -9,15 +9,18 @@ public class AntMovement : MonoBehaviour
     //アリのスピード(比例定数的に処理)
     public float speed;
     //実際に足される値
-
     public Vector2 way;
-    // Start is called before the first frame update
-    //
-
+    //初期化
     public AntMovement(){
         nowPlace = new Vector2(0,0);
         speed = 0.01f;
         way = new Vector2(0,0);
+    }
+
+    //対象に到着したかどうかの判定
+    public bool isArrived(Vector2 target){
+        if (target.x -1 < nowPlace.x && target.y -1 < nowPlace.y && nowPlace.x < target.x + 1 && nowPlace.y < target.y + 1) return true;
+        else return false;
     }
     public Vector2 Explore(Vector2 target){
         //対象までの距離

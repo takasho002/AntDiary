@@ -125,7 +125,7 @@ public class feedTransport : MonoBehaviour
         //ひたすら目的地へ移動
         
         //アリの現在地がtarget周辺についたら
-        if(target.x -1 < antMovement.nowPlace.x && target.y -1 < antMovement.nowPlace.y && antMovement.nowPlace.x < target.x + 1&& antMovement.nowPlace.y < target.y + 1 ){
+        if(antMovement.isArrived(target) ){
            //餌を持ってなければ
            if(isHoldingFood == false){
                //餌場じゃなければ               
@@ -155,24 +155,14 @@ public class feedTransport : MonoBehaviour
                }
            }   
         }
-        //
+        //Explore()の結果に従い移動する
         antMovement.nowPlace += antMovement.way;
         transform.position = antMovement.nowPlace;
     }
 
 
-    //経路探索の結果をもとにありんこに足すベクトルの計算
-  
-
-
-    //目的地に行くプログラム
-    
-
-
     //餌を獲得
     public void getFeed(){
-        //運搬能力に応じて運べる量を決定
-        //今は省略
         //巣へ帰還する道の探索
         from = v[i];
         i--;
