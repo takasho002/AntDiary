@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AntDiary;
+//using MoveAnt;
 //using hogehoge;　//アリ情報の取得プログラム
 
 //餌運びプログラム
@@ -48,9 +49,9 @@ public class feedTransport : MonoBehaviour
     //対象までかかる時間
     public float speed;
     //対象までの距離
-    public Vector2 distance = new Vector2(0,0);
+    public Vector2 distance ;
     //経路探索結果をもとにしたスピード
-    public Vector2 way = new Vector2(2,2);
+    public Vector2 way = ;
     //運搬能力
     //public int ability = 1;
     
@@ -108,7 +109,7 @@ public class feedTransport : MonoBehaviour
        //最初は1番目の目的地へと向かう
        i = 1;
        target = v[i];
-       way = explore(target);
+       way = Explore(target);
        //float x = way.x;
        //float y = way.y;
        //Debug.Log(x);
@@ -136,7 +137,7 @@ public class feedTransport : MonoBehaviour
                 i++;
                 target = v[i];
 
-                way = explore(target);
+                way = Explore(target);
                 Debug.Log("次の目的地は" + way);
                 // gotoTarget();
             }else{//餌場ならば
@@ -151,34 +152,23 @@ public class feedTransport : MonoBehaviour
                 //巣へ近づけさせる
                 i--;
                 target = v[i];
-                way = explore(target);
+                way = Explore(target);
                 }else{//巣に到着したら
                 //餌をおく
                 leaveFeed();
                }
            }   
         }
-        gotoTarget();
+        GotoTarget();
     }
 
 
     //経路探索の結果をもとにありんこに足すベクトルの計算
-    public Vector2 explore(Vector2 target){
-        //対象までの距離
-       distance = target - nowPlace;
-       //対象までの進む道(この場合スピードと同義) これを足していく
-       way.x = speed* distance.x/distance.magnitude;
-       way.y = speed* distance.y/distance.magnitude;
-       return way;
-    }
+  
 
 
     //目的地に行くプログラム
-    public void gotoTarget(){
-        nowPlace = transform.position;
-        nowPlace = nowPlace + way;
-        transform.position = nowPlace;
-    }
+    
 
 
     //餌を獲得
@@ -189,7 +179,7 @@ public class feedTransport : MonoBehaviour
         from = v[i];
         i--;
         target = v[i];
-        way = explore(target);
+        way = Explore(target);
         //経路探索をする
 		//searcher.SearchRoute(nodeFeed, nodeNest);
         //餌をゲットした状態にする
@@ -201,7 +191,7 @@ public class feedTransport : MonoBehaviour
         //目的地を餌に変更
         i++;
         target=v[i];
-        way = explore(target);
+        way = Explore(target);
         //経路探索をする
 		//searcher.SearchRoute(nodeNest, nodeFeed);
         //餌を持ってない状態にする
