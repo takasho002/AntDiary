@@ -60,7 +60,8 @@ public class feedTransport : MonoBehaviour
     
     void Start()
     {
-        antMovement.Start();
+        
+        antMovement = new AntMovement();
        //目的地の設定
 
        //餌と巣の位置情報はテスト用(後で削除または変更する可能性あり)
@@ -94,7 +95,7 @@ public class feedTransport : MonoBehaviour
 		foreach(var node in searcher.Route){
             //vにnode.Posで値を取得する
             v.Add(node.WorldPosition);
-			Debug.Log(node.ToString());
+			//Debug.Log(node.ToString());
             I++; //vの大きさ
 		}
 
@@ -105,18 +106,13 @@ public class feedTransport : MonoBehaviour
        //アリのスピード取得(未取得)
        //public float speed = hogehoge.speed;
        //試験用スピード //これは後で削除
-       antMovement.speed = 0.1f;
+       antMovement.speed = 0.01f;
        //node間の移動を計算し足していく値
        //最初は1番目の目的地へと向かう
        i = 1;
        target = v[i];
-       antMovement.test = antMovement.Explore(target);
-       //float x = way.x;
-       //float y = way.y;
-       //Debug.Log(x);
-       //Debug.Log(y);
-       //運搬能力
-       //ability = 1;
+       antMovement.way = antMovement.Explore(target);
+
     }
 
 
@@ -138,8 +134,7 @@ public class feedTransport : MonoBehaviour
                 i++;
                 target = v[i];
 
-                antMovement.test = antMovement.Explore(target);
-                Debug.Log("次の目的地は" + antMovement.test);
+                antMovement.way = antMovement.Explore(target);
                 // gotoTarget();
             }else{//餌場ならば
              //餌をゲットする
@@ -153,14 +148,16 @@ public class feedTransport : MonoBehaviour
                 //巣へ近づけさせる
                 i--;
                 target = v[i];
-                antMovement.test = antMovement.Explore(target);
+                antMovement.way = antMovement.Explore(target);
                 }else{//巣に到着したら
                 //餌をおく
                 leaveFeed();
                }
            }   
         }
-        antMovement.GotoTarget();
+        //
+        antMovement.nowPlace += antMovement.way;
+        transform.position = antMovement.nowPlace;
     }
 
 
@@ -180,7 +177,7 @@ public class feedTransport : MonoBehaviour
         from = v[i];
         i--;
         target = v[i];
-        antMovement.test = antMovement.Explore(target);
+        antMovement.way = antMovement.Explore(target);
         //経路探索をする
 		//searcher.SearchRoute(nodeFeed, nodeNest);
         //餌をゲットした状態にする
@@ -192,7 +189,7 @@ public class feedTransport : MonoBehaviour
         //目的地を餌に変更
         i++;
         target=v[i];
-        antMovement.test = antMovement.Explore(target);
+        antMovement.way = antMovement.Explore(target);
         //経路探索をする
 		//searcher.SearchRoute(nodeNest, nodeFeed);
         //餌を持ってない状態にする
