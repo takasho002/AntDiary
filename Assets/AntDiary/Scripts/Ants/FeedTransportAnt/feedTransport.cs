@@ -122,8 +122,6 @@ public class feedTransport : MonoBehaviour
     {
         //現在地を獲得
         antMovement.nowPlace = transform.position;
-        //ひたすら目的地へ移動
-        
         //アリの現在地がtarget周辺についたら
         if(antMovement.isArrived(target) ){
            //餌を持ってなければ
@@ -139,8 +137,6 @@ public class feedTransport : MonoBehaviour
             }else{//餌場ならば
              //餌をゲットする
              getFeed();
-             //もってる状態にして巣に帰還
-            //  gotoTarget();
             }
            }else{ //餌を持っているなら
            //目的地が巣ではないのなら
@@ -169,7 +165,6 @@ public class feedTransport : MonoBehaviour
         target = v[i];
         antMovement.way = antMovement.Explore(target);
         //経路探索をする
-		//searcher.SearchRoute(nodeFeed, nodeNest);
         //餌をゲットした状態にする
         isHoldingFood = true;
     }
@@ -181,7 +176,6 @@ public class feedTransport : MonoBehaviour
         target=v[i];
         antMovement.way = antMovement.Explore(target);
         //経路探索をする
-		//searcher.SearchRoute(nodeNest, nodeFeed);
         //餌を持ってない状態にする
         isHoldingFood = false;
     }
