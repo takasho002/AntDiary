@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <uie:Toolbar style="flex-direction: row;">
+        <uie:ToolbarButton text="保存" name="SaveButton" />
+        <uie:ToolbarButton text="Select Asset" name="SelectAssetButton" />
+    </uie:Toolbar>
+    <ui:VisualElement name="GraphContainer" style="flex-grow: 1;" />
+</ui:UXML>
