@@ -193,7 +193,7 @@ namespace AntDiary
         /// <returns>生成されたGameObjectのもつNestElementコンポーネント。</returns>
         public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true)
         {
-            //Debug.Log(elementData.GetType());
+            Debug.Log(elementData.GetType());
             var nestElement = nestElementFactories.FirstOrDefault(f => f.DataType == elementData.GetType())
                 ?.InstantiateNestElement(elementData);
             if (nestElement != null)

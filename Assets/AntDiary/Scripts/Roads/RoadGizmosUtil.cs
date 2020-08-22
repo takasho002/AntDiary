@@ -8,13 +8,13 @@ namespace AntDiary.Scripts.Roads{
 		/// <summary>
 		/// Nodeを描画する円のフレーム色
 		/// </summary>
-		public static Color NodeColor = Color.red;
+		public static Color NodeColor = Color.cyan;
 		
 		
 		/// <summary>
 		/// Edgeを描画する線のフレーム色
 		/// </summary>
-		public static Color EdgeColor = Color.yellow;
+		public static Color EdgeColor = Color.blue;
 		
 		/// <summary>
 		/// Nodeを描画するか
@@ -32,7 +32,7 @@ namespace AntDiary.Scripts.Roads{
 			if(DrawNode){
 				Gizmos.color = NodeColor;
 				foreach(var node in nodes){
-					Gizmos.DrawWireSphere(node.WorldPosition, 0.2f);
+					Gizmos.DrawWireSphere(node.WorldPosition, 0.1f);
 				}
 			}
 
