@@ -6,9 +6,10 @@ using UnityEngine;
 namespace AntDiary
 {
     [MessagePackObject()]
-    public class DebugRoadData : NestElementData
+    public class DebugRoadData : RoadData
     {
-        [Key(10)] public Vector2 From { get; set; }
-        [Key(11)] public Vector2 To { get; set; }
+        //Keyは30~
+        [Key(30)] public Vector2 From { get; set; }
+        [Key(31)] public Vector2 To { get; set; }
     }
 }

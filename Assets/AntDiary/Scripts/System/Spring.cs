@@ -30,7 +30,7 @@ public class Spring : MonoBehaviour
         if(season==0){
             Springtext.text = "Spring";
             if(PlaySpringBGMornot == 0){
-               //GameObject.Find("spring_bgm_fixed1.mp3");
+               GameObject.Find("spring_bgm_1__.mp3");
                 PlaySpringBGMornot = 1;
             }
         }else{

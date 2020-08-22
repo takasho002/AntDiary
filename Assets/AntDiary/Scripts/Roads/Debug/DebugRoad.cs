@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public class DebugRoad : NestElement<DebugRoadData>
+    public class DebugRoad : Road<DebugRoadData>
     {
         [SerializeField] private Collider2D blockingShape;
         
@@ -32,8 +32,8 @@ namespace AntDiary
             var position = transform.position;
             nodes = new[]
             {
-                new NestPathRoadNode(this, SelfData.From - (Vector2) position, "from"),
-                new NestPathRoadNode(this, SelfData.To - (Vector2) position, "to")
+                new NestPathRoadNode(this, SelfData.From - (Vector2) position, "wild_a"),
+                new NestPathRoadNode(this, SelfData.To - (Vector2) position, "wild_b")
             };
 
             edges = new[]
@@ -41,5 +41,7 @@ namespace AntDiary
                 new NestPathLocalEdge(nodes[0], nodes[1])
             };
         }
+
+        public override float RequiredResources { get; }
     }
 }

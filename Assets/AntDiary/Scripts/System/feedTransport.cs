@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AntDiary;
+//using hogehoge;　//アリ情報の取得プログラム
 
 //餌運びプログラム
 //同じところを往復するプログラムを作成
@@ -17,20 +18,35 @@ public class feedTransport : MonoBehaviour
     public Vector2 targetNest;
     public Vector2 targetNestEntrance;
     public Vector2 target;
+    public Vector2 from;
 
     public Vector2 nowPlace;
 
     //AStarへのnodeの初期化
-           //経路探索のプログラムにぶち込む為の操作
+    　 //経路探索のプログラムにぶち込む為の操作
+    　 //経路全体を示す変数名"nodeGraph"
        NodeGraph nodeGraph;
+
+       //試験的に3つのnodoを作ってみる(実際には使わない)
        Node nodeNest;
 	   Node nodeFeed;
 	   Node nodeNestEntrance;
+
+
        //探索ごとにAStarSearcherインスタンスを作る
+       //ここに経路探索の結果を入れる
        AStarSearcher searcher;
 
+       // 探索結果をもとに曲がり角の座標を保存するリスト型配列
+       public List<Vector2> v;
+       //その引数i
+    　　public int i;
+        //リスト型配列の大きさI
+        public int I=-1;
+
+    //
     //対象までかかる時間
-    public int time = 10;
+    public float speed;
     //対象までの距離
     public Vector2 distance = new Vector2(0,0);
     //経路探索結果をもとにしたスピード
@@ -38,23 +54,21 @@ public class feedTransport : MonoBehaviour
     //運搬能力
     //public int ability = 1;
     
-    // 探索結果をもとに曲がり角の座標を保存する配列
-    public List<Vector2> v;
-    //その引数i
-    public int i;
+    
     // Start is called before the first frame update
     
     void Start()
     {
-        // Rigidbody2Dを取得する
-       Rigidbody2D rd = GetComponent<Rigidbody2D>();
        //目的地の設定
+
+       //餌と巣の位置情報はテスト用(後で削除または変更する可能性あり)
        //餌の位置
        targetFeed = GameObject.Find("feed").transform.position;
        //巣の位置
        targetNest = GameObject.Find("nest").transform.position;
        //現在置
-       nowPlace = GameObject.Find("workingAnt").transform.position;
+       //自身の座標を取得
+       nowPlace = transform.position;
 
        //経路探索のプログラムにぶち込むためのnode作成
        nodeGraph = new NodeGraph();
@@ -64,8 +78,9 @@ public class feedTransport : MonoBehaviour
        //試しにtargetNestEntrance（巣の出入り口）なるものを曲がり角として用意してみる
        targetNestEntrance = GameObject.Find("nestEntrance").transform.position;
        nodeNestEntrance = nodeGraph.CreateNode(targetNestEntrance);
-       
-      // nodeGraph.ConnectNodes(new []{nodeNest, nodeNestEntrance,nodeFeed});
+       //nodeをそれぞれつなげる作業
+       //nodeGraph.ConnectNodes(new []{from,to});→ fromからtoへnodeをつなげる
+       //nodeGraph.ConnectNodes(new []{A, B,C});→ABCの循環円を作成
        nodeGraph.ConnectNodes(new []{nodeNest, nodeNestEntrance});
        nodeGraph.ConnectNodes(new []{nodeNestEntrance,nodeFeed});
        //探索ごとにAStarSearcherインスタンスを作る
@@ -78,23 +93,26 @@ public class feedTransport : MonoBehaviour
             //vにnode.Posで値を取得する
             v.Add(node.WorldPosition);
 			Debug.Log(node.ToString());
+            I++; //vの大きさ
 		}
 
 
        //ありの状態の取得
        //初期位置
-       nowPlace = GameObject.Find("workingAnt").transform.position;
-       //対象までにかかる時間
-       time = 250;
+       nowPlace = transform.position;
+       //アリのスピード取得(未取得)
+       //public float speed = hogehoge.speed;
+       //試験用スピード //これは後で削除
+       speed = 0.01f;
        //node間の移動を計算し足していく値
        //最初は1番目の目的地へと向かう
        i = 1;
        target = v[i];
        way = explore(target);
-       float x = way.x;
-       float y = way.y;
-       Debug.Log(x);
-       Debug.Log(y);
+       //float x = way.x;
+       //float y = way.y;
+       //Debug.Log(x);
+       //Debug.Log(y);
        //運搬能力
        //ability = 1;
     }
@@ -113,10 +131,11 @@ public class feedTransport : MonoBehaviour
            //餌を持ってなければ
            if(isHoldingFood == false){
                //餌場じゃなければ               
-            if(target != targetFeed){ 
+            if(target != v[I]){ 
                 //次の目的地へ移動させる
                 i++;
                 target = v[i];
+
                 way = explore(target);
                 Debug.Log("次の目的地は" + way);
                 // gotoTarget();
@@ -128,16 +147,14 @@ public class feedTransport : MonoBehaviour
             }
            }else{ //餌を持っているなら
            //目的地が巣ではないのなら
-             if(target != targetNest){
+             if(target != v[0]){
                 //巣へ近づけさせる
                 i--;
                 target = v[i];
                 way = explore(target);
-                // gotoTarget();
                 }else{//巣に到着したら
                 //餌をおく
                 leaveFeed();
-                // gotoTarget();
                }
            }   
         }
@@ -145,12 +162,13 @@ public class feedTransport : MonoBehaviour
     }
 
 
-    //経路探索の結果
+    //経路探索の結果をもとにありんこに足すベクトルの計算
     public Vector2 explore(Vector2 target){
         //対象までの距離
        distance = target - nowPlace;
        //対象までの進む道(この場合スピードと同義) これを足していく
-       way = distance / time;
+       way.x = speed* distance.x/distance.magnitude;
+       way.y = speed* distance.y/distance.magnitude;
        return way;
     }
 
@@ -168,6 +186,7 @@ public class feedTransport : MonoBehaviour
         //運搬能力に応じて運べる量を決定
         //今は省略
         //巣へ帰還する道の探索
+        from = v[i];
         i--;
         target = v[i];
         way = explore(target);

@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public abstract class RoomData : NestElementData
+    public abstract class RoomData : NestBuildableElementData
     {
-        
+        //Keyは20~29
     }
 }
