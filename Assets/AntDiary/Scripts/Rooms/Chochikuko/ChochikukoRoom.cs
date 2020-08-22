@@ -10,6 +10,10 @@ namespace AntDiary
         [SerializeField] private Collider2D blockingShape = default;
         [SerializeField] private Rect boundingRect = default;
 
+        // デバッグ用に季節とアリのステータスを指定
+        [SerializeField] private int season;
+        [SerializeField] private int status;
+
         private NestPathNode[] nodes;
         private NestPathLocalEdge[] edges;
 
@@ -19,6 +23,9 @@ namespace AntDiary
         }
 
         public override bool HasPathNode => true;
+
+        public override float RequiredResources => throw new NotImplementedException();
+
         public override IEnumerable<NestPathNode> GetNodes()
         {
             return nodes;
