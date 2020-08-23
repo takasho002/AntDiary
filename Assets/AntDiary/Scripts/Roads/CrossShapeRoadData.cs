@@ -1,5 +1,7 @@
+
+
 namespace AntDiary.Scripts.Roads{
-	public class CrossShapeRoadData{
-		
+	public class CrossShapeRoadData: RoadData{
+		//なし
 	}
 }
