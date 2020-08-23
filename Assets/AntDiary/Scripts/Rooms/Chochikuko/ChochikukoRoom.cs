@@ -14,6 +14,12 @@ namespace AntDiary
         [SerializeField] private int season;
         [SerializeField] private int status;
 
+        // 餌あり，餌なしのスプライトを登録
+        [SerializeField] private Sprite Esaari;
+        [SerializeField] private Sprite Esanashi;
+
+        private SpriteRenderer spriteRenderer;
+
         private NestPathNode[] nodes;
         private NestPathLocalEdge[] edges;
 
@@ -61,6 +67,26 @@ namespace AntDiary
                 new NestPathLocalEdge(nodes[3], nodes[0]),
                 new NestPathLocalEdge(nodes[0], nodes[1]),
             };
+
+            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            GameObject colliderObj = collision.gameObject;
+            // DebugaAntMoveByKeyはデバッグ用のクラス名，のちにAntDataに変更
+            // scriptは仮の変数名，isHoldingFoodのbool値が取得できるスクリプトを登録
+            DebugAntMoveByKey script = colliderObj.GetComponent<DebugAntMoveByKey>();
+
+            if (script.isHoldingFood)
+            {
+                // 貯蓄部屋のストックが0から増える際はspriteを餌ありに変更
+                if (NestSystem.Instance.Data.StoredFood == 0)
+                {
+                    spriteRenderer.sprite = Esaari;
+                }
+                NestSystem.Instance.Data.StoredFood += season * status;
+            }
         }
     }
 }
