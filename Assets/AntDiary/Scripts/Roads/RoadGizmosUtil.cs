@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 namespace AntDiary.Scripts.Roads{
@@ -9,6 +10,11 @@ namespace AntDiary.Scripts.Roads{
 		/// Nodeを描画する円のフレーム色
 		/// </summary>
 		public static Color NodeColor = Color.cyan;
+		
+		/// <summary>
+		/// 接続されているNodeを描画する円のフレーム色
+		/// </summary>
+		public static Color ConnectedNodeColor = Color.green;
 		
 		
 		/// <summary>
@@ -27,23 +33,30 @@ namespace AntDiary.Scripts.Roads{
 		public static bool DrawEdge = true;
 		
 		public static void DrawNodeWithEdge(NestPathNode[] nodes, NestPathLocalEdge[] edges){
-			var prevColor = Gizmos.color;
+			// var prevColor = Gizmos.color;
 
 			if(DrawNode){
-				Gizmos.color = NodeColor;
+				
 				foreach(var node in nodes){
-					Gizmos.DrawWireSphere(node.WorldPosition, 0.1f);
+					
+					Gizmos.color = node.Edges.OfType<NestPathElementEdge>().Any() ? Color.blue : Color.green;
+					
+					Gizmos.DrawWireSphere(node.WorldPosition, 0.15f);
 				}
 			}
-
+			
 			if(DrawEdge){
-				Gizmos.color = EdgeColor;
+				
 				foreach(var edge in edges){
+					// Debug.Log("Color");
+					Gizmos.color = Color.red;
+					// Debug.Log("Draw");
 					Gizmos.DrawLine(edge.A.WorldPosition, edge.B.WorldPosition);
 				}
 			}
-			
-			
+
+			// Gizmos.color = prevColor;
+
 		}
 	}
 }
