@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2436150555498877470}
   - component: {fileID: 6911683771333879441}
   - component: {fileID: 6933472533372648435}
-  - component: {fileID: 1683659957791170385}
-  - component: {fileID: -4673557821394785069}
+  - component: {fileID: -220788209765437122}
+  - component: {fileID: -4367654615084343122}
   m_Layer: 5
-  m_Name: Gray Button
+  m_Name: KenchikuUI_grayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1683659957791170385
+--- !u!114 &-220788209765437122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,11 +130,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 980213590046608791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ceb3de5346f9824bbac9360cb5ca1c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 90c61e3f3c65aa446befe71d67d2bfaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 0}
---- !u!114 &-4673557821394785069
+--- !u!114 &-4367654615084343122
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1683659957791170385}
+        - m_Target: {fileID: -220788209765437122}
           m_MethodName: PushDrag
           m_Mode: 1
           m_Arguments:
@@ -166,7 +166,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1683659957791170385}
+        - m_Target: {fileID: -220788209765437122}
           m_MethodName: PushDown
           m_Mode: 1
           m_Arguments:
