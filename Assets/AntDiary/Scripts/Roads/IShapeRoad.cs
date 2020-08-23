@@ -9,7 +9,7 @@ namespace AntDiary.Scripts.Roads{
 		/// <summary>
 		/// 端から端までの距離/2
 		/// </summary>
-		[SerializeField] private float radius = 1;
+		[SerializeField] private float radius = 2;
 		
 		private NestPathNode[] _nodes;
 		private NestPathLocalEdge[] _edges;
@@ -51,7 +51,6 @@ namespace AntDiary.Scripts.Roads{
 
 		public override float RequiredResources{ get; }
 		
-		//TODO ギズモを追加
 
 		#region Debug
 
