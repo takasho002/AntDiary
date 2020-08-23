@@ -13,5 +13,39 @@ MonoBehaviour:
   m_Name: GeneTree_Debug1
   m_EditorClassIdentifier: 
   displayName: "\u30C7\u30D0\u30C3\u30B01"
-  genes: []
-  edges: []
+  genes:
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
+    position:
+      serializedVersion: 2
+      x: 37
+      y: -63
+      width: 238
+      height: 150
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: 86445ee3-e758-4356-bccb-b5419189b094
+    position:
+      serializedVersion: 2
+      x: 361
+      y: -160
+      width: 249
+      height: 150
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: 80bc3fd5-a3e6-4766-96c5-cd3d9606bdd6
+    position:
+      serializedVersion: 2
+      x: 374
+      y: 39
+      width: 266
+      height: 148
+  edges:
+  - parentGeneGuid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
+    childGeneGuid: 86445ee3-e758-4356-bccb-b5419189b094
+  - parentGeneGuid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
+    childGeneGuid: 80bc3fd5-a3e6-4766-96c5-cd3d9606bdd6
