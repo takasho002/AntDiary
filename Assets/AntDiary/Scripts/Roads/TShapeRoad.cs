@@ -12,8 +12,7 @@ namespace AntDiary.Scripts.Roads{
 		
 		private NestPathNode[] _nodes;
 		private NestPathLocalEdge[] _edges;
-		
-		
+
 		protected override void OnInitialized(){
 			var topNode = new NestPathRoadNode(this, Vector2.up * radius, "wild_top");
 			var rightNode = new NestPathRoadNode(this, Vector2.right * radius, "wild_right");
