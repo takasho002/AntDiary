@@ -9,18 +9,18 @@ namespace AntDiary.Scripts.Roads{
 		/// <summary>
 		/// Nodeを描画する円のフレーム色
 		/// </summary>
-		public static Color NodeColor = Color.cyan;
+		public static Color NodeColor = Color.green;
 		
 		/// <summary>
 		/// 接続されているNodeを描画する円のフレーム色
 		/// </summary>
-		public static Color ConnectedNodeColor = Color.green;
+		public static Color ConnectedNodeColor = Color.blue;
 		
 		
 		/// <summary>
 		/// Edgeを描画する線のフレーム色
 		/// </summary>
-		public static Color EdgeColor = Color.blue;
+		public static Color EdgeColor = Color.red;
 		
 		/// <summary>
 		/// Nodeを描画するか
@@ -39,7 +39,7 @@ namespace AntDiary.Scripts.Roads{
 				
 				foreach(var node in nodes){
 					
-					Gizmos.color = node.Edges.OfType<NestPathElementEdge>().Any() ? Color.blue : Color.green;
+					Gizmos.color = node.Edges.OfType<NestPathElementEdge>().Any() ? ConnectedNodeColor : NodeColor;
 					
 					Gizmos.DrawWireSphere(node.WorldPosition, 0.15f);
 				}
@@ -49,7 +49,7 @@ namespace AntDiary.Scripts.Roads{
 				
 				foreach(var edge in edges){
 					// Debug.Log("Color");
-					Gizmos.color = Color.red;
+					Gizmos.color = EdgeColor;
 					// Debug.Log("Draw");
 					Gizmos.DrawLine(edge.A.WorldPosition, edge.B.WorldPosition);
 				}
