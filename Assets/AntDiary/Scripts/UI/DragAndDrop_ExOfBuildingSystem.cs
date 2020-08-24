@@ -14,6 +14,8 @@ namespace AntDiary
         private Vector3 position;
         private Vector3 screenToWorldPointPosition;
 
+        public BuildingSystem Instance = NestSystem.Instance.BuildingSystem;
+
         public void PushDown()
         {
             position = Input.mousePosition;
