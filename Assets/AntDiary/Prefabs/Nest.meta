@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 83bac9a86537349449a21fcc9bded868
+=======
+guid: f83de153bdeb94f5fa5ddc7e9ac206ef
+>>>>>>> upstreem/master
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
