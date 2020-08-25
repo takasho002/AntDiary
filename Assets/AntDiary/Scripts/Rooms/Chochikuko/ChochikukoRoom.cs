@@ -10,8 +10,7 @@ namespace AntDiary
         [SerializeField] private Collider2D blockingShape = default;
         [SerializeField] private Rect boundingRect = default;
 
-        // デバッグ用に季節とアリのステータスを指定
-        [SerializeField] private int season;
+        // デバッグ用にアリのステータスを指定
         [SerializeField] private int status;
 
         // 餌あり，餌なしのスプライトを登録
@@ -85,7 +84,8 @@ namespace AntDiary
                 {
                     spriteRenderer.sprite = Esaari;
                 }
-                NestSystem.Instance.Data.StoredFood += season * status;
+                var currentSeason = TimeSystem.Instance.CurrentSeason;
+                NestSystem.Instance.Data.StoredFood += currentSeason * status;
             }
         }
     }
