@@ -698,6 +698,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
+        type: 3}
+      propertyPath: antFactories.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
+        type: 3}
+      propertyPath: nestElementFactories.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
+        type: 3}
+      propertyPath: antFactories.Array.data[1]
+      value: 
+      objectReference: {fileID: 1765047845}
+    - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
+        type: 3}
+      propertyPath: nestElementFactories.Array.data[6]
+      value: 
+      objectReference: {fileID: 1461108008}
     - target: {fileID: 7330755635708001764, guid: e66b6b916586e0741bb232ad81110e62,
         type: 3}
       propertyPath: m_Name
@@ -760,6 +780,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66b6b916586e0741bb232ad81110e62, type: 3}
+--- !u!1 &1461108007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461108009}
+  - component: {fileID: 1461108008}
+  m_Layer: 0
+  m_Name: StoreRoomFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1461108008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461108007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9a2c7514e8ce04cbc7981d7906f145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storeRoomPrefab: {fileID: 4421009075398184910, guid: 4d6a351086a7411449bbf4c08c3f5108,
+    type: 3}
+--- !u!4 &1461108009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461108007}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512593440
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +836,7 @@ GameObject:
   - component: {fileID: 1512593442}
   - component: {fileID: 1512593441}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MainDebug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,7 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d7f4b02e8ac074aa6961d01b10154e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  create: 0
+  createNest: 0
+  createErgate: 0
 --- !u!4 &1512593442
 Transform:
   m_ObjectHideFlags: 0
@@ -1091,6 +1157,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747749516}
   m_CullTransparentMesh: 0
+--- !u!1 &1765047844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1765047846}
+  - component: {fileID: 1765047845}
+  m_Layer: 0
+  m_Name: ErgateAntFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1765047845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765047844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f708b033db7e4459006d95ba96936a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ergateAntPrefab: {fileID: 5503621781716167659, guid: c12663d3f286b7d44bdbd05aafb045ee,
+    type: 3}
+--- !u!4 &1765047846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765047844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3524735, y: -0.51248497, z: -0.72738326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765871765
 GameObject:
   m_ObjectHideFlags: 0
