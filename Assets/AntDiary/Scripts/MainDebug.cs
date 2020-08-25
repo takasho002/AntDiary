@@ -34,7 +34,7 @@ public class MainDebug : MonoBehaviour
 
     private void CreateErgate()
     {
-        ErgateAntData data = new ErgateAntData() { Capacity = 10 };
+        ErgateAntData data = new ErgateAntData() { Capacity = 10,IsHoldingFood = true };
         nestsystem.InstantiateAnt(data);
     }
 
@@ -50,7 +50,7 @@ public class MainDebug : MonoBehaviour
                 //右下に貯蔵庫作成
                 if(y==2 && x == 3)
                 {
-                    nestsystem.InstantiateNestElement(new DebugRoomData()
+                    nestsystem.InstantiateNestElement(new StoreRoomData()
                     { Position = new Vector2(posx, posy), IsUnderConstruction = false });
                 }
                 else
