@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 0f8ca14a4098b7149ad994d4f406c208
+guid: 367519d111b167143812f1eca7c83df0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9009073912910553507
-    second: arikihon_realSide_0
+      213: 6887821004324222831
+    second: arikihon_cartoonSide_0
   - first:
-      213: -1341493297978732858
-    second: arikihon_realSide_1
+      213: -4527834624758099145
+    second: arikihon_cartoonSide_1
   - first:
-      213: 1570087989291568573
-    second: arikihon_realSide_2
-  - first:
-      213: -5120678809201918957
-    second: arikihon_realSide_0
-  - first:
-      213: -9082889155317189386
-    second: arikihon_realSide_1
-  - first:
-      213: -879323178308948292
-    second: arikihon_realSide_2
+      213: 73947966226202121
+    second: arikihon_cartoonSide_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,13 +96,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: arikihon_realSide_0
+      name: arikihon_cartoonSide_0
       rect:
         serializedVersion: 2
-        x: 87
-        y: 162
-        width: 318
-        height: 147
+        x: 123
+        y: 147
+        width: 247
+        height: 170
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +110,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31c36a8e0c1bfe8b0800000000000000
-      internalID: -5120678809201918957
+      spriteID: f67383fc5b4769f50800000000000000
+      internalID: 6887821004324222831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arikihon_realSide_1
+      name: arikihon_cartoonSide_1
       rect:
         serializedVersion: 2
-        x: 608
-        y: 163
-        width: 297
-        height: 146
+        x: 623
+        y: 146
+        width: 247
+        height: 171
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f4321bbf6813f180800000000000000
-      internalID: -9082889155317189386
+      spriteID: 7335495f566e921c0800000000000000
+      internalID: -4527834624758099145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: arikihon_realSide_2
+      name: arikihon_cartoonSide_2
       rect:
         serializedVersion: 2
-        x: 1108
-        y: 162
-        width: 297
-        height: 147
+        x: 1123
+        y: 145
+        width: 247
+        height: 172
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbea02a6a340cc3f0800000000000000
-      internalID: -879323178308948292
+      spriteID: 90e76c29847b60100800000000000000
+      internalID: 73947966226202121
       vertices: []
       indices: 
       edges: []
