@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using AntDiary;
 using System.Linq;
+using System;
 
 public class MainDebug : MonoBehaviour
 {
     private NestSystem nestsystem => NestSystem.Instance;
-    [SerializeField] bool create = false;
+    [SerializeField] bool createNest = false;
+    [SerializeField] bool createErgate = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +20,22 @@ public class MainDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (create)
+        if (createNest)
         {
             CreateFeedRoute();
-            create = false;
+            createNest = false;
         }
+        if (createErgate)
+        {
+            CreateErgate();
+            createErgate = false;
+        }
+    }
+
+    private void CreateErgate()
+    {
+        ErgateAntData data = new ErgateAntData() { Capacity = 10 };
+        nestsystem.InstantiateAnt(data);
     }
 
     public void CreateFeedRoute()
@@ -34,8 +47,17 @@ public class MainDebug : MonoBehaviour
             {
                 float posx = x * 4f - 1.5f * 4f;
                 float posy = y * 3f - 1f * 3f;
-                nestsystem.InstantiateNestElement(new DebugRoomData()
-                { Position = new Vector2(posx, posy), IsUnderConstruction = false });
+                //右下に貯蔵庫作成
+                if(y==2 && x == 3)
+                {
+                    nestsystem.InstantiateNestElement(new DebugRoomData()
+                    { Position = new Vector2(posx, posy), IsUnderConstruction = false });
+                }
+                else
+                {
+                    nestsystem.InstantiateNestElement(new DebugRoomData()
+                    { Position = new Vector2(posx, posy), IsUnderConstruction = false });
+                }
             }
 
         for (int y = 0; y < 3; y++)
