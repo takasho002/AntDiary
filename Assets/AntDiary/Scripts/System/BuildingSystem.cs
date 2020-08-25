@@ -12,7 +12,7 @@ namespace AntDiary
     /// </summary>
     public class BuildingSystem
     {
-        public BuildingSystem Instance => NestSystem.Instance.BuildingSystem;
+        public static BuildingSystem Instance => NestSystem.Instance.BuildingSystem;
 
         private NestSystem Host { get; }
 
@@ -80,12 +80,13 @@ namespace AntDiary
         /// 自動接続は現在の建築システムの仕様に基づき、一か所だけで行われます。（変更される可能性あり）
         /// </summary>
         /// <param name="target"></param>
+        /// <param name="needToBeConnected">スナップによってほかのNestElementに接続できない場合、設置不能として判定する。</param>
         /// <returns>配置が成功したかどうか。</returns>
-        public bool PlaceElementWithAutoConnect(NestElement target, float autoConnectThresholdDistance = 0.01f)
+        public bool PlaceElementWithAutoConnect(NestElement target, bool needToBeConnected = true,
+            float autoConnectThresholdDistance = 0.01f)
         {
-            if (!CanPlaceable(target)) return false;
-            Host.AddNestElement(target);
-            
+            if (!IsPlaceable(target)) return false;
+
             GetSnappableNode(target, out NestPathNode originNode, out NestPathNode targetNode, out float distance);
 
             if (distance <= autoConnectThresholdDistance)
@@ -93,27 +94,32 @@ namespace AntDiary
                 //自動接続を行う
                 Host.ConnectElements(originNode, targetNode);
             }
+            else if (needToBeConnected) return false;
+
+            Host.AddNestElement(target);
 
             return true;
         }
 
         private Collider2D[] overlapResult = new Collider2D[1];
-        
+
         /// <summary>
         /// NestElementが現在の位置に設置できるかどうかを取得する。
+        /// 【注意】NestElementの位置を更新した直後、同一フレーム内で呼び出すと、移動前の位置で重複判定が行われるようです。結果正しい結果が得られないことがあります。
         /// </summary>
         /// <param name="target"></param>
         /// <returns></returns>
-        public bool CanPlaceable(NestElement target)
+        public bool IsPlaceable(NestElement target)
         {
             var cf = new ContactFilter2D()
             {
+                useLayerMask = true,
                 layerMask = LayerMask.GetMask("NestElement"),
             };
-            return Physics2D.OverlapCollider(target.GetBlockingShape(), cf, overlapResult) == 0;
+            int res = target.GetBlockingShape().OverlapCollider(cf, overlapResult);
+            //Debug.Log(res, overlapResult[0]);
+
+            return res == 0;
         }
-        
-        
-        
     }
 }

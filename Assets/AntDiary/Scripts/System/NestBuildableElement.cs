@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AntDiary
@@ -10,6 +11,7 @@ namespace AntDiary
         /// 建築の完了に必要な労働コスト
         /// </summary>
         public abstract float RequiredResources { get; }
+
         public bool IsUnderConstruction
         {
             get => SelfData.IsUnderConstruction;
@@ -30,12 +32,21 @@ namespace AntDiary
                 OnBuildingCompleted();
             }
         }
-        
+
         /// <summary>
         /// 建築が完了したときに呼ばれる。
         /// </summary>
         protected virtual void OnBuildingCompleted()
-        {}
-        
+        {
+        }
+
+        /// <summary>
+        /// このNestBuildableElementを建築する際に建築アリが行くべきノードを示す。
+        /// </summary>
+        /// <returns></returns>
+        public virtual IEnumerable<IPathNode> GetBuildingNode()
+        {
+            return GetNodes().Where(n => n.IsExposed).SelectMany(n => n.GetConnectedNodesForeign(true));
+        }
     }
 }
