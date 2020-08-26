@@ -14,11 +14,12 @@ namespace AntDiary
 
         private Vector3 position;
         private Vector3 screenToWorldPointPosition;
-
+        
+        //ボタンから出したい道の形の名前を保存します。If文だらけのとこの名前です
         public string NestName;
-
+        //ドラッグ&ドロップさせる道や部屋を格納します
         private NestElement nestelement;
-
+        //貯蓄庫や女王の部屋の数を格納します
         private int Chochikukonum = 0;
         private int QweenRoomNum = 0;
 
@@ -28,8 +29,9 @@ namespace AntDiary
             position = Input.mousePosition;
             position.z = 10f;
             screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
-
+            //Listでシーン内にあるNestElementをすべて取得
             var list = NestSystem.Instance.NestElements;
+            //貯蓄庫と女王の部屋の数を数えます
             for(int i=0;i<list.Count;i++)
             {
                 if(list[i].gameObject.name == "Chochikubeya(Clone)")
@@ -42,6 +44,7 @@ namespace AntDiary
                 }
             }
 
+            //出現させるNestElementのデータを保存
             NestElementData data;
             if(NestName == "IShapeVertical")
             {
@@ -101,7 +104,8 @@ namespace AntDiary
             {
                 data = new CrossShapeRoadData();
             }
-
+            
+            //貯蓄庫と女王の部屋が指定されたときシーン内に巣でにそれらの部屋があるなら出せない
             if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QweenAntRoom" && QweenRoomNum != 0))
             {
                 
@@ -115,6 +119,7 @@ namespace AntDiary
 
         public void PushDrag()
         {
+            //ドラッグ中
                 position = Input.mousePosition;
                 position.z = 10f;
                 screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
@@ -126,6 +131,7 @@ namespace AntDiary
 
               if (BuildingSystem.Instance.IsPlaceable(nestelement) == false)//建築可能な領域でない
               {
+                //NestElement削除
                   NestSystem.Instance.RemoveNestElement(nestelement);
                   Destroy(nestelement.gameObject);
               }
