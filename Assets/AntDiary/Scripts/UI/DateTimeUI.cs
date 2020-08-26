@@ -9,7 +9,7 @@ namespace AntDiary
     {
         private TimeSystem TimeSystem => TimeSystem.Instance;
 
-        [SerializeField] private Text monthAndSeason = default;
+        [SerializeField] private Text monthAndSeasonData = default;
         [SerializeField] private Text timeData = default;
         [SerializeField] private Sprite springFrame = default;
         [SerializeField] private Sprite summerFrame = default;
@@ -22,17 +22,19 @@ namespace AntDiary
         {
             image = gameObject.GetComponent<Image>();
 
-            getSeasonSprite(TimeSystem.CurrentSeason);
-            timeData.text = getCurrentTimeData(TimeSystem.CurrentTime);
+            GetSeasonSprite(TimeSystem.CurrentSeason);
+            monthAndSeasonData.text = GetCurrentMonthAndSeasonData(TimeSystem.CurrentMonth, TimeSystem.CurrentSeason);
+            timeData.text = GetCurrentTimeData(TimeSystem.CurrentTime);
         }
 
         void Update()
         {
-            getSeasonSprite(TimeSystem.CurrentSeason);
-            timeData.text = getCurrentTimeData(TimeSystem.CurrentTime);
+            GetSeasonSprite(TimeSystem.CurrentSeason);
+            monthAndSeasonData.text = GetCurrentMonthAndSeasonData(TimeSystem.CurrentMonth, TimeSystem.CurrentSeason);
+            timeData.text = GetCurrentTimeData(TimeSystem.CurrentTime);
         }
 
-        private void getSeasonSprite(int seasonId)
+        private void GetSeasonSprite(int seasonId)
         {
             switch(seasonId)
             {
@@ -53,16 +55,42 @@ namespace AntDiary
             }
         }
 
-        private string getCurrentTimeData(float currentTime)
+        private string GetCurrentMonthAndSeasonData(int currentMonth, int seasonId)
+        {
+            string text = currentMonth.ToString("00") + "月 / ";
+
+            switch (seasonId)
+            {
+                case 0:
+                    text += "春";
+                    break;
+                case 1:
+                    text += "夏";
+                    break;
+                case 2:
+                    text += "秋";
+                    break;
+                case 3:
+                    text += "冬";
+                    break;
+                default:
+                    text += "No Data";
+                    break;
+            }
+
+            return text;
+        }
+
+        private string GetCurrentTimeData(float currentTime)
         {
             int hour = (int)currentTime / 3600;
             int minute = (int)currentTime / 60;
             int second = (int)currentTime % 60;
-            string time = hour.ToString("00") + ":";
-            time += minute.ToString("00") + ":";
-            time += second.ToString("00");
+            string text = hour.ToString("00") + "時";
+            text += minute.ToString("00") + "分";
+            text += second.ToString("00") + "秒";
 
-            return time;
+            return text;
         }
     }
 }
