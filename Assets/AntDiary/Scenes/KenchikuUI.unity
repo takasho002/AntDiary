@@ -121,6 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &18543776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 906476781}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &33830399
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +321,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101371149}
   m_CullTransparentMesh: 0
+--- !u!114 &180095045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1303751795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &241940199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1198752701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &253448278
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad18916ae2ccaeb4f8def39310aa12d7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3013c634e785dc44aa913e3de25f1ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -390,16 +426,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8010503639191269403, guid: baedc5fcc5acfe74b9c918b0a6d79259,
+      objectReference: {fileID: 1280536923}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1280536923}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1280536923}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (1)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: IShapeHorizontal
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -506,7 +571,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &371268044 stripped
 RectTransform:
@@ -684,16 +750,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
-        type: 3}
-      propertyPath: root
-      value: 
-      objectReference: {fileID: 19268723518946157, guid: 5749019ce0f69344ba7cd852daa668b1,
-        type: 3}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
       value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: IShapeVertical
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -1143,16 +1208,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4234848750310233257, guid: c3ff8f675b9bcaf479fd88a65dcabe76,
+      objectReference: {fileID: 18543776}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 18543776}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 18543776}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (6)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: TShapeTop
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -1259,7 +1353,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &906476782 stripped
 RectTransform:
@@ -1409,16 +1504,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7520055242711420486, guid: 3d5a8bd7b3b0e1c47ab88d031bf60c05,
+      objectReference: {fileID: 1885731160}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885731160}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1885731160}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (3)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: LShapeLeft
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -1525,7 +1649,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &996445293 stripped
 RectTransform:
@@ -1586,7 +1711,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1623,16 +1748,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4481878659885024219, guid: 4b715ad7b58abc349b75e863e84dd2dd,
+      objectReference: {fileID: 2033227947}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2033227947}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2033227947}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (4)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: LShapeTop
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -1739,7 +1893,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1050506534 stripped
 RectTransform:
@@ -1754,16 +1909,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
-        type: 3}
-      propertyPath: root
-      value: 
-      objectReference: {fileID: 3222424812931283782, guid: bcc4e329372b2d84b83b2f55af9b392b,
-        type: 3}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (9)
+      value: KenchikuUI_grayButton
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2012,7 +2161,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 849e168c59fd12e48ae7c153ca40c7f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad18916ae2ccaeb4f8def39310aa12d7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2037,16 +2186,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6858690017924546155, guid: 2d7da069c844f134eb331522f976b8c6,
+      objectReference: {fileID: 241940199}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 241940199}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 241940199}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (3)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: TShapeBottom
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2153,7 +2331,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1198752702 stripped
 RectTransform:
@@ -2168,16 +2347,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3806581879407198467, guid: 975496f1ab1f0364b8e361aba79e1405,
+      objectReference: {fileID: 2037888934}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2037888934}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2037888934}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (2)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: LShapeBottom
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2284,7 +2492,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1220243816 stripped
 RectTransform:
@@ -2440,6 +2649,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237764218}
   m_CullTransparentMesh: 0
+--- !u!114 &1280536923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 371268043}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1303751795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2447,16 +2668,60 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 4834693826443183656, guid: 24f972b0a3192694099283edbeda3a06,
+      objectReference: {fileID: 180095045}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 180095045}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 180095045}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (5)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: TShapeRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 530
+      objectReference: {fileID: 0}
+    - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2476,17 +2741,17 @@ PrefabInstance:
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2512,16 +2777,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 530
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2563,7 +2818,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1303751796 stripped
 RectTransform:
@@ -2762,7 +3018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 937.9148}
   m_SizeDelta: {x: 0, y: 2400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1371206825
@@ -2772,16 +3028,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3222424812931283782, guid: bcc4e329372b2d84b83b2f55af9b392b,
+      objectReference: {fileID: 1425963039}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1425963039}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1425963039}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (8)
+      value: KenchikuUI_grayButton
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2888,7 +3168,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1371206826 stripped
 RectTransform:
@@ -3020,6 +3301,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412891382}
   m_CullTransparentMesh: 0
+--- !u!114 &1425963039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1371206825}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1462980444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3150,7 +3443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d3013c634e785dc44aa913e3de25f1ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 849e168c59fd12e48ae7c153ca40c7f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3323,7 +3616,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1940418688}
   m_HandleRect: {fileID: 1940418687}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.48381135
   m_Size: 0.24291667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3440,6 +3733,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755398352}
   m_CullTransparentMesh: 0
+--- !u!114 &1773780238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1816760142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1808097791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3521,16 +3826,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8806500201458671346, guid: 199b1e3e9b6f89f4fb8e69fffa898f36,
+      objectReference: {fileID: 1773780238}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1773780238}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1773780238}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (3)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: LShapeRight
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -3637,7 +3971,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1816760143 stripped
 RectTransform:
@@ -3844,6 +4179,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1880384535}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885731160 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 996445292}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1906369269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3851,16 +4198,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1349608207}
     m_Modifications:
-    - target: {fileID: -220788209765437122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
-      propertyPath: root
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7106690480008643080, guid: 1756ac9d26a34fe45bb2ac5c33010732,
+      objectReference: {fileID: 2016860323}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDrag
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2016860323}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2016860323}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushDown
+      objectReference: {fileID: 0}
+    - target: {fileID: -4367654615084343122, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PushUp
+      objectReference: {fileID: 0}
     - target: {fileID: 980213590046608791, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: m_Name
-      value: KenchikuUI_grayButton (7)
+      value: KenchikuUI_grayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+        type: 3}
+      propertyPath: RoadName
+      value: TShapeLeft
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -3967,7 +4343,8 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 15566f3d184b4e54db4f6c2eaf97a7fa, type: 3}
 --- !u!224 &1906369270 stripped
 RectTransform:
@@ -4174,6 +4551,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1986809923}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2016860323 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1906369269}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2025827690
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,3 +4707,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2026146396}
   m_CullTransparentMesh: 0
+--- !u!114 &2033227947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1050506533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2037888934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1220243815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152b73e17979d5145adab3106cf4dd49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
