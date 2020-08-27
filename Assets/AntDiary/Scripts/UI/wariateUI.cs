@@ -27,6 +27,7 @@ namespace AntDiary
 
         public void Update()
         {
+            
             grayScrollbar.fillAmount = otherScrollbar1.fillAmount + otherScrollbar2.fillAmount;
             Max = (1 - grayScrollbar.fillAmount) * 300 - 150;
             if (transform.localPosition.x > Max)
