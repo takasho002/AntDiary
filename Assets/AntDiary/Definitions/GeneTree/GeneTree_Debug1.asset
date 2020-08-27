@@ -32,8 +32,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 361
       y: -160
-      width: 249
-      height: 150
+      width: 271
+      height: 156
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
@@ -42,10 +42,34 @@ MonoBehaviour:
       serializedVersion: 2
       x: 374
       y: 39
-      width: 266
-      height: 148
+      width: 263
+      height: 156
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: 8c5176a8-a6ce-414a-9f92-385a8c328be1
+    position:
+      serializedVersion: 2
+      x: 721
+      y: -260
+      width: 243
+      height: 152
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: 4e81c520-15bb-406f-8957-a250107b034e
+    position:
+      serializedVersion: 2
+      x: 668
+      y: -698
+      width: 247
+      height: 150
   edges:
   - parentGeneGuid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
     childGeneGuid: 86445ee3-e758-4356-bccb-b5419189b094
   - parentGeneGuid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
     childGeneGuid: 80bc3fd5-a3e6-4766-96c5-cd3d9606bdd6
+  - parentGeneGuid: 86445ee3-e758-4356-bccb-b5419189b094
+    childGeneGuid: 8c5176a8-a6ce-414a-9f92-385a8c328be1
+  - parentGeneGuid: 80bc3fd5-a3e6-4766-96c5-cd3d9606bdd6
+    childGeneGuid: 4e81c520-15bb-406f-8957-a250107b034e
