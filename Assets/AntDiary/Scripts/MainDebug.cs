@@ -94,7 +94,6 @@ public class MainDebug : MonoBehaviour
 
                 nestsystem.ConnectElements(n1, r1);
                 nestsystem.ConnectElements(r2, n2);
-                Console.WriteLine("は？？");
             }
         var ne = nestsystem.NestElements[Random.Range(0, nestsystem.NestElements.Count)];
         var node1 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));

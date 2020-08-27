@@ -6,14 +6,23 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject[] panels;
+    [SerializeField] GameObject savePanel;
     [SerializeField] GameObject[] buttons;
     [SerializeField] Sprite inactive;
     [SerializeField] Sprite active;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            for (int j = 0; j < panels.Length; j++)
+            {
+                panels[j].SetActive(false);
+                buttons[j].GetComponent<Image>().sprite = inactive;
+            }
+            savePanel.SetActive(!savePanel.activeSelf);
+        }
     }
 
     // Update is called once per frame
@@ -29,6 +38,7 @@ public class UIController : MonoBehaviour
             }
             panels[i].SetActive(true);
         }
+        savePanel.SetActive(false);
     }
 
     private void ToggleButtonImage(int i)
