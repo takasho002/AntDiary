@@ -11,11 +11,11 @@ namespace AntDiary
         [SerializeField] private Rect boundingRect = default;
 
         // デバッグ用にアリのステータスを指定
-        [SerializeField] private int status;
+        [SerializeField] private int status = default;
 
         // 餌あり，餌なしのスプライトを登録
-        [SerializeField] private Sprite Esaari;
-        [SerializeField] private Sprite Esanashi;
+        [SerializeField] private Sprite Esaari = default;
+        [SerializeField] private Sprite Esanashi = default;
 
         private SpriteRenderer spriteRenderer;
 
