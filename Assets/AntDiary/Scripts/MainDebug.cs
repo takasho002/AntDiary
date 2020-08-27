@@ -4,6 +4,7 @@ using UnityEngine;
 using AntDiary;
 using System.Linq;
 using System;
+using Random = UnityEngine.Random;
 
 public class MainDebug : MonoBehaviour
 {
@@ -93,6 +94,17 @@ public class MainDebug : MonoBehaviour
 
                 nestsystem.ConnectElements(n1, r1);
                 nestsystem.ConnectElements(r2, n2);
+                Console.WriteLine("は？？");
             }
+        var ne = nestsystem.NestElements[Random.Range(0, nestsystem.NestElements.Count)];
+        var node1 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));
+        ne = nestsystem.NestElements[Random.Range(0, nestsystem.NestElements.Count)];
+        var node2 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));
+        IEnumerable<IPathNode> latestRoutes = nestsystem.FindRoute(node1,node2);
+        foreach (IPathNode route in latestRoutes)
+        {
+            Debug.Log(route.WorldPosition);
+            Debug.Log("は？？");
+        }
     }
 }

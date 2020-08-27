@@ -24,12 +24,14 @@ namespace AntDiary
 
         protected override void Update()
         {
+            /*
             base.Update();
 
             if (!pathWayStarted)
             {
                 if (SetRandomDestination()) pathWayStarted = true;
             }
+            */
         }
 
         private bool SetRandomDestination()

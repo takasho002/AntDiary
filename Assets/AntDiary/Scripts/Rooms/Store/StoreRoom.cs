@@ -89,7 +89,7 @@ namespace AntDiary
                 }
                 NestSystem.Instance.Data.StoredFood += season * script.Capacity;
                 Debug.Log(NestSystem.Instance.Data.StoredFood);
-                script.IsHoldingFood = false;
+                //script.IsHoldingFood = false;
             }
         }
 
