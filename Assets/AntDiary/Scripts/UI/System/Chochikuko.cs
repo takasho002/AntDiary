@@ -42,7 +42,6 @@ public class Chochikuko : MonoBehaviour
                 spriteRenderer.sprite = Esaari;
             }
             NestSystem.Instance.Data.StoredFood += season * status;
-            script.isHoldingFood = false;
         }
     }
 }
