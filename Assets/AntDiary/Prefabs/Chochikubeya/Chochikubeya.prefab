@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3998111355694561477}
   - component: {fileID: 7845951068774024679}
   - component: {fileID: 2768192348331019635}
-  - component: {fileID: 6883673863140341928}
+  - component: {fileID: 1803760158564903351}
   m_Layer: 0
   m_Name: Chochikubeya
   m_TagString: Chochikubeya
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e32755de6a7d65348a9e7af2633f6fd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9d1a6780afe3699478f012df40ccbc0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6883673863140341928
+--- !u!114 &1803760158564903351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,11 +130,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4543782475874227190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3701765db9a69584b850297d897c1a27, type: 3}
+  m_Script: {fileID: 11500000, guid: ae4d0958643a2744c9ed05064cc1f46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Esaari: {fileID: 21300000, guid: fd72be03fa021204f9d76f63c55bb100, type: 3}
-  Esanashi: {fileID: 21300000, guid: e32755de6a7d65348a9e7af2633f6fd9, type: 3}
-  stockAmount: 0
-  season: 2
-  status: 200
+  blockingShape: {fileID: 0}
+  boundingRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  season: 1
+  status: 100
+  Esaari: {fileID: 21300000, guid: dc005a4cab9435c40a154d0516adc9d8, type: 3}
+  Esanashi: {fileID: 21300000, guid: 9d1a6780afe3699478f012df40ccbc0b, type: 3}
