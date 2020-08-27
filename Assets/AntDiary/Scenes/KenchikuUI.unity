@@ -919,7 +919,7 @@ PrefabInstance:
     - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: NestName
-      value: QweenAntRoom
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -2146,7 +2146,7 @@ PrefabInstance:
     - target: {fileID: 4866462138569354780, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
       propertyPath: NestName
-      value: Chochikubeya
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6236007877716397069, guid: 15566f3d184b4e54db4f6c2eaf97a7fa,
         type: 3}
@@ -3268,7 +3268,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00009918213}
+  m_AnchoredPosition: {x: 0, y: 838.8772}
   m_SizeDelta: {x: 0, y: 2400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &1371206825
@@ -3871,7 +3871,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1940418688}
   m_HandleRect: {fileID: 1940418687}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.53831744
   m_Size: 0.24291667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4056,7 +4056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d1a6780afe3699478f012df40ccbc0b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
