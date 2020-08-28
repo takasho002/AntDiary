@@ -9,7 +9,7 @@ namespace AntDiary
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("UnemployedAnt spawned");
+            // Debug.Log("UnemployedAnt spawned");
         }
 
         // Update is called once per frame
