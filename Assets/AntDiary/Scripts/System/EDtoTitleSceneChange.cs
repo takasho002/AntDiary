@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class EDtoTitleSceneChange : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class EDtoTitleSceneChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.anyKeyDown){
+            SceneManager.LoadScene ("takasho_TitleScene");
+        }
     }
 }
