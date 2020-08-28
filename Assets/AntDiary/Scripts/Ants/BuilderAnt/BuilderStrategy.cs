@@ -3,17 +3,17 @@ namespace AntDiary{
 	/// BuilderAntの振る舞いを記述するクラス
 	/// </summary>
 	public abstract class BuilderStrategy{
-		
-		
+
+
 		/// <summary>
 		/// PeriodicUpdateが呼ばれる周期
 		/// 単位は秒
 		/// </summary>
-		public float UpdateInterval{ get; protected set; }
+		public float UpdateInterval{ get; protected set; } = 1f;
 
-		protected Ant HostAnt{ get; private set; }
+		protected BuilderAnt HostAnt{ get; private set; }
 		
-		public BuilderStrategy(Ant ant){
+		public BuilderStrategy(BuilderAnt ant){
 			HostAnt = ant;
 		}
 

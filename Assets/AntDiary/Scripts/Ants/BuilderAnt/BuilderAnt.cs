@@ -6,6 +6,8 @@ namespace AntDiary{
 	public class BuilderAnt : Ant<BuilderAntData>{
 		private BuilderStrategy _strategy;
 		
+		
+		
 		void Start(){
 			
 		}
@@ -14,7 +16,7 @@ namespace AntDiary{
 		protected override float MovementSpeed{ get; }
 
 		protected override void OnInitialized(){
-			// _strategy = 
+			_strategy = new RoundStrategy(this);
 
 			StartCoroutine("UpdateCaller");
 		}
