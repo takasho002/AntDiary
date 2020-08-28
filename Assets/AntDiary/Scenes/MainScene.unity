@@ -2252,6 +2252,7 @@ GameObject:
   - component: {fileID: 1476458125}
   - component: {fileID: 1476458124}
   - component: {fileID: 1476458123}
+  - component: {fileID: 1476458126}
   - component: {fileID: 1476458122}
   m_Layer: 0
   m_Name: SeasonManager
@@ -2269,7 +2270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1476458121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ac838c5a0387a41bb4817ab4cf1a18, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a258ed29e9ad4a4a85872225214b1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   changeBackground: {fileID: 239873007}
@@ -2318,6 +2319,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1476458126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476458121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c73704219e59aa8478b71eeae8e785a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeBackground: {fileID: 239873007}
+  fadeOut: {fileID: 414880400}
 --- !u!1 &1512593440
 GameObject:
   m_ObjectHideFlags: 0

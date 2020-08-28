@@ -35,16 +35,13 @@ namespace AntDiary
          */
         public void SeasonalChange(Action _callDrawBG, Action _callPlayBGM)
         {
-            UnityEngine.Debug.Log("な");
             // HACK: Actionじゃなくて直接関数渡したい
             if (isInThisSeason)
             {
-             UnityEngine.Debug.Log("なん");
                 if (isSeasonalChange)
                 {
                     _callDrawBG();
                     _callPlayBGM();
-                    UnityEngine.Debug.Log("なんじゃ");
                 }
                 lastTimeInThisSeason = CurrentTime;
             }
@@ -69,7 +66,7 @@ namespace AntDiary
         [SerializeField] protected FadeOut fadeOut;
 
     }
-
+    /*
     // 夏
     public class Summer : Season
     {
@@ -99,5 +96,5 @@ namespace AntDiary
             base.SeasonalChange(() => changeBackground.SetBackground(seasonId), () => fadeOut.BGMsystem("test1"));
         }
     }
-
+    */
 }
