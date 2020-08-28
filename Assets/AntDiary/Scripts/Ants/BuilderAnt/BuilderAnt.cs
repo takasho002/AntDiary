@@ -2,17 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuilderAnt : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+namespace AntDiary{
+	public class BuilderAnt : Ant<BuilderAntData>{
+		private BuilderStrategy _strategy;
+		
+		void Start(){
+			
+		}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+		// Update is called once per frame
+		protected override float MovementSpeed{ get; }
+
+		protected override void OnInitialized(){
+			// _strategy = 
+
+			StartCoroutine("UpdateCaller");
+		}
+
+		protected override void Update(){
+			
+		}
+
+		private IEnumerable UpdateCaller(){
+			while(Data.IsAlive){
+				_strategy.PeriodicUpdate();
+				yield return new WaitForSeconds(_strategy.UpdateInterval);
+			}
+			_strategy.FinishStrategy();
+		}
+		
+		public void ChangeStrategy(BuilderStrategy nextStrategy){
+			_strategy?.FinishStrategy();
+
+			_strategy = nextStrategy;
+			nextStrategy.StartStrategy();
+			
+		}
+	}
+
 }
+
