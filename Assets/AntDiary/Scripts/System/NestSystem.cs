@@ -256,14 +256,15 @@ namespace AntDiary
         /// あらかじめNestElement.Initializeで適切なNestElementDataが注入されている必要がある。
         /// </summary>
         /// <param name="element"></param>
-        public void AddNestElement(NestElement element)
+        public void RegisterNestElementToGameContext(NestElement element)
         {
-            if (nestElements.Contains(element)) throw new ArgumentException("指定されたNestElementはすでに登録されています。");
             if (element.Data == null)
                 throw new ArgumentException("NestElementDataが設定されていません。あらかじめ適切なNestElementDataを注入してください。");
             if (Data.Structure.NestElements.Contains(element.Data))
                 throw new ArgumentException("指定されたNestElementのDataはすでに登録されています。");
-            nestElements.Add(element);
+            
+            if (!nestElements.Contains(element)) nestElements.Add(element);
+            
             Data.Structure.NestElements.Add(element.Data);
         }
 
