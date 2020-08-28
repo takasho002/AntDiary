@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4705588786743772652}
   - component: {fileID: 7578254211603131328}
   m_Layer: 5
-  m_Name: management
+  m_Name: builder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7BA1\u7406:D\u5339"
+  m_Text: "\u5EFA\u7BC9:D\u5339"
 --- !u!1 &2238131883778233496
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1800141124036706883}
   - component: {fileID: 5979865369459161671}
   m_Layer: 5
-  m_Name: work
+  m_Name: worker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5B50\u4F9B:D\u5339\uFF08\u6210\u9577\u307E\u3067\u3042\u3068Hoge\uFF09"
+  m_Text: "\u30D5\u30EA\u30FC:D\u5339"
 --- !u!1 &4038642133931903364
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 5304829574008592698}
   - component: {fileID: 709756999964646585}
   m_Layer: 5
-  m_Name: free
+  m_Name: defender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30D5\u30EA\u30FC:D\u5339"
+  m_Text: "\u9632\u885B:D\u5339"
 --- !u!1 &4816103479019608988
 GameObject:
   m_ObjectHideFlags: 0
