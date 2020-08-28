@@ -13,7 +13,7 @@ namespace AntDiary
     public class Season : MonoBehaviour
     {
         // 季節のID(春:0, 夏:1, 秋:2, 冬3)
-        private int seasonId;
+        protected int seasonId;
         // 最後にこの季節だった時間
         // これをもとにシーズン切り替わりを判定
         // 初期値: -1*SeasonInterval
@@ -35,16 +35,24 @@ namespace AntDiary
          */
         public void SeasonalChange(Action _callDrawBG, Action _callPlayBGM)
         {
+            UnityEngine.Debug.Log("な");
             // HACK: Actionじゃなくて直接関数渡したい
             if (isInThisSeason)
             {
+             UnityEngine.Debug.Log("なん");
                 if (isSeasonalChange)
                 {
                     _callDrawBG();
                     _callPlayBGM();
+                    UnityEngine.Debug.Log("なんじゃ");
                 }
                 lastTimeInThisSeason = CurrentTime;
             }
+        }
+
+        private void Update()
+        {
+            UnityEngine.Debug.Log("n");
         }
 
         // 長いんで呼びやすく
@@ -57,6 +65,8 @@ namespace AntDiary
         public Boolean isInThisSeason => TimeSystem.Instance.CurrentSeason == seasonId;
         // 季節が変わったか(変わった: true)
         public Boolean isSeasonalChange => DeltaTimeFromCurrentTime >= SeasonInterval;
+        [SerializeField] protected ChangeBackground changeBackground;
+        [SerializeField] protected FadeOut fadeOut;
 
     }
 
@@ -71,7 +81,7 @@ namespace AntDiary
 
         void Update()
         {
-            // base.SeasonalChange(背景描画の関数, BGM再生の関数);
+            base.SeasonalChange(()=>changeBackground.SetBackground(seasonId), ()=>fadeOut.BGMsystem("test2"));
         }
     }
 
@@ -86,7 +96,7 @@ namespace AntDiary
 
         void Update()
         {
-            // base.SeasonalChange(背景描画の関数, BGM再生の関数);
+            base.SeasonalChange(() => changeBackground.SetBackground(seasonId), () => fadeOut.BGMsystem("test1"));
         }
     }
 
