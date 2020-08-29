@@ -11,7 +11,7 @@ namespace AntDiary
     /// <summary>
     /// 仕事割り振りクラス
     /// </summary>
-    public class JobAssignmentSystem
+    public class JobAssignmentSystem : MonoBehaviour
     {
         //仕事の型リスト
         private List<Type> antjobs;
