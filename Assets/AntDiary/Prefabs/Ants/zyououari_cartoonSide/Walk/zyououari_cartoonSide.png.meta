@@ -1,7 +1,16 @@
 fileFormatVersion: 2
-guid: d6732b97479012342ae510f8e6edca55
+guid: 633e5d374a17695448f1e7de0428de34
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 2206595512305569961
+    second: zyououari_cartoonSide_0
+  - first:
+      213: -6577676852407076660
+    second: zyououari_cartoonSide_1
+  - first:
+      213: -8593345404311000826
+    second: zyououari_cartoonSide_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,13 +49,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 20, y: 20, z: 20, w: 20}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -85,7 +94,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: zyououari_cartoonSide_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 142
+        width: 464
+        height: 229
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a0d1f96de66f9e10800000000000000
+      internalID: 2206595512305569961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zyououari_cartoonSide_1
+      rect:
+        serializedVersion: 2
+        x: 521
+        y: 147
+        width: 462
+        height: 224
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc877f4b0c567b4a0800000000000000
+      internalID: -6577676852407076660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zyououari_cartoonSide_2
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 145
+        width: 462
+        height: 226
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 609aecf52ed4eb880800000000000000
+      internalID: -8593345404311000826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
