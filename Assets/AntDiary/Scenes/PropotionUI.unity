@@ -411,12 +411,12 @@ GameObject:
   - component: {fileID: 1015971518}
   - component: {fileID: 1015971517}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: JobAssignmentSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1015971517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +430,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idealrate: []
+  ideal_Architect: 0
+  ideal_Soilder: 0
+  ideal_Mule: 0
+  ideal_Free: 0
 --- !u!4 &1015971518
 Transform:
   m_ObjectHideFlags: 0
@@ -643,9 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0dc5491cff9124a8c654a91d6cc461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArchitectAntNum: 0
-  WorkAntNum: 0
-  DeffenceAntNum: 0
+  FreeAntNum: 0
   ArchitectBar: {fileID: 1353671226}
   WorkBar: {fileID: 205866747}
   DeffenceBar: {fileID: 1825178255}

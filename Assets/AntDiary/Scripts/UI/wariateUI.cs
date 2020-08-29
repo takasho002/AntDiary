@@ -39,7 +39,15 @@ namespace AntDiary
         {
             ////AntDataのサブクラスから仕事をtypeリストとして取得
             antjobs = System.Reflection.Assembly.GetAssembly(typeof(AntData)).GetTypes().Where(x => x.IsSubclassOf(typeof(AntData))).ToList();
-            
+            //DebugAntDataは削除
+            for (int i = 0; i < antjobs.Count; i++)
+            {
+                if (antjobs[i].Name.Equals("DebugAntData"))
+                {
+                    antjobs.RemoveAt(i);
+                    break;
+                }
+            }
             jobCount = antjobs.Count;
 
             antCounter.Clear();
