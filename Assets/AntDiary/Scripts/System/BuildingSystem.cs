@@ -96,7 +96,7 @@ namespace AntDiary
             }
             else if (needToBeConnected) return false;
 
-            Host.AddNestElement(target);
+            Host.RegisterNestElementToGameContext(target);
 
             return true;
         }
