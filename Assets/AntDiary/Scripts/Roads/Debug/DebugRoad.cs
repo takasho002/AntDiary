@@ -6,7 +6,7 @@ namespace AntDiary
 {
     public class DebugRoad : Road<DebugRoadData>
     {
-        [SerializeField] private Collider2D blockingShape;
+        [SerializeField] private Collider2D blockingShape = default;
         
         private NestPathNode[] nodes;
         private NestPathLocalEdge[] edges;

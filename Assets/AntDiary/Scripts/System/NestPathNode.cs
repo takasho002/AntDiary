@@ -52,7 +52,11 @@ namespace AntDiary
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        public abstract bool IsConnectable(NestPathNode other);
+        public virtual bool IsConnectable(NestPathNode other)
+        {
+            if (!IsExposed) return false;
+            return true;
+        }
 
         public void RegisterEdge(NestPathEdge edge)
         {
