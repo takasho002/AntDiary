@@ -23,7 +23,7 @@ MonoBehaviour:
       x: 407
       y: -28
       width: 247
-      height: 150
+      height: 153
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: speed
@@ -32,8 +32,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 123
       y: 602
-      width: 247
-      height: 150
+      width: 260
+      height: 154
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: speed
@@ -42,8 +42,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 429
       y: 601
-      width: 250
-      height: 150
+      width: 251
+      height: 147
   - id: 
     displayName: "\u7DCF\u5408\u80FD\u529B"
     description: tortal force
@@ -52,8 +52,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: -257
       y: 174
-      width: 240
-      height: 147
+      width: 237
+      height: 149
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: work
@@ -62,8 +62,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 737
       y: -28
-      width: 246
-      height: 148
+      width: 241
+      height: 151
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: HP
@@ -72,8 +72,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 417
       y: 328
-      width: 238
-      height: 147
+      width: 240
+      height: 150
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: HP
@@ -102,8 +102,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 1083
       y: -28
-      width: 248
-      height: 150
+      width: 243
+      height: 152
   - id: 
     displayName: "\u7DCF\u5408\u80FD\u529B"
     description: total force
@@ -112,7 +112,7 @@ MonoBehaviour:
       serializedVersion: 2
       x: 104
       y: 175
-      width: 245
+      width: 241
       height: 147
   edges:
   - parentGeneGuid: c508d134-b011-4eea-8df1-ba067a830c6d
