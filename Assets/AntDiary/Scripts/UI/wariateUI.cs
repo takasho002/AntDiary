@@ -27,7 +27,7 @@ namespace AntDiary
         //仕事の型リスト
         private List<Type> antjobs;
         private int jobCount;
-        int total;
+        public int total;
 
         public string JobName;
         public int NumOfBar;

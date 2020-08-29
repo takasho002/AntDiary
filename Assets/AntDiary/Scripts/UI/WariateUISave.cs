@@ -7,9 +7,12 @@ namespace AntDiary
 {
     public class WariateUISave : MonoBehaviour
     {
-        public int ArchitectAntNum;
-        public int WorkAntNum;
-        public int DeffenceAntNum;
+        private int ArchitectAntNum;
+        private int WorkAntNum;
+        private int DeffenceAntNum;
+        private int TotalAntNum;
+
+        public int FreeAntNum;
 
         public Image ArchitectBar;
         public Image WorkBar;
@@ -18,10 +21,15 @@ namespace AntDiary
         private WariateUI Architect;
         private WariateUI Work;
         private WariateUI Deffence;
+        private WariateUI Total;
+
+        GameObject JobSystem;
+        JobAssignmentSystem jobScript;
         // Start is called before the first frame update
         void Start()
         {
-
+            JobSystem = GameObject.Find("JobAssignmentSystem");
+            jobScript = JobSystem.GetComponent<JobAssignmentSystem>();
         }
 
         // Update is called once per frame
@@ -36,9 +44,18 @@ namespace AntDiary
             Work = WorkBar.GetComponent<WariateUI>();
             Deffence = DeffenceBar.GetComponent<WariateUI>();
 
+
             ArchitectAntNum = Architect.NumOfBar;
             WorkAntNum = Work.NumOfBar;
             DeffenceAntNum = Deffence.NumOfBar;
+            TotalAntNum = Total.total;
+
+            FreeAntNum = TotalAntNum - ArchitectAntNum + WorkAntNum + DeffenceAntNum;
+
+            jobScript.ideal_Architect = ArchitectAntNum;
+            jobScript.ideal_Soilder = DeffenceAntNum;
+            jobScript.ideal_Mule = WorkAntNum;
+            jobScript.ideal_Free = FreeAntNum;
 
             Debug.Log(ArchitectAntNum+":"+WorkAntNum+":"+DeffenceAntNum);
         }
