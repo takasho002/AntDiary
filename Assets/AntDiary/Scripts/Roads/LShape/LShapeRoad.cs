@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace AntDiary.Scripts.Roads{
 	public class LShapeRoad: Road<LShapeRoadData>{
-		[SerializeField] private Collider2D blockingShape;
 		
 		/// <summary>
 		/// 端から端までの距離/2
@@ -52,10 +51,6 @@ namespace AntDiary.Scripts.Roads{
 		}
 		
 		
-		public override Collider2D GetBlockingShape(){
-			return blockingShape;
-		}
-
 		public override bool HasPathNode => true;
 		
 		public override IEnumerable<NestPathNode> GetNodes(){
@@ -66,8 +61,6 @@ namespace AntDiary.Scripts.Roads{
 			return _edges;
 		}
 
-		public override float RequiredResources{ get; }
-		
 		
 		#region Debug
 		private void OnDrawGizmos(){

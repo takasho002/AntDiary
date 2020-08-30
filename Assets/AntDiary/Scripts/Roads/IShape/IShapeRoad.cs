@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace AntDiary.Scripts.Roads{
 	public class IShapeRoad: Road<IShapeRoadData>{
-		[SerializeField] private Collider2D blockingShape;
 		
 		/// <summary>
 		/// 端から端までの距離/2
@@ -14,10 +13,6 @@ namespace AntDiary.Scripts.Roads{
 		private NestPathNode[] _nodes;
 		private NestPathLocalEdge[] _edges;
 		
-		public override Collider2D GetBlockingShape(){
-			return blockingShape;
-		}
-
 		public override bool HasPathNode => true;
 		public override IEnumerable<NestPathNode> GetNodes(){
 			return _nodes;
@@ -49,15 +44,7 @@ namespace AntDiary.Scripts.Roads{
 			};
 		}
 
-		public override float RequiredResources{ get; }
 		
-
-		#region Debug
-
-		private void OnDrawGizmos(){
-			RoadGizmosUtil.DrawNodeWithEdge(_nodes, _edges);
-		}
-
-		#endregion
+		
 	}
 }
