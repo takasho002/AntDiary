@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1639828606792461804}
   - component: {fileID: 4048603914397874522}
   m_Layer: 0
-  m_Name: RoadLLeft
+  m_Name: RoadLBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd34477b341c424c9ed8bdf5e7d44c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  constructCost: 15
   blockingShape: {fileID: 4048603914397874522}
   radius: 2
 --- !u!61 &4048603914397874522

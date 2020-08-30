@@ -31,6 +31,22 @@ namespace AntDiary.Scripts.Roads{
 		/// Edgeを描画するか
 		/// </summary>
 		public static bool DrawEdge = true;
+
+		/// <summary>
+		/// BuildableElementへの網掛けを表示するか
+		/// </summary>
+		public static bool DrawElement = true;
+		
+		/// <summary>
+		/// 建造中のElementの網掛け色
+		/// </summary>
+		public static Color ElementColor = new Color(1.0f, 0.65f, 0.0f, 0.3f);
+		
+		/// <summary>
+		/// 建造が終わったElementの網掛け色
+		/// </summary>
+		public static Color BuiltElementColor = new Color(0.0f, 0.75f, 1.0f, 0.3f);
+
 		
 		public static void DrawNodeWithEdge(NestPathNode[] nodes, NestPathLocalEdge[] edges){
 			// var prevColor = Gizmos.color;
@@ -57,6 +73,16 @@ namespace AntDiary.Scripts.Roads{
 
 			// Gizmos.color = prevColor;
 
+		}
+
+		public static void DrawBuildableElement<T>(NestBuildableElement<T> element) where T: NestBuildableElementData{
+			if(element == null || element.Data == null) return;
+			
+			var box = element.GetBlockingShape() as BoxCollider2D;
+			if(box == null) return;
+			
+			Gizmos.color = element.IsUnderConstruction ? ElementColor : BuiltElementColor;
+			Gizmos.DrawCube(box.transform.position, box.size*2);
 		}
 	}
 }

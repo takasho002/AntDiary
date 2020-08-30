@@ -47,6 +47,7 @@ namespace AntDiary.Scripts.Roads{
 		#region Debug
 		private void OnDrawGizmos(){
 			RoadGizmosUtil.DrawNodeWithEdge(_nodes, _edges);
+			RoadGizmosUtil.DrawBuildableElement(this);
 		}
 
 		#endregion
