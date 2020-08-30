@@ -35,7 +35,7 @@ namespace AntDiary.Scripts.Roads{
 		public static void DrawNodeWithEdge(NestPathNode[] nodes, NestPathLocalEdge[] edges){
 			// var prevColor = Gizmos.color;
 
-			if(DrawNode){
+			if(DrawNode && nodes != null){
 				
 				foreach(var node in nodes){
 					
@@ -45,7 +45,7 @@ namespace AntDiary.Scripts.Roads{
 				}
 			}
 			
-			if(DrawEdge){
+			if(DrawEdge && edges != null){
 				
 				foreach(var edge in edges){
 					// Debug.Log("Color");
