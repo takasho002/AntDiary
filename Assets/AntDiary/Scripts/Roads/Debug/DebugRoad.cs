@@ -6,16 +6,10 @@ namespace AntDiary
 {
     public class DebugRoad : Road<DebugRoadData>
     {
-        [SerializeField] private Collider2D blockingShape = default;
         
         private NestPathNode[] nodes;
         private NestPathLocalEdge[] edges;
         
-        public override Collider2D GetBlockingShape()
-        {
-            return blockingShape;
-        }
-
         public override bool HasPathNode => true;
         public override IEnumerable<NestPathNode> GetNodes()
         {
@@ -42,6 +36,5 @@ namespace AntDiary
             };
         }
 
-        public override float RequiredResources { get; }
     }
 }
