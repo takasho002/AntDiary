@@ -19,31 +19,31 @@ namespace AntDiary
         /// <summary>
         /// アリの総数を示す uGUI Text。
         /// </summary>
-        [SerializeField] private Text wholeCountText;
+        [SerializeField] private Text wholeCountText = default;
 
         [SerializeField] private string wholeTextFormat = "総数: {0}";
 
         /// <summary>
         /// アリの種類の割合を示す円グラフに使用するuGUI Image (ModeをFilledに指定)
         /// </summary>
-        [SerializeField] private Image[] chartLayers;
+        [SerializeField] private Image[] chartLayers = default;
 
         /// <summary>
         /// アリの数を示すuGUI Text。
         /// </summary>
-        [SerializeField] private Text antCountText;
+        [SerializeField] private Text antCountText = default;
 
         /// <summary>
         /// 子どもの数を示す uGUI Text。ただしデータが存在しないためダミー。
         /// </summary>
-        [SerializeField] private Text childrenCountText;
+        [SerializeField] private Text childrenCountText = default;
 
         /// <summary>
         /// 女王の情報を示す uGUI Text。ただしデータが存在しないためダミー。
         /// </summary>
-        [SerializeField] private Text queenText;
+        [SerializeField] private Text queenText = default;
 
-        [SerializeField] private UIDataViewAntTypeDictionary antTypeDictionary;
+        [SerializeField] private UIDataViewAntTypeDictionary antTypeDictionary = default;
 
 
         // Start is called before the first frame update

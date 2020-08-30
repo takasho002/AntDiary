@@ -6,7 +6,7 @@ namespace AntDiary
 {
     public class DebugRoadFactory : NestElementFactory<DebugRoadData>
     {
-        [SerializeField] private GameObject debugRoadPrefab;
+        [SerializeField] private GameObject debugRoadPrefab = default;
 
         public override NestElement InstantiateNestElement(DebugRoadData elementData)
         {

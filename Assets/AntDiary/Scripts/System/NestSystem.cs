@@ -78,8 +78,8 @@ namespace AntDiary
         /// <summary>
         /// 建築中のNestElementをすべて取得する。
         /// </summary>
-        public IEnumerable<NestElement> BuildingElements =>
-            nestElements.Where(e => (e.Data is NestBuildableElementData d) && d.IsUnderConstruction);
+        public IEnumerable<NestBuildableElement> BuildingElements =>
+            nestElements.OfType<NestBuildableElement>().Where(d => d.IsUnderConstruction);
 
         /// <summary>
         /// 巣に存在するすべてのIPathNodeを取得する。
