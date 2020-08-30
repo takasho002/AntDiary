@@ -23,7 +23,7 @@ MonoBehaviour:
       x: 407
       y: -28
       width: 247
-      height: 153
+      height: 150
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: speed
@@ -32,8 +32,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 123
       y: 602
-      width: 260
-      height: 154
+      width: 247
+      height: 150
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: speed
@@ -42,8 +42,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 429
       y: 601
-      width: 251
-      height: 147
+      width: 250
+      height: 150
   - id: 
     displayName: "\u7DCF\u5408\u80FD\u529B"
     description: tortal force
@@ -52,8 +52,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: -257
       y: 174
-      width: 237
-      height: 149
+      width: 241
+      height: 150
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: work
@@ -62,8 +62,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 737
       y: -28
-      width: 241
-      height: 151
+      width: 246
+      height: 150
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: HP
@@ -102,8 +102,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 1083
       y: -28
-      width: 243
-      height: 152
+      width: 248
+      height: 150
   - id: 
     displayName: "\u7DCF\u5408\u80FD\u529B"
     description: total force
@@ -112,8 +112,18 @@ MonoBehaviour:
       serializedVersion: 2
       x: 104
       y: 175
-      width: 241
-      height: 147
+      width: 246
+      height: 150
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: 5084c19a-5b9b-40bc-9999-3a89ba87327a
+    position:
+      serializedVersion: 2
+      x: 1489
+      y: 415
+      width: 249
+      height: 150
   edges:
   - parentGeneGuid: c508d134-b011-4eea-8df1-ba067a830c6d
     childGeneGuid: 19bc70c9-ac7d-472d-8705-8ba28916706c

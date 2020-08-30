@@ -17,23 +17,13 @@ MonoBehaviour:
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
-    guid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
-    position:
-      serializedVersion: 2
-      x: 37
-      y: -63
-      width: 238
-      height: 150
-  - id: 
-    displayName: "\u907A\u4F1D\u5B50"
-    description: 
     guid: 86445ee3-e758-4356-bccb-b5419189b094
     position:
       serializedVersion: 2
       x: 361
       y: -160
-      width: 249
-      height: 150
+      width: 247
+      height: 153
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
@@ -43,7 +33,7 @@ MonoBehaviour:
       x: 374
       y: 39
       width: 245
-      height: 151
+      height: 150
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
@@ -52,8 +42,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 721
       y: -260
-      width: 245
-      height: 150
+      width: 263
+      height: 154
   - id: 
     displayName: "\u907A\u4F1D\u5B50"
     description: 
@@ -73,6 +63,16 @@ MonoBehaviour:
       x: 1077
       y: 153
       width: 242
+      height: 150
+  - id: 
+    displayName: "\u907A\u4F1D\u5B50"
+    description: 
+    guid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f
+    position:
+      serializedVersion: 2
+      x: 37
+      y: -63
+      width: 238
       height: 150
   edges:
   - parentGeneGuid: a451ebfb-0a6f-4061-a2b5-80c2da177f9f

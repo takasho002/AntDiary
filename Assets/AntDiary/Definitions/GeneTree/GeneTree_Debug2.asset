@@ -13,5 +13,121 @@ MonoBehaviour:
   m_Name: GeneTree_Debug2
   m_EditorClassIdentifier: 
   displayName: "\u30C7\u30D0\u30C3\u30B02"
-  genes: []
-  edges: []
+  genes:
+  - id: 
+    displayName: "\u5168\u4F53\u5F37\u5316"
+    description: 
+    guid: 35220e30-f98c-4e05-bc33-08bf6cb3d61e
+    position:
+      serializedVersion: 2
+      x: 594
+      y: 427
+      width: 242
+      height: 150
+  - id: 
+    displayName: "\u4ED5\u4E8B\u7387"
+    description: 
+    guid: 66d93825-a337-4475-949a-a53367bcc805
+    position:
+      serializedVersion: 2
+      x: 941
+      y: 257
+      width: 249
+      height: 150
+  - id: 
+    displayName: "\u4ED5\u4E8B\u7387"
+    description: 
+    guid: 47c3f732-f01e-473c-9aaa-a9e929a201a0
+    position:
+      serializedVersion: 2
+      x: 1349
+      y: 259
+      width: 243
+      height: 150
+  - id: 
+    displayName: HP
+    description: "\t\t"
+    guid: ddb72c2f-506d-45b9-9f96-d67c81bc78ef
+    position:
+      serializedVersion: 2
+      x: 1363
+      y: 614
+      width: 304
+      height: 150
+  - id: 
+    displayName: HP
+    description: 
+    guid: 2268facc-5311-4efd-b1ad-fc14dde3e9b7
+    position:
+      serializedVersion: 2
+      x: 1805
+      y: 619
+      width: 239
+      height: 150
+  - id: 
+    displayName: "\u30B9\u30D4\u30FC\u30C9"
+    description: 
+    guid: aaec4d0f-a7fc-43ce-99b5-384de0295530
+    position:
+      serializedVersion: 2
+      x: 198
+      y: 900
+      width: 242
+      height: 150
+  - id: 
+    displayName: "\u30B9\u30D4\u30FC\u30C9"
+    description: 
+    guid: d00a0f61-60a3-483d-bafb-5a63ea534886
+    position:
+      serializedVersion: 2
+      x: 591
+      y: 902
+      width: 245
+      height: 150
+  - id: 
+    displayName: HP
+    description: 
+    guid: 6c889421-caef-46c4-80f8-20f59a241ef5
+    position:
+      serializedVersion: 2
+      x: 942
+      y: 609
+      width: 226
+      height: 151
+  - id: 
+    displayName: "\u5168\u4F53\u5F37\u5316"
+    description: 
+    guid: 3aa5d2e7-1fe7-47b0-8896-4c2b322802ca
+    position:
+      serializedVersion: 2
+      x: 207
+      y: 427
+      width: 235
+      height: 151
+  - id: 
+    displayName: "\u4ED5\u4E8B\u7387"
+    description: 
+    guid: 88a0d6b5-d4f6-44ca-a69e-ddafd6dcc687
+    position:
+      serializedVersion: 2
+      x: 1800
+      y: 269
+      width: 231
+      height: 154
+  edges:
+  - parentGeneGuid: 35220e30-f98c-4e05-bc33-08bf6cb3d61e
+    childGeneGuid: 66d93825-a337-4475-949a-a53367bcc805
+  - parentGeneGuid: 66d93825-a337-4475-949a-a53367bcc805
+    childGeneGuid: 47c3f732-f01e-473c-9aaa-a9e929a201a0
+  - parentGeneGuid: 35220e30-f98c-4e05-bc33-08bf6cb3d61e
+    childGeneGuid: 6c889421-caef-46c4-80f8-20f59a241ef5
+  - parentGeneGuid: 6c889421-caef-46c4-80f8-20f59a241ef5
+    childGeneGuid: ddb72c2f-506d-45b9-9f96-d67c81bc78ef
+  - parentGeneGuid: 3aa5d2e7-1fe7-47b0-8896-4c2b322802ca
+    childGeneGuid: 35220e30-f98c-4e05-bc33-08bf6cb3d61e
+  - parentGeneGuid: ddb72c2f-506d-45b9-9f96-d67c81bc78ef
+    childGeneGuid: 2268facc-5311-4efd-b1ad-fc14dde3e9b7
+  - parentGeneGuid: 47c3f732-f01e-473c-9aaa-a9e929a201a0
+    childGeneGuid: 88a0d6b5-d4f6-44ca-a69e-ddafd6dcc687
+  - parentGeneGuid: aaec4d0f-a7fc-43ce-99b5-384de0295530
+    childGeneGuid: d00a0f61-60a3-483d-bafb-5a63ea534886
