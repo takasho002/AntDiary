@@ -1,10 +1,10 @@
 namespace AntDiary{
 	public class BuildStrategy: BuilderStrategy{
-		private NestBuildableElement<NestBuildableElementData> _distElement;
+		private NestBuildableElement _distElement;
 
 		private float LaborResourcePerSec{ get; } = 1.0f;
 		
-		public BuildStrategy(BuilderAnt ant, NestBuildableElement<NestBuildableElementData> distElement) : base(ant){
+		public BuildStrategy(BuilderAnt ant, NestBuildableElement distElement) : base(ant){
 			_distElement = distElement;
 
 			UpdateInterval = 1.0f;

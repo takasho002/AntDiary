@@ -6,9 +6,9 @@ namespace AntDiary{
 	/// 建築中のElementに移動中のStrategy
 	/// </summary>
 	public class MoveStrategy : BuilderStrategy{
-		private NestBuildableElement<NestBuildableElementData> _distElement;
+		private NestBuildableElement _distElement;
 		
-		public MoveStrategy(BuilderAnt ant, NestBuildableElement<NestBuildableElementData> distElement) : base(ant){
+		public MoveStrategy(BuilderAnt ant, NestBuildableElement distElement) : base(ant){
 			_distElement = distElement;
 		}
 

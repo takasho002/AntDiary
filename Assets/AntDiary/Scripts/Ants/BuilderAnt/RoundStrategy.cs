@@ -26,8 +26,7 @@ namespace AntDiary{
 						> Vector3.Distance(next.transform.position, HostAnt.transform.position)
 							? result : next);
 				
-				var distBuildable = (NestBuildableElement<NestBuildableElementData>) dist;
-				HostAnt.ChangeStrategy(new MoveStrategy(HostAnt, distBuildable));
+				HostAnt.ChangeStrategy(new MoveStrategy(HostAnt, dist));
 			}
 			
 		}

@@ -54,6 +54,7 @@ public class TestRoadInstantiate : MonoBehaviour
         map[5, 2] = InstantiateLShapeRoad(EnumRoadDirection.Left);
         map[5, 3] = InstantiateLShapeRoad(EnumRoadDirection.Bottom);
 
+        (map[2, 2] as NestBuildableElement)?.Commit(float.MaxValue);
 
         for(int i = 0; i < map.GetLength(0); i++){
             for(int j = 0; j < map.GetLength(1); j++){
@@ -62,24 +63,17 @@ public class TestRoadInstantiate : MonoBehaviour
                 }
                 map[i, j].transform.position += new Vector3((i-2)*4f, (j-2)*4f);
 
-                if(map[i, j] is NestBuildableElement<NestBuildableElementData>){
-                    Debug.Log("is!");
-                }
-                if(map[i, j] is NestBuildableElement<CrossShapeRoadData>){
-                    Debug.Log("isis!");
-                }
-
-                var buildable = map[i, j] as NestBuildableElement<NestBuildableElementData>;
+                var buildable = map[i, j] as NestBuildableElement;
                 if(buildable == null){
                     continue;
                 }
-                Debug.Log($"[{i},{j}]: constructed:{buildable.IsUnderConstruction}");
+                Debug.Log($"[{i},{j}]: underConstruction:{buildable.IsUnderConstruction}");
             }
         }
 
-        foreach(var node in map[2, 1].GetNodes()){
-            Debug.Log(node.Name);
-        }
+        // foreach(var node in map[2, 1].GetNodes()){
+        //     Debug.Log(node.Name);
+        // }
 
         //横接続
         for(int i = 0; i < map.GetLength(0) - 1; i++){
