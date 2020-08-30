@@ -29,7 +29,7 @@ namespace AntDiary
         /// <summary>
         /// 外部公開用のプロパティ
         /// </summary>
-        public override NestElementData Data => SelfData;
+        public sealed override NestElementData Data => SelfData;
         
         /// <summary>
         /// クラス内から参照する用のプロパティ。Dataとインスタンスは同一
