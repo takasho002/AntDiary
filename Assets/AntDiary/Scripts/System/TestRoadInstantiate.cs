@@ -11,7 +11,16 @@ public class TestRoadInstantiate : MonoBehaviour
     void Start(){
         NestElement[,] map = new NestElement[6,5];
         
-       
+        // var roadData = new DebugRoomData();
+        // var elem = NestSystem.Instance.InstantiateNestElement(roadData);
+        // Debug.Log("is NestBuildableElement<NestBuildableElementData>: " + (elem is NestBuildableElement<NestBuildableElementData>));
+        // Debug.Log("== null: " + (elem == null));
+        //
+        // var casted = elem as NestBuildableElement<NestBuildableElementData>;
+        // Debug.Log("casted == null: " + (elem == null));
+        //
+        // var casted2 = (NestBuildableElement<NestBuildableElementData>) elem;
+        
 
         map[0, 1] = InstantiateLShapeRoad(EnumRoadDirection.Top);
         map[0, 2] = InstantiateIShapeRoad(EnumRoadHVDirection.Vertical);
@@ -52,6 +61,19 @@ public class TestRoadInstantiate : MonoBehaviour
                     continue;
                 }
                 map[i, j].transform.position += new Vector3((i-2)*4f, (j-2)*4f);
+
+                if(map[i, j] is NestBuildableElement<NestBuildableElementData>){
+                    Debug.Log("is!");
+                }
+                if(map[i, j] is NestBuildableElement<CrossShapeRoadData>){
+                    Debug.Log("isis!");
+                }
+
+                var buildable = map[i, j] as NestBuildableElement<NestBuildableElementData>;
+                if(buildable == null){
+                    continue;
+                }
+                Debug.Log($"[{i},{j}]: constructed:{buildable.IsUnderConstruction}");
             }
         }
 
@@ -133,22 +155,26 @@ public class TestRoadInstantiate : MonoBehaviour
     }
 
     private NestElement InstantiateIShapeRoad(EnumRoadHVDirection direction){
-        var roadData = new IShapeRoadData(direction); 
+        var roadData = new IShapeRoadData(direction);
+        roadData.IsUnderConstruction = true;
         return NestSystem.Instance.InstantiateNestElement(roadData);
     }
     
     private NestElement InstantiateLShapeRoad(EnumRoadDirection direction){
         var roadData = new LShapeRoadData(direction); 
+        roadData.IsUnderConstruction = true;
         return NestSystem.Instance.InstantiateNestElement(roadData);
     }
     
     private NestElement InstantiateTShapeRoad(EnumRoadDirection direction){
         var roadData = new TShapeRoadData(direction);
+        roadData.IsUnderConstruction = true;
         return NestSystem.Instance.InstantiateNestElement(roadData);
     }
     
     private NestElement InstantiateCrossShapeRoad(){
         var roadData = new CrossShapeRoadData(); 
+        roadData.IsUnderConstruction = true;
         return NestSystem.Instance.InstantiateNestElement(roadData);
     }
 
