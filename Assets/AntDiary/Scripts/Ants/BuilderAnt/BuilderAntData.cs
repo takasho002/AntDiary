@@ -6,19 +6,9 @@ using MessagePack;
 namespace AntDiary{
 	[MessagePackObject()]
 	
-	public class BuilderAntData : AntData
-	{
-		// Start is called before the first frame update
-		void Start()
-		{
-        
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-        
-		}
+	public class BuilderAntData : AntData{
+		//Strategy状態保存すべき？
+		
 	}
 
 }
