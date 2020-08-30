@@ -38,10 +38,10 @@ namespace AntDiary
         [SerializeField] private GeneTreeEntry[] treeEntries = default;
 
         private bool isTreesInitialized = false;
-        
+
         public IObservable<Gene> OnGeneActivated => onGeneActivated;
-        private Subject<Gene> onGeneActivated = new Subject<Gene>(); 
-        
+        private Subject<Gene> onGeneActivated = new Subject<Gene>();
+
         /// <summary>
         /// GeneSystemに登録されている遺伝子ツリーのリスト
         /// </summary>
@@ -88,9 +88,9 @@ namespace AntDiary
         /// </summary>
         public bool Activate(GeneTree tree, Gene gene)
         {
-            if(!Trees.Contains(tree)) throw new ArgumentException("指定したGeneTreeはGeneSystemに登録されていません。");
+            if (!Trees.Contains(tree)) throw new ArgumentException("指定したGeneTreeはGeneSystemに登録されていません。");
             if (!tree.Genes.Contains(gene)) throw new ArgumentException("指定したGeneはGeneTreeに含まれていません。");
-            
+
             if (gene.ParentGene != null && !Data.ActivatedGenes.Contains(gene.ParentGene.Guid))
             {
                 //親ノードの遺伝子が解放されていなければ、解放できない
@@ -98,7 +98,18 @@ namespace AntDiary
             }
 
             var entry = treeEntries.FirstOrDefault(e => e.GeneTreeAsset == tree);
-            entry?.ReleaseGene.Invoke(gene.Id);
+            if (entry != null && entry.ReleaseGeneDefinition != null)
+            {
+                if (!entry.ReleaseGeneDefinition.Release(gene.Id))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("GeneSystem: 指定されたGeneに対応するGeneTreeActionが登録されていません。");
+            }
+
             Data.ActivatedGenes.Add(gene.Guid);
             onGeneActivated.OnNext(gene);
             return true;
@@ -121,12 +132,10 @@ namespace AntDiary
         [SerializeField] private GeneTree geneTreeAsset = default;
 
         /// <summary>
-        /// 遺伝子が解放されたときの動作を定義するメソッドのデリゲート。
-        /// 引数はGeneのID。
+        /// 遺伝子が解放されたときの動作を定義するGeneTreeActionの参照。
         /// </summary>
-        public ReleaseGeneUnityEvent ReleaseGene => releaseGene;
+        public GeneTreeAction ReleaseGeneDefinition => releaseGeneDefinition;
 
-        [SerializeField] private ReleaseGeneUnityEvent releaseGene = default;
+        [SerializeField] private GeneTreeAction releaseGeneDefinition = default;
     }
-    [Serializable] public class ReleaseGeneUnityEvent : UnityEvent<string>{}
 }
