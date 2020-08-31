@@ -10,24 +10,67 @@ namespace AntDiary
 
         [SerializeField] private int HP = default;
         [SerializeField] private int Power = default;
-        [Range(0, 10)] private int AttackFrequencyPerSecond = default;
+        [SerializeField] private float FindEnemyRadius = default;
+        [SerializeField] private float AttackFrequencySecond = default;    // 何秒に1回攻撃するか
+
+        private GameObject nearAnt;
+        private bool isBattlePhase;
+        private bool isAttackTiming;
+        private float currentTimeSecond;
 
         // Start is called before the first frame update
         void Start()
         {
-        
+            isBattlePhase = false;
+            isAttackTiming = false;
+            nearAnt = serchAnt(gameObject, "enemy");  // 敵アリにタグが付いていると仮定
         }
 
         // Update is called once per frame
         void Update()
         {
-            var currentTimeSecond = TimeSystem.CurrentTime;
-            bool isAttackTiming = (int)currentTimeSecond * 10 % AttackFrequencyPerSecond == 0;
+            currentTimeSecond = TimeSystem.CurrentTime;
+            isAttackTiming = (int)(currentTimeSecond * 10) % (int)(AttackFrequencySecond * 10) == 0;
+            nearAnt = serchAnt(gameObject, "enemy");  // 敵アリにタグが付いていると仮定
 
-            if (isAttackTiming)
+            if (isAttackTiming & isBattlePhase)
             {
-                //与ダメ・被ダメ計算
+                // 与ダメ・被ダメ計算
             }
+        }
+
+        // 指定されたタグの中で最も近いものを取得
+        // 攻撃フラグを制御
+        GameObject serchAnt(GameObject nowObj, string tagName)
+        {
+            float tmpDis = 0;           // 距離用一時変数
+            float nearDis = 0;          // 最も近いオブジェクトの距離
+            GameObject targetAnt = null; // オブジェクト
+
+            // タグ指定されたオブジェクトを配列で取得する
+            foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
+            {
+                // 自身と取得したオブジェクトの距離を取得
+                tmpDis = Vector2.Distance(obs.transform.position, nowObj.transform.position);
+
+                if (nearDis == 0 || nearDis > tmpDis)
+                {
+                    nearDis = tmpDis;
+                    targetAnt = obs;
+                }
+
+            }
+
+            if (nearDis < FindEnemyRadius)
+            {
+                isBattlePhase = true;
+            }
+            else
+            {
+                isBattlePhase = false;
+            }
+
+            return targetAnt;
         }
     }
 }
