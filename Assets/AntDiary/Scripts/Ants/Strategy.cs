@@ -1,8 +1,10 @@
+using AntDiary.Scripts.Ants;
+
 namespace AntDiary{
 	/// <summary>
-	/// BuilderAntの振る舞いを記述するクラス
+	/// StrategyAntの振る舞いを記述するクラス
 	/// </summary>
-	public abstract class BuilderStrategy{
+	public abstract class Strategy<T> where T: StrategyAntData{
 
 
 		/// <summary>
@@ -11,16 +13,18 @@ namespace AntDiary{
 		/// </summary>
 		public float UpdateInterval{ get; protected set; } = 1f;
 
-		protected BuilderAnt HostAnt{ get; private set; }
+		protected StrategyController<T> Controller{ get; set; }
 		
-		public BuilderStrategy(BuilderAnt ant){
-			HostAnt = ant;
+		public Strategy(){
+			// HostAnt = ant;
 		}
 
 		/// <summary>
 		/// このStrategyに変更されたときに呼ばれる
 		/// </summary>
-		public abstract void StartStrategy();
+		public virtual void StartStrategy(StrategyController<T> controller){
+			Controller = controller;
+		}
 		
 		/// <summary>
 		/// UpdateInterval秒ごとに定期的に呼ばれる
@@ -37,4 +41,5 @@ namespace AntDiary{
 		
 		
 	}
+
 }

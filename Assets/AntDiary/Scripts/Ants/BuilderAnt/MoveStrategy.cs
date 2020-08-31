@@ -1,39 +1,40 @@
 using System;
 using System.Linq;
+using AntDiary.Scripts.Ants;
 using UnityEngine;
 
 namespace AntDiary{
 	/// <summary>
 	/// 建築中のElementに移動中のStrategy
 	/// </summary>
-	public class MoveStrategy : BuilderStrategy{
+	public class MoveStrategy : Strategy<BuilderAntData>{
 		private NestPathNode _distNode;
 		private NestBuildableElement _hostElem;
 		
-		public MoveStrategy(BuilderAnt ant, NestBuildableElement host, NestPathNode distNode) : base(ant){
+		public MoveStrategy(NestBuildableElement host, NestPathNode distNode) : base(){
 			_distNode = distNode;
 			_hostElem = host;
 		}
 
-		public override void StartStrategy(){
+		public override void StartStrategy(StrategyController<BuilderAntData> controller){
+			base.StartStrategy(controller);
 			
+			Debug.Log($"<MoveStrategy> start ant: {Controller.Ant.transform.position.ToString()} distNode:{_distNode.WorldPosition.ToString()} distHost:{_distNode.Host.transform.position}");
 			
-			Debug.Log($"<MoveStrategy> start ant: {HostAnt.transform.position.ToString()} distNode:{_distNode.WorldPosition.ToString()} distHost:{_distNode.Host.transform.position}");
-			
-			HostAnt.StartForPathNode(_distNode, HandleArrived, HandleAborted);
+			Controller.Ant.StartForPathNode(_distNode, HandleArrived, HandleAborted);
 		}
 
 		private void HandleArrived(){
 			Debug.Log("Arrived");
 			
 			
-			HostAnt.ChangeStrategy(new BuildStrategy(HostAnt, _hostElem));
+			Controller.ChangeStrategy(new BuildStrategy(_hostElem));
 		}
 		
 		private void HandleAborted(){
 			Debug.Log("Aborted");
-			HostAnt.CancelMovement();
-			HostAnt.ChangeStrategy(new RoundStrategy(HostAnt));
+			Controller.Ant.CancelMovement();
+			Controller.ChangeStrategy(new RoundStrategy());
 		}
 
 		
@@ -42,7 +43,7 @@ namespace AntDiary{
 
 
 		public override void FinishStrategy(){
-			HostAnt.CancelMovement();
+			Controller.Ant.CancelMovement();
 		}
 	}
 }
