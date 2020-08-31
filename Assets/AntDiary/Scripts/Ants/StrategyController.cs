@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace AntDiary.Scripts.Ants{
+	/// <summary>
+	/// StrategyAntのStrategyを管理する部分
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
 	public class StrategyController<T> where T: StrategyAntData{
 		
 		public StrategyAnt<T> Ant{ get; private set; }
