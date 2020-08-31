@@ -42,8 +42,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 1349
       y: 259
-      width: 243
-      height: 150
+      width: 232
+      height: 151
   - id: 
     displayName: HP
     description: "\t\t"
@@ -53,7 +53,7 @@ MonoBehaviour:
       x: 1363
       y: 614
       width: 304
-      height: 150
+      height: 151
   - id: 
     displayName: HP
     description: 
@@ -72,8 +72,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 198
       y: 900
-      width: 242
-      height: 150
+      width: 231
+      height: 151
   - id: 
     displayName: "\u30B9\u30D4\u30FC\u30C9"
     description: 
@@ -82,8 +82,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 591
       y: 902
-      width: 245
-      height: 150
+      width: 235
+      height: 151
   - id: 
     displayName: HP
     description: 
@@ -112,8 +112,8 @@ MonoBehaviour:
       serializedVersion: 2
       x: 1800
       y: 269
-      width: 231
-      height: 154
+      width: 242
+      height: 150
   edges:
   - parentGeneGuid: 35220e30-f98c-4e05-bc33-08bf6cb3d61e
     childGeneGuid: 66d93825-a337-4475-949a-a53367bcc805
