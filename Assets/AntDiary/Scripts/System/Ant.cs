@@ -124,6 +124,7 @@ namespace AntDiary
         public NestPathNode SupposeCurrentPosNode(){
             float Distance(IPathNode node) => Vector2.Distance(node.WorldPosition, transform.position);
 
+            
             return NestSystem.Instance.NestPathNodes
                 .Aggregate((result, next) => Distance(next) < Distance(result) ? next : result);
         }

@@ -4,7 +4,7 @@ namespace AntDiary{
 	public class BuildStrategy: BuilderStrategy{
 		private NestBuildableElement _distElement;
 
-		private float LaborResourcePerSec{ get; } = 1.0f;
+		private float CommitResourcePerSec{ get; } = 3.0f;
 		
 		public BuildStrategy(BuilderAnt ant, NestBuildableElement distElement) : base(ant){
 			_distElement = distElement;
@@ -18,7 +18,7 @@ namespace AntDiary{
 
 		public override void PeriodicUpdate(){
 			Debug.Log("<BuildStrategy> commit");
-			_distElement.Commit(LaborResourcePerSec);
+			_distElement.Commit(CommitResourcePerSec);
 
 			if(!_distElement.IsUnderConstruction){
 				HostAnt.ChangeStrategy(new RoundStrategy(HostAnt));

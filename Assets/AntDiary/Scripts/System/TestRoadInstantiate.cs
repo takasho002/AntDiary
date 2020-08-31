@@ -54,7 +54,7 @@ public class TestRoadInstantiate : MonoBehaviour
         map[5, 2] = InstantiateLShapeRoad(EnumRoadDirection.Left);
         map[5, 3] = InstantiateLShapeRoad(EnumRoadDirection.Bottom);
 
-        (map[2, 2] as NestBuildableElement)?.Commit(float.MaxValue);
+        
 
         for(int i = 0; i < map.GetLength(0); i++){
             for(int j = 0; j < map.GetLength(1); j++){
@@ -98,10 +98,16 @@ public class TestRoadInstantiate : MonoBehaviour
         }
 
 
-        var antData = new BuilderAntData();
-        antData.Position = map[2, 2].transform.position;
-        var builderAnt = NestSystem.Instance.InstantiateAnt(antData);
+        void ToConstructedElem(NestElement elem){
+            (elem as NestBuildableElement)?.Commit(float.MaxValue);
+        }
+
+        ToConstructedElem(map[2, 2]);
+        ToConstructedElem(map[2, 3]);
         
+        NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 2].transform.position});
+        NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 3].transform.position});
+
         
         
         

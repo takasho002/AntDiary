@@ -7,24 +7,27 @@ namespace AntDiary{
 	/// 建築中のElementに移動中のStrategy
 	/// </summary>
 	public class MoveStrategy : BuilderStrategy{
-		private NestBuildableElement _distElement;
+		private NestPathNode _distNode;
+		private NestBuildableElement _hostElem;
 		
-		public MoveStrategy(BuilderAnt ant, NestBuildableElement distElement) : base(ant){
-			_distElement = distElement;
+		public MoveStrategy(BuilderAnt ant, NestBuildableElement host, NestPathNode distNode) : base(ant){
+			_distNode = distNode;
+			_hostElem = host;
 		}
 
 		public override void StartStrategy(){
-			Debug.Log($"<MoveStrategy> start ant: {HostAnt.transform.position.ToString()} dist:${_distElement.transform.position.ToString()}");
-
 			
-			var distPathNode = (NestPathNode) _distElement.GetBuildingNode().First();
 			
-			HostAnt.StartForPathNode(distPathNode, HandleArrived, HandleAborted);
+			Debug.Log($"<MoveStrategy> start ant: {HostAnt.transform.position.ToString()} distNode:{_distNode.WorldPosition.ToString()} distHost:{_distNode.Host.transform.position}");
+			
+			HostAnt.StartForPathNode(_distNode, HandleArrived, HandleAborted);
 		}
 
 		private void HandleArrived(){
 			Debug.Log("Arrived");
-			HostAnt.ChangeStrategy(new BuildStrategy(HostAnt, _distElement));
+			
+			
+			HostAnt.ChangeStrategy(new BuildStrategy(HostAnt, _hostElem));
 		}
 		
 		private void HandleAborted(){

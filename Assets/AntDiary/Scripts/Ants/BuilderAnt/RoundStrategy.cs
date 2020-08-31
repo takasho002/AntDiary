@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -15,22 +17,36 @@ namespace AntDiary{
 		}
 
 		public override void PeriodicUpdate(){
+			//到達可能なのはすでに建築済みのNodeだけだが、欲しいのはそのNodeに重なった建築中のNode
 			
 			var buildingElements = NestSystem.Instance.BuildingElements;
-
-			Debug.Log("<RoundStrategy> PeriodicUpdate building?: " + buildingElements.Any());
-			if(buildingElements.Any()){
-				
-				//これ到達可能かどうかのチェックもいる？
-				var dist = buildingElements.Aggregate(
-					(result, next) => 
-						Vector3.Distance(result.transform.position, HostAnt.transform.position)
-						< Vector3.Distance(next.transform.position, HostAnt.transform.position)
-							? result : next);
-				
-				HostAnt.ChangeStrategy(new MoveStrategy(HostAnt, dist));
-			}
+			var currentNode = HostAnt.SupposeCurrentPosNode();
 			
+			Debug.Log($"<RoundStrategy> PeriodicUpdate building?: {buildingElements.Any()} ant:{currentNode?.WorldPosition} on {currentNode?.Host.transform.position}");
+			
+			if(!buildingElements.Any()) return;
+			if(currentNode == null) return;
+			
+
+			//建築中のElementの各ノードとそのホスト(建築中)をペアにして、それを現在位置との直線距離の短い順でソート
+			//TODO 厳密には移動コスト順にすべき
+			var buildingNodes = buildingElements
+				.SelectMany(elem => elem.GetBuildingNode().Select(node => new Tuple<NestBuildableElement, NestPathNode>(elem, node as NestPathNode)).ToList())
+				.OrderBy(tuple => Vector3.Distance(tuple.Item2.WorldPosition, currentNode.WorldPosition));
+			
+			
+			// Debug.Log("buildingNodes");
+			// foreach(var tuple in buildingNodes){
+			// 	Debug.Log($"  [{tuple.Item2.WorldPosition}] name:{tuple.Item2.Name} host:{tuple.Item1.transform.position}");
+			// }
+			
+			var distTuple = buildingNodes.FirstOrDefault(tuple =>
+				NestSystem.Instance.FindRoute(tuple.Item2, currentNode).Count() >= 2);
+			
+			
+			HostAnt.ChangeStrategy(new MoveStrategy(HostAnt, distTuple.Item1, distTuple.Item2));
+
+
 		}
 
 		public override void FinishStrategy(){
