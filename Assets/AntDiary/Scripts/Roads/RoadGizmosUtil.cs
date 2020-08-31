@@ -21,6 +21,9 @@ namespace AntDiary.Scripts.Roads{
 		/// Edgeを描画する線のフレーム色
 		/// </summary>
 		public static Color EdgeColor = Color.red;
+
+		public static Color NonPassingEdgeColor = new Color(0.55f, 0.00f, 0.90f);
+		
 		
 		/// <summary>
 		/// Nodeを描画するか
@@ -64,8 +67,9 @@ namespace AntDiary.Scripts.Roads{
 			if(DrawEdge && edges != null){
 				
 				foreach(var edge in edges){
+					
 					// Debug.Log("Color");
-					Gizmos.color = EdgeColor;
+					Gizmos.color = edge.CanGetThrough ? EdgeColor : NonPassingEdgeColor;
 					// Debug.Log("Draw");
 					Gizmos.DrawLine(edge.A.WorldPosition, edge.B.WorldPosition);
 				}
