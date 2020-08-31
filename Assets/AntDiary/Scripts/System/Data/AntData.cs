@@ -6,6 +6,8 @@ using UnityEngine;
 namespace AntDiary
 {
     [Union(0, typeof(DebugAntData))]
+    [Union(2, typeof(ErgateAntData))]
+    [Union(1, typeof(UnemployedAntData))]
     public abstract class AntData
     {
         //方針として、AntDataのメンバ(アリの複数種に共通値)のKeyは0 ~ 99, 各継承クラスのメンバのKeyは100~にしたいな～と

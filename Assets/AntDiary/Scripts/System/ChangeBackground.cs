@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeBackground : MonoBehaviour
 {
-    SpriteRenderer BackgroundSpriteRenderer;
+    [SerializeField]Image BackgroundSpriteRenderer;
 
     //春画像
     public Sprite SpringSprite;
@@ -31,7 +32,7 @@ public class ChangeBackground : MonoBehaviour
         
     }
 
-    void SetBackground(int season)
+    public void SetBackground(int season)
     {
         // 0-3 : 春-冬 でスプライトを設定する
         switch (season)

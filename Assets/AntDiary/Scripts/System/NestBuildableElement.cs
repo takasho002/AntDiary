@@ -5,8 +5,12 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public abstract class NestBuildableElement<T> : NestElement<T> where T : NestBuildableElementData
+    public abstract class NestBuildableElement : NestElement
     {
+        public abstract NestBuildableElementData DataAsBuildableElement { get; }
+        
+        
+        
         /// <summary>
         /// 建築の完了に必要な労働コスト
         /// </summary>
@@ -14,7 +18,7 @@ namespace AntDiary
 
         public bool IsUnderConstruction
         {
-            get => SelfData.IsUnderConstruction;
+            get => DataAsBuildableElement.IsUnderConstruction;
         }
 
         /// <summary>
@@ -24,11 +28,11 @@ namespace AntDiary
         {
             if (!IsUnderConstruction) return;
 
-            SelfData.BuildingProgress += buildingResource;
-            if (SelfData.BuildingProgress >= RequiredResources)
+            DataAsBuildableElement.BuildingProgress += buildingResource;
+            if (DataAsBuildableElement.BuildingProgress >= RequiredResources)
             {
-                SelfData.IsUnderConstruction = false;
-                SelfData.BuildingProgress = 0;
+                DataAsBuildableElement.IsUnderConstruction = false;
+                DataAsBuildableElement.BuildingProgress = 0;
                 OnBuildingCompleted();
             }
         }
@@ -48,5 +52,47 @@ namespace AntDiary
         {
             return GetNodes().Where(n => n.IsExposed).SelectMany(n => n.GetConnectedNodesForeign(true));
         }
+    }
+
+    public abstract class NestBuildableElement<T> : NestBuildableElement where T : NestBuildableElementData
+    {
+        
+        /// <summary>
+        /// 外部公開用のData
+        /// </summary>
+        public sealed override NestElementData Data => SelfData;
+
+        /// <summary>
+        /// DataをNestBuildableElementとして取得します
+        /// </summary>
+        public sealed override NestBuildableElementData DataAsBuildableElement => SelfData;
+        
+        /// <summary>
+        /// クラス内から参照する用のプロパティ
+        /// </summary>
+        protected T SelfData { get; private set; }
+        
+        protected bool IsInitialized { get; private set; } = false;
+        
+        /// <summary>
+        /// NestSystemがデータを注入する際に使用します。そのほかでは呼ばないでください。 
+        /// </summary>
+        /// <param name="antData"></param>
+        public void Initialize(T antData)
+        {
+            if (IsInitialized) return;
+            SelfData = antData;
+            IsInitialized = true;
+            gameObject.layer = LayerMask.NameToLayer("NestElement");
+            OnInitialized();
+        }
+
+        /// <summary>
+        /// 初期化が終了（NestBuildavleElementDataの注入が完了）したタイミングで呼ばれる。
+        /// </summary>
+        protected virtual void OnInitialized()
+        {
+        }
+        
     }
 }
