@@ -5,12 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-
-    path: Assets/AntDiary/Scenes/MainScene.unity
-    guid: 81cab07c7a08e2a41bacdf37c6a9b0de
-  - enabled: 1
-    path: Assets/AntDiary/Scenes/Title.unity
-    guid: 14476fa10e0f84e4ab057cdc2213ad94
-
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
