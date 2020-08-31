@@ -87,20 +87,9 @@ namespace AntDiary
         private void UpdatePath()
         {
             //現在位置ノードが不明な場合や、既知のCurrentNodeが実際の現在位置から離れすぎている場合は、現在位置ノードを再計算
-            if (CurrentNode == null || (CurrentNode.WorldPosition - (Vector2) transform.position).sqrMagnitude > 1f)
-            {
+            if (CurrentNode == null || (CurrentNode.WorldPosition - (Vector2) transform.position).sqrMagnitude > 1f){
                 //現在位置が不明なので、検索
-                float minSqrDistance = float.MaxValue;
-                NestPathNode argMinSqrDistance = null;
-                foreach (var node in NestSystem.Instance.NestPathNodes)
-                {
-                    float distance = (node.WorldPosition - (Vector2) transform.position).sqrMagnitude;
-                    if (distance < minSqrDistance)
-                    {
-                        minSqrDistance = distance;
-                        argMinSqrDistance = node;
-                    }
-                }
+                var argMinSqrDistance = SupposeCurrentPosNode();
 
                 //とりあえず一番近いノードに移動
                 NextNode = argMinSqrDistance ?? throw new NullReferenceException("巣にIPathNodeが見つかりませんでした。");
@@ -126,6 +115,18 @@ namespace AntDiary
                 }
                 else throw new InvalidOperationException("ノードはNestPathNodeではない。");
             }
+        }
+
+        /// <summary>
+        /// 現在の座標から今いると思われるNodeを推定する
+        /// </summary>
+        /// <returns>最も近いNode</returns>
+        public NestPathNode SupposeCurrentPosNode(){
+            float Distance(IPathNode node) => Vector2.Distance(node.WorldPosition, transform.position);
+
+            
+            return NestSystem.Instance.NestPathNodes
+                .Aggregate((result, next) => Distance(next) < Distance(result) ? next : result);
         }
 
         public void CancelMovement()
