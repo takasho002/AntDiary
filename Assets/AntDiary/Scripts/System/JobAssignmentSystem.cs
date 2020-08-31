@@ -11,7 +11,7 @@ namespace AntDiary
     /// <summary>
     /// 仕事割り振りクラス
     /// </summary>
-    public class JobAssignmentSystem
+    public class JobAssignmentSystem : MonoBehaviour
     {
         //仕事の型リスト
         private List<Type> antjobs;
@@ -21,6 +21,11 @@ namespace AntDiary
         public float[] idealrate;
         private NestData nestdata => NestSystem.Instance?.Data;
         Dictionary<Type, int> antCounter = new Dictionary<Type, int>();
+
+        public int ideal_Architect;
+        public int ideal_Soilder;
+        public int ideal_Mule;
+        public int ideal_Free;
 
         public JobAssignmentSystem()
         {
@@ -53,8 +58,9 @@ namespace AntDiary
         {
             InitAntCounter();
 
+
             //理想値の取得？
-            //int[] ideal = new int[4]; //{ ideal_Architect, ideal_Soilder, ideal_Mule, ideal_Free };
+            int[] ideal = new int[4] { ideal_Architect, ideal_Soilder, ideal_Mule, ideal_Free };
 
             //diffに現在と理想の割合の差を保存
             float[] diff = new float[jobCount];

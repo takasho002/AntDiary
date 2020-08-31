@@ -15,6 +15,7 @@ namespace AntDiary
 
         public override bool IsConnectable(NestPathNode other)
         {
+            if (!base.IsConnectable(other)) return false;
             //道のノードとだけ接続可能
             if (other is NestPathRoadNode)
             {

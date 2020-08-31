@@ -78,8 +78,8 @@ namespace AntDiary
         /// <summary>
         /// 建築中のNestElementをすべて取得する。
         /// </summary>
-        public IEnumerable<NestElement> BuildingElements =>
-            nestElements.Where(e => (e.Data is NestBuildableElementData d) && d.IsUnderConstruction);
+        public IEnumerable<NestBuildableElement> BuildingElements =>
+            nestElements.OfType<NestBuildableElement>().Where(d => d.IsUnderConstruction);
 
         /// <summary>
         /// 巣に存在するすべてのIPathNodeを取得する。
@@ -256,14 +256,15 @@ namespace AntDiary
         /// あらかじめNestElement.Initializeで適切なNestElementDataが注入されている必要がある。
         /// </summary>
         /// <param name="element"></param>
-        public void AddNestElement(NestElement element)
+        public void RegisterNestElementToGameContext(NestElement element)
         {
-            if (nestElements.Contains(element)) throw new ArgumentException("指定されたNestElementはすでに登録されています。");
             if (element.Data == null)
                 throw new ArgumentException("NestElementDataが設定されていません。あらかじめ適切なNestElementDataを注入してください。");
             if (Data.Structure.NestElements.Contains(element.Data))
                 throw new ArgumentException("指定されたNestElementのDataはすでに登録されています。");
-            nestElements.Add(element);
+            
+            if (!nestElements.Contains(element)) nestElements.Add(element);
+            
             Data.Structure.NestElements.Add(element.Data);
         }
 

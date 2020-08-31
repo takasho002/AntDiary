@@ -11,11 +11,13 @@ public class Spring : MonoBehaviour
     public Text Springtext;
     private int PlaySpringBGMornot;
     private float season;
+    [SerializeField] ChangeBackground changeBackground;
+    [SerializeField] FadeOut fadeOut;
     private void Start()
     {
       PlaySpringBGMornot = 0;
       season=0;
-      Springtext.text = "";  
+      //Springtext.text = "";  
     }
 
     // Update is called once per frame
@@ -28,9 +30,11 @@ public class Spring : MonoBehaviour
     private void Springcheck()
     {
         if(season==0){
-            Springtext.text = "Spring";
-            if(PlaySpringBGMornot == 0){
-               GameObject.Find("spring_bgm_1__.mp3");
+            //Springtext.text = "Spring";
+            if(PlaySpringBGMornot == 0)
+            {
+                changeBackground.SetBackground(0);
+                fadeOut.BGMsystem("test1");
                 PlaySpringBGMornot = 1;
             }
         }else{
