@@ -68,14 +68,5 @@ namespace AntDiary.Scripts.Roads{
 
 		public override float RequiredResources => constructCost;
 		
-		
-		
-		#region Debug
-		private void OnDrawGizmos(){
-			RoadGizmosUtil.DrawNodeWithEdge(GetNodes(), GetLocalEdges());
-			RoadGizmosUtil.DrawBuildableElement(this);
-		}
-
-		#endregion
 	}
 }
