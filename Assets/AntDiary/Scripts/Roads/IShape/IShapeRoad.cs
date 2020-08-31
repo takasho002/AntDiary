@@ -3,53 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace AntDiary.Scripts.Roads{
-	public class IShapeRoad: Road<IShapeRoadData>{
+	public class IShapeRoad: ShapeRoadBase<IShapeRoadData>{
 		
 		/// <summary>
 		/// 端から端までの距離/2
 		/// </summary>
 		[SerializeField] private float radius = 2;
-		
-		private NestPathNode[] _nodes;
-		private NestPathLocalEdge[] _edges;
-		
-		public override bool HasPathNode => true;
-		public override IEnumerable<NestPathNode> GetNodes(){
-			return _nodes;
-		}
-
-		public override IEnumerable<NestPathLocalEdge> GetLocalEdges(){
-			return _edges;
-		}
 
 		protected override void OnInitialized(){
 
 			switch(SelfData.Direction){
 				case EnumRoadHVDirection.Horizontal:
-					_nodes = new[]{
-						new NestPathRoadNode(this, Vector2.left * radius, "wild_left"),
-						new NestPathRoadNode(this, Vector2.right * radius, "wild_right")
-					};
+					AddLocalNode("left", "wild_left", Vector2.left * radius);
+					AddLocalNode("right", "wild_right", Vector2.right * radius);
+					ConnectLocalNode("left", "right");
 					break;
 				case EnumRoadHVDirection.Vertical:
-					_nodes = new[]{
-						new NestPathRoadNode(this, Vector2.up * radius, "wild_top"),
-						new NestPathRoadNode(this, Vector2.down * radius, "wild_bottom")
-					};
+					AddLocalNode("top", "wild_top", Vector2.up * radius);
+					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
+					ConnectLocalNode("top", "bottom");
 					break;
-			};
-			
-			_edges = new[]{
-				new NestPathLocalEdge(_nodes[0], _nodes[1])
-			};
+			}
 		}
-
-		#region Debug
-		private void OnDrawGizmos(){
-			RoadGizmosUtil.DrawNodeWithEdge(_nodes, _edges);
-			RoadGizmosUtil.DrawBuildableElement(this);
-		}
-		
-		#endregion
 	}
 }

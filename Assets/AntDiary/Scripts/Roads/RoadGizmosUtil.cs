@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -51,7 +52,7 @@ namespace AntDiary.Scripts.Roads{
 		public static Color BuiltElementColor = new Color(0.0f, 0.75f, 1.0f, 0.3f);
 
 		
-		public static void DrawNodeWithEdge(NestPathNode[] nodes, NestPathLocalEdge[] edges){
+		public static void DrawNodeWithEdge(IEnumerable<NestPathNode> nodes, IEnumerable<NestPathLocalEdge> edges){
 			// var prevColor = Gizmos.color;
 
 			if(DrawNode && nodes != null){
