@@ -6,6 +6,7 @@ using UnityEngine;
 namespace AntDiary
 {
     [Union(0, typeof(DebugAntData))]
+    [Union(2, typeof(ErgateAntData))]
     [Union(1, typeof(UnemployedAntData))]
     public abstract class AntData
     {
