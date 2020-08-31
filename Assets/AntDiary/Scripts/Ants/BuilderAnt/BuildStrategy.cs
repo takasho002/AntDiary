@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AntDiary{
 	public class BuildStrategy: BuilderStrategy{
 		private NestBuildableElement _distElement;
@@ -15,6 +17,7 @@ namespace AntDiary{
 		}
 
 		public override void PeriodicUpdate(){
+			Debug.Log("<BuildStrategy> commit");
 			_distElement.Commit(LaborResourcePerSec);
 
 			if(!_distElement.IsUnderConstruction){

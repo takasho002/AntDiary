@@ -96,6 +96,12 @@ public class TestRoadInstantiate : MonoBehaviour
                 }
             }
         }
+
+
+        var antData = new BuilderAntData();
+        antData.Position = map[2, 2].transform.position;
+        var builderAnt = NestSystem.Instance.InstantiateAnt(antData);
+        
         
         
         

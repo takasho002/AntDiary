@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using UnityEngine;
 
 namespace AntDiary{
 	/// <summary>
@@ -13,16 +14,21 @@ namespace AntDiary{
 		}
 
 		public override void StartStrategy(){
+			Debug.Log($"<MoveStrategy> start ant: {HostAnt.transform.position.ToString()} dist:${_distElement.transform.position.ToString()}");
+
+			
 			var distPathNode = (NestPathNode) _distElement.GetBuildingNode().First();
 			
 			HostAnt.StartForPathNode(distPathNode, HandleArrived, HandleAborted);
 		}
 
 		private void HandleArrived(){
+			Debug.Log("Arrived");
 			HostAnt.ChangeStrategy(new BuildStrategy(HostAnt, _distElement));
 		}
 		
 		private void HandleAborted(){
+			Debug.Log("Aborted");
 			HostAnt.CancelMovement();
 			HostAnt.ChangeStrategy(new RoundStrategy(HostAnt));
 		}

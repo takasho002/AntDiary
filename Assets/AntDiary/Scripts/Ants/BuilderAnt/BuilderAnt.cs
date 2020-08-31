@@ -5,35 +5,33 @@ using UnityEngine;
 namespace AntDiary{
 	public class BuilderAnt : Ant<BuilderAntData>{
 		private BuilderStrategy _strategy;
-		
-		
-		
-		void Start(){
-			
-		}
 
 		// Update is called once per frame
-		protected override float MovementSpeed{ get; }
+		protected override float MovementSpeed => 1.0f;
 
 		protected override void OnInitialized(){
-			_strategy = new RoundStrategy(this);
+			ChangeStrategy(new RoundStrategy(this));
 
-			StartCoroutine("UpdateCaller");
+			Debug.Log("BuilderAnt Initialized");
+
+			var coroutine = UpdateCaller();
+			StartCoroutine(coroutine);
 		}
 
-		protected override void Update(){
-			
-		}
-
-		private IEnumerable UpdateCaller(){
+		private int _counter;
+		private IEnumerator UpdateCaller(){
+			Debug.Log("UpdateCaller");
 			while(Data.IsAlive){
+				Debug.Log("Update: " + _counter++);
 				_strategy.PeriodicUpdate();
 				yield return new WaitForSeconds(_strategy.UpdateInterval);
 			}
+			Debug.Log("Dead");
 			_strategy.FinishStrategy();
 		}
 		
 		public void ChangeStrategy(BuilderStrategy nextStrategy){
+			Debug.Log("ChangeStrategy");
 			_strategy?.FinishStrategy();
 
 			_strategy = nextStrategy;
