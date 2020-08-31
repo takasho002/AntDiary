@@ -62,7 +62,7 @@ namespace AntDiary
         /// <summary>
         /// 現在位置している、または最後に位置したノード。
         /// </summary>
-        protected NestPathNode CurrentNode { get; private set; }
+        public NestPathNode CurrentNode { get; private set; }
 
         private Action OnArrived { get; set; }
         private Action OnAborted { get; set; }
