@@ -11,11 +11,13 @@ public class Winter : MonoBehaviour
     public Text Wintertext;
     private int PlayWinterBGMornot;
     private float season;
+    [SerializeField] ChangeBackground changeBackground;
+    [SerializeField] FadeOut fadeOut;
     private void Start()
     {
       PlayWinterBGMornot = 0;
       season=0;
-      Wintertext.text = "";  
+      //Wintertext.text = "";  
     }
 
     // Update is called once per frame
@@ -28,9 +30,10 @@ public class Winter : MonoBehaviour
     private void Wintercheck()
     {
         if(season==3){
-            Wintertext.text = "Winter";
+            //Wintertext.text = "Winter";
             if(PlayWinterBGMornot == 0){
-              GameObject.Find("winter1.wav");
+                changeBackground.SetBackground(3);
+                fadeOut.BGMsystem("test2");
                 PlayWinterBGMornot = 1;
             }
         }else{

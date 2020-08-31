@@ -7,6 +7,7 @@ namespace AntDiary
 {
     [Union(0, typeof(DebugRoomData))]
     [Union(1, typeof(DebugRoadData))]
+    [Union(2, typeof(StoreRoomData))]
     public abstract class NestElementData
     {
         //Keyは0~9を使用することにします。足りなくなったらまた考えるので@rucchoまで。
