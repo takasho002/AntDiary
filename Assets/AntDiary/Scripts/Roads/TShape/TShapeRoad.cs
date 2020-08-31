@@ -2,78 +2,65 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace AntDiary.Scripts.Roads{
-	public class TShapeRoad: Road<TShapeRoadData>{
-		[SerializeField] private Collider2D blockingShape;
+	public class TShapeRoad: ShapeRoadBase<TShapeRoadData>{
+		
 		
 		/// <summary>
 		/// 端から端までの距離/2
 		/// </summary>
 		[SerializeField] private float radius = 2;
 		
-		private NestPathNode[] _nodes;
-		private NestPathLocalEdge[] _edges;
-
+		
 		protected override void OnInitialized(){
-			var topNode = new NestPathRoadNode(this, Vector2.up * radius, "wild_top");
-			var rightNode = new NestPathRoadNode(this, Vector2.right * radius, "wild_right");
-			var bottomNode = new NestPathRoadNode(this, Vector2.down * radius, "wild_bottom");
-			var leftNode = new NestPathRoadNode(this, Vector2.left * radius, "wild_left");
-			var centerNode = new NestPathRoadNode(this, Vector2.zero, "");
-			
 			
 			switch(SelfData.Direction){
+				
 				case EnumRoadDirection.Top:
-					_nodes = new[]{
-						leftNode, topNode, rightNode, centerNode
-					};
+					AddLocalNode("left", "wild_left", Vector2.left * radius);
+					AddLocalNode("top", "wild_top", Vector2.up * radius);
+					AddLocalNode("right", "wild_right", Vector2.right * radius);
+					AddLocalNode("center", "", Vector2.zero * radius);
+					ConnectLocalNodeToIntersection("center", new []{"left", "top", "right"});
+					
+					// 	_nodes = new[]{
+					// 		leftNode, topNode, rightNode, centerNode
+					// 	};
 					break;
+				
 				case EnumRoadDirection.Right:
-					_nodes = new[]{
-						topNode, rightNode, bottomNode, centerNode
-					};
+					AddLocalNode("top", "wild_top", Vector2.up * radius);
+					AddLocalNode("right", "wild_right", Vector2.right * radius);
+					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
+					AddLocalNode("center", "", Vector2.zero * radius);
+					ConnectLocalNodeToIntersection("center", new []{"top", "right", "bottom"});
+					// 	_nodes = new[]{
+					// 		rightNode, bottomNode, leftNode, centerNode
+					// 	};
 					break;
 				case EnumRoadDirection.Bottom:
-					_nodes = new[]{
-						rightNode, bottomNode, leftNode, centerNode
-					};
+					AddLocalNode("right", "wild_right", Vector2.right * radius);
+					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
+					AddLocalNode("left", "wild_left", Vector2.left * radius);
+					AddLocalNode("center", "", Vector2.zero * radius);
+					ConnectLocalNodeToIntersection("center", new []{"right", "bottom", "left"});
+					// 	_nodes = new[]{
+					// 		rightNode, bottomNode, leftNode, centerNode
+					// 	};
 					break;
 				case EnumRoadDirection.Left:
-					_nodes = new[]{
-						bottomNode, leftNode, topNode, centerNode
-					};
+					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
+					AddLocalNode("left", "wild_left", Vector2.left * radius);
+					AddLocalNode("top", "wild_top", Vector2.up * radius);
+					AddLocalNode("center", "", Vector2.zero * radius);
+					ConnectLocalNodeToIntersection("center", new []{"bottom", "left", "top"});
+					// 	_nodes = new[]{
+					// 		bottomNode, leftNode, topNode, centerNode
+					// 	};
 					break;
+				
 			};
 			
-			_edges = new[]{
-				new NestPathLocalEdge(_nodes[0], _nodes[3]),
-				new NestPathLocalEdge(_nodes[1], _nodes[3]),
-				new NestPathLocalEdge(_nodes[2], _nodes[3])
-			};
 		}
 		
-		
-		public override Collider2D GetBlockingShape(){
-			return blockingShape;
-		}
-
-		public override bool HasPathNode => true;
-		
-		public override IEnumerable<NestPathNode> GetNodes(){
-			return _nodes;
-		}
-
-		public override IEnumerable<NestPathLocalEdge> GetLocalEdges(){
-			return _edges;
-		}
-
-		public override float RequiredResources{ get; }
-		
-		
-		#region Debug
-		private void OnDrawGizmos(){
-			RoadGizmosUtil.DrawNodeWithEdge(_nodes, _edges);
-		}
-
-		#endregion
 	}
 }

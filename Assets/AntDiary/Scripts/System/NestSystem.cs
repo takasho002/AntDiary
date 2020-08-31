@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AntDiary.Scripts.Roads;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -288,7 +289,7 @@ namespace AntDiary
         #region Debug
 
         public string pageTitle { get; } = "巣統合システム";
-        private bool showGraph = true;
+        // private bool showGraph = true;
         private IEnumerable<IPathNode> latestRoute;
 
         public void OnGUIPage()
@@ -367,34 +368,28 @@ namespace AntDiary
                     latestRoute = FindRoute(node1, node2);
                 }
 
-                showGraph = GUILayout.Toggle(showGraph, "経路グラフを表示");
+                RoadGizmosUtil.ShowNode = GUILayout.Toggle(RoadGizmosUtil.ShowNode, "Nodeを表示");
+                RoadGizmosUtil.ShowEdge = GUILayout.Toggle(RoadGizmosUtil.ShowEdge, "Edgeを表示");
+                RoadGizmosUtil.ShowElement = GUILayout.Toggle(RoadGizmosUtil.ShowElement, "Elementのコライダを表示");
+
             }
         }
 
         private void OnDrawGizmos()
         {
-            if (!showGraph) return;
-            foreach (var e in nestElements)
-            {
-                Gizmos.color = Color.green;
-                foreach (var edge in e.GetLocalEdges())
-                {
-                    var a = edge.A.WorldPosition;
-                    var b = edge.B.WorldPosition;
-                    Gizmos.DrawLine(a, b);
+            // if (!showGraph) return;
+            
+            foreach (var elem in nestElements){
+                if(elem is NestBuildableElement buildableElement){
+                    RoadGizmosUtil.DrawBuildableElement(buildableElement);
                 }
+                RoadGizmosUtil.DrawEdge(elem.GetLocalEdges());
             }
 
-            Gizmos.color = Color.red;
-            foreach (var edge in elementEdges)
-            {
-                var a = edge.A.WorldPosition;
-                var b = edge.B.WorldPosition;
-                Gizmos.DrawLine(a, b);
-            }
-
-            if (latestRoute != null)
-            {
+            RoadGizmosUtil.DrawNode(NestPathNodes);
+            RoadGizmosUtil.DrawEdge(ElementEdges);
+            
+            if (latestRoute != null){
                 Gizmos.color = Color.yellow;
                 for (int i = 0; i < latestRoute.Count() - 1; i++)
                 {
