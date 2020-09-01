@@ -14,6 +14,10 @@ namespace AntDiary{
 		public float UpdateInterval{ get; protected set; } = 1f;
 
 		protected StrategyController<T> Controller{ get; set; }
+
+		public T AntData{
+			get => (T) Controller.Ant.Data;
+		}
 		
 		public Strategy(){
 			// HostAnt = ant;
