@@ -42,7 +42,7 @@ public class MainDebug : MonoBehaviour
     public void CreateFeedRoute()
     {
         
-
+        /*
         for (int y = 0; y < 3; y++)
             for (int x = 0; x < 4; x++)
             {
@@ -95,15 +95,15 @@ public class MainDebug : MonoBehaviour
                 nestsystem.ConnectElements(n1, r1);
                 nestsystem.ConnectElements(r2, n2);
             }
-        var ne = nestsystem.NestElements[Random.Range(0, nestsystem.NestElements.Count)];
-        var node1 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));
-        ne = nestsystem.NestElements[Random.Range(0, nestsystem.NestElements.Count)];
-        var node2 = ne.GetNodes().ElementAt(Random.Range(0, ne.GetNodes().Count()));
-        IEnumerable<IPathNode> latestRoutes = nestsystem.FindRoute(node1,node2);
-        foreach (IPathNode route in latestRoutes)
-        {
-            Debug.Log(route.WorldPosition);
-            Debug.Log("は？？");
-        }
+        */
+        //巣の入り口及び砂糖の山の生成
+        nestsystem.InstantiateNestElement(new MtSugarData()
+        { Position = new Vector2(-2.5f, 3.0f), IsUnderConstruction = false });
+        nestsystem.InstantiateNestElement(new GroundData()
+        { Pos = new Vector2(-1.0f,3.0f), IsUnderConstruction = false });
+        var sugar = nestsystem.NestElements[0].GetNodes().ElementAt(1);
+        var ground = nestsystem.NestElements[1].GetNodes().ElementAt(0);
+        //if (ground.IsExposed) Debug.Log("hoho");
+        nestsystem.ConnectElements(sugar, ground);
     }
 }
