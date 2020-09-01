@@ -11,6 +11,7 @@ public class MainDebug : MonoBehaviour
     private NestSystem nestsystem => NestSystem.Instance;
     [SerializeField] bool createNest = false;
     [SerializeField] bool createErgate = false;
+    [SerializeField] bool createQueen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +24,29 @@ public class MainDebug : MonoBehaviour
     {
         if (createNest)
         {
-            CreateFeedRoute();
             createNest = false;
+            CreateFeedRoute();
         }
         if (createErgate)
         {
-            CreateErgate();
             createErgate = false;
+            CreateErgate();
+        }
+        if (createQueen)
+        {
+            createQueen = false;
+            CreateQueen();
         }
     }
 
     private void CreateErgate()
     {
         ErgateAntData data = new ErgateAntData() { Capacity = 10,IsHoldingFood = true };
+        nestsystem.InstantiateAnt(data);
+    }
+    private void CreateQueen()
+    {
+        AntData data = new QueenAntData();
         nestsystem.InstantiateAnt(data);
     }
 
