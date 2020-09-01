@@ -8,7 +8,7 @@ namespace AntDiary
     public class QweenGameOverSystem : MonoBehaviour
     {
         private DebugAntData QweenAnt;//DebugAntDataを、これから先QweenAntDataとかができたらそちらに修正する必要あり
-        public GameObject QweenObject;
+        public GameObject QweenObject;//ここにInspectorから女王バチのGameObjectをアタッチ(保存)する
         // Start is called before the first frame update
         void Start()
         {
