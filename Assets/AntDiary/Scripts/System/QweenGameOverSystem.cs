@@ -7,11 +7,12 @@ namespace AntDiary
 {
     public class QweenGameOverSystem : MonoBehaviour
     {
-        public AntData QweenAnt;
+        private DebugAntData QweenAnt;//DebugAntDataを、これから先QweenAntDataとかができたらそちらに修正する必要あり
+        public GameObject QweenObject;
         // Start is called before the first frame update
         void Start()
         {
-
+            QweenAnt = QweenObject.GetComponent<DebugAntData>();
         }
 
         // Update is called once per frame
