@@ -71,21 +71,21 @@ namespace AntDiary
             if (JobName == "Architecture")
             {
 
-                scrollbar.fillAmount = antCounter[typeof(DebugAntData)]/total;//本来は建築アリのtypeを格納
-                otherScrollbar1.fillAmount = antCounter[typeof(DebugAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
-                otherScrollbar2.fillAmount = antCounter[typeof(DebugAntData)] / total;//上に同じ
+                scrollbar.fillAmount = antCounter[typeof(BuilderAntData)]/total;//本来は建築アリのtypeを格納
+                otherScrollbar1.fillAmount = antCounter[typeof(ErgateAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
+                otherScrollbar2.fillAmount = antCounter[typeof(UnemployedAntData)] / total;//上に同じ
             }
             else if (JobName == "Work")
             {
-                scrollbar.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar1.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar2.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
+                scrollbar.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
+                otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
+                otherScrollbar2.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
             }
             else if (JobName == "Deffence")
             {
-                scrollbar.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar1.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar2.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
+                scrollbar.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
+                otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
+                otherScrollbar2.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
             }
             else
             {

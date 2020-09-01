@@ -12,6 +12,8 @@ public class MainDebug : MonoBehaviour
     [SerializeField] bool createNest = false;
     [SerializeField] bool createErgate = false;
     [SerializeField] bool createQueen = false;
+    [SerializeField] bool createBuilder = false;
+    [SerializeField] bool createFree = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,16 @@ public class MainDebug : MonoBehaviour
             createQueen = false;
             CreateQueen();
         }
+        if (createBuilder)
+        {
+            createBuilder = false;
+            CreateBuilder();
+        }
+        if (createFree)
+        {
+            createFree = false;
+            CreateFree();
+        }
     }
 
     private void CreateErgate()
@@ -47,6 +59,17 @@ public class MainDebug : MonoBehaviour
     private void CreateQueen()
     {
         AntData data = new QueenAntData();
+        nestsystem.InstantiateAnt(data);
+    }
+
+    private void CreateBuilder()
+    {
+        AntData data = new BuilderAntData();
+        nestsystem.InstantiateAnt(data);
+    }
+    private void CreateFree()
+    {
+        AntData data = new UnemployedAntData();
         nestsystem.InstantiateAnt(data);
     }
 
