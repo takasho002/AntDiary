@@ -49,7 +49,7 @@ namespace AntDiary
             DeffenceAntNum = Deffence.NumOfBar;
             TotalAntNum = Architect.total;
 
-            FreeAntNum = TotalAntNum - ArchitectAntNum + WorkAntNum + DeffenceAntNum;
+            FreeAntNum = TotalAntNum - (ArchitectAntNum + WorkAntNum + DeffenceAntNum);
 
             jobScript.ideal_Architect = ArchitectAntNum;
             jobScript.ideal_Soilder = DeffenceAntNum;
