@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5115168715859283349}
   - component: {fileID: 6755526020648168797}
   - component: {fileID: 4047942816304126846}
-  - component: {fileID: -3952532712873035473}
+  - component: {fileID: -4058556299490871581}
+  - component: {fileID: -5793098823378791344}
   m_Layer: 0
   m_Name: QueenAntRoom
   m_TagString: Untagged
@@ -45,13 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729abcac3806fad4e8fe1cce83574615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingShape: {fileID: -3952532712873035473}
+  blockingShape: {fileID: -4058556299490871581}
   boundingRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 3
     height: 1
+  constructCost: 0
 --- !u!212 &4047942816304126846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,18 +93,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9d1a6780afe3699478f012df40ccbc0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &-3952532712873035473
+--- !u!58 &-4058556299490871581
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,3 +120,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-5793098823378791344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147991854512132061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da68c9db7de1d90439779f77d8a37204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JobAssignmentSystem: {fileID: 0}

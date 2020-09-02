@@ -10,6 +10,8 @@ namespace AntDiary
         [SerializeField] private Collider2D blockingShape = default;
         [SerializeField] private Rect boundingRect = default;
 
+        [SerializeField] protected float constructCost = 0;
+
         private NestPathNode[] nodes;
         private NestPathLocalEdge[] edges;
         
@@ -27,6 +29,11 @@ namespace AntDiary
         public override IEnumerable<NestPathLocalEdge> GetLocalEdges()
         {
             return edges;
+        }
+        protected override void OnBuildingCompleted()
+        {/*
+            QueenAntData queen = new QueenAntData() { Position = transform.position };
+            NestSystem.Instance.InstantiateAnt(queen);*/
         }
 
         protected override void OnInitialized()
@@ -55,10 +62,10 @@ namespace AntDiary
                 new NestPathLocalEdge(nodes[3], nodes[4]),
                 new NestPathLocalEdge(nodes[4], nodes[1]),
             };
-            QueenAntData queen = new QueenAntData() { Position=Data.Position};
-            NestSystem.Instance.InstantiateAnt(queen).gameObject.transform.position = queen.Position;
+            QueenAntData queen = new QueenAntData() { Position = transform.position };
+            NestSystem.Instance.InstantiateAnt(queen);
         }
 
-        public override float RequiredResources { get; }
+        public override float RequiredResources => constructCost;
     }
 }

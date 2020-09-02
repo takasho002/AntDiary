@@ -17,7 +17,7 @@ namespace AntDiary
         void Start()
         {
             lastSpawnedTime = CurrentTime;
-
+            JobAssignmentSystem = GameObject.Find("JobAssignmentSystem").GetComponent<JobAssignmentSystem>();
         }
 
         // Update is called once per frame
