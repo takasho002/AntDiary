@@ -38,7 +38,7 @@ namespace AntDiary
                 {
                     Chochikukonum++;
                 }
-                else if(list[i].gameObject.name == "QweenAntRoom(Clone)")//仮の名前
+                else if(list[i].gameObject.name == "QueenAntRoom(Clone)")//仮の名前
                 {
                     QweenRoomNum++;
                 }
@@ -89,12 +89,12 @@ namespace AntDiary
             else if(NestName == "Chochikubeya")
             {
                 //data = new ChochikubeyaData();
-                data = new CrossShapeRoadData();
+                data = new StoreRoomData();
             }
-            else if(NestName == "QweenAntRoom")
+            else if(NestName == "QueenAntRoom")
             {
                 //data = new QweenAntRoomData();
-                data = new CrossShapeRoadData();
+                data = new QueenAntRoomData();
             }
             else if(NestName =="Cross")
             {
@@ -106,7 +106,7 @@ namespace AntDiary
             }
             
             //貯蓄庫と女王の部屋が指定されたときシーン内に巣でにそれらの部屋があるなら出せない
-            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QweenAntRoom" && QweenRoomNum != 0))
+            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QueenAntRoom" && QweenRoomNum != 0))
             {
                 
             }
