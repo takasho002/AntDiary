@@ -1642,6 +1642,49 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1433840608}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &799886956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799886958}
+  - component: {fileID: 799886957}
+  m_Layer: 0
+  m_Name: GameOverManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &799886957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799886956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22034c49501cd424c86f41c8bc9e5120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &799886958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799886956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &806391804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +2027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052660736476870766, guid: 3ef919a3b62af50479a46f4abceded50,
+        type: 3}
+      propertyPath: NestName
+      value: Chochikubeya
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ef919a3b62af50479a46f4abceded50, type: 3}
@@ -3112,7 +3160,7 @@ PrefabInstance:
     - target: {fileID: 7330755635365534184, guid: e66b6b916586e0741bb232ad81110e62,
         type: 3}
       propertyPath: seasonInterval
-      value: 10
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
         type: 3}
