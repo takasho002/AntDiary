@@ -27,18 +27,18 @@ namespace AntDiary
         public int ideal_Mule;
         public int ideal_Free;
 
-        public JobAssignmentSystem()
+        void Start()
         {
             //AntDataのサブクラスから仕事をtypeリストとして取得
             antjobs = System.Reflection.Assembly.GetAssembly(typeof(AntData)).GetTypes().Where(x => x.IsSubclassOf(typeof(AntData))).ToList();
             //DebugAntDataは削除
             for (int i = 0; i < antjobs.Count; i++)
             {
-                if (antjobs[i].Name.Equals("DebugAntData"))
+                if (antjobs[i].Name.Equals("DebugAntData")|| antjobs[i].Name.Equals("QueenAntData"))
                 {
                     antjobs.RemoveAt(i);
-                    break;
                 }
+                Debug.Log(antjobs[i].Name);
             }
             jobCount = antjobs.Count;
 
@@ -54,13 +54,32 @@ namespace AntDiary
         /// 仕事割り振り関数
         /// </summary>
         /// <returns>新しく割り振る仕事のtype</returns>
-        public Type AssignJob()
+        public void AssignJob(Ant ant)
         {
             InitAntCounter();
 
-
             //理想値の取得？
             int[] ideal = new int[4] { ideal_Architect, ideal_Soilder, ideal_Mule, ideal_Free };
+            int idealtotal = ideal.Sum();
+            for (int i = 0; i < jobCount; i++)
+            {
+                if (antjobs[i].Name == "BuilderAntData")
+                {
+                    idealrate[i] = 100.0f*ideal[0] / idealtotal;
+                }
+                else if (antjobs[i].Name == "SoilderAntData")
+                {
+                    idealrate[i] = 100.0f * ideal[1] / idealtotal;
+                }
+                else if (antjobs[i].Name == "ErgateAntData")
+                {
+                    idealrate[i] = 100.0f * ideal[2] / idealtotal;
+                }
+                else if (antjobs[i].Name == "UnemployedAntData")
+                {
+                    idealrate[i] = 100.0f * ideal[3] / idealtotal;
+                }
+            }
 
             //diffに現在と理想の割合の差を保存
             float[] diff = new float[jobCount];
@@ -75,8 +94,13 @@ namespace AntDiary
 
             //diffを元にindexをソート
             Array.Sort(diff,index);
-            //一番理想より少ない役職typeを返す
-            return antjobs[index[0]];
+            //一番理想より少ない役職に変更
+            Type nextjob = antjobs[index[0]];
+            if (nextjob.GetType() == ant.Data.GetType()) return;
+            AntData respawnant = (AntData)Activator.CreateInstance(nextjob);
+            Destroy(ant.gameObject);
+            NestSystem.Instance.RemoveAnt(ant);
+            NestSystem.Instance.InstantiateAnt(respawnant);
         }
 
         /// <summary>

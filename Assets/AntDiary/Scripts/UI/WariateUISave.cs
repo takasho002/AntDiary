@@ -18,10 +18,10 @@ namespace AntDiary
         public Image WorkBar;
         public Image DeffenceBar;
 
-        private WariateUI Architect;
-        private WariateUI Work;
-        private WariateUI Deffence;
-        private WariateUI Total;
+        [SerializeField] private WariateUI Architect;
+        [SerializeField] private WariateUI Work;
+        [SerializeField] private WariateUI Deffence;
+        [SerializeField] private WariateUI Total;
 
         GameObject JobSystem;
         JobAssignmentSystem jobScript;
@@ -44,11 +44,10 @@ namespace AntDiary
             Work = WorkBar.GetComponent<WariateUI>();
             Deffence = DeffenceBar.GetComponent<WariateUI>();
 
-
             ArchitectAntNum = Architect.NumOfBar;
             WorkAntNum = Work.NumOfBar;
             DeffenceAntNum = Deffence.NumOfBar;
-            TotalAntNum = Total.total;
+            TotalAntNum = Architect.total;
 
             FreeAntNum = TotalAntNum - ArchitectAntNum + WorkAntNum + DeffenceAntNum;
 

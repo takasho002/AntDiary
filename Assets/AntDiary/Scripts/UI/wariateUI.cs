@@ -42,7 +42,7 @@ namespace AntDiary
             //DebugAntDataは削除
             for (int i = 0; i < antjobs.Count; i++)
             {
-                if (antjobs[i].Name.Equals("DebugAntData"))
+                if (antjobs[i].Name.Equals("DebugAntData")|| antjobs[i].Name.Equals("QueenAntData"))
                 {
                     antjobs.RemoveAt(i);
                     break;
