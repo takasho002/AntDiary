@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 1814329175}
   - component: {fileID: 1814329176}
   m_Layer: 0
-  m_Name: ChocikukoRoomFactory
+  m_Name: ChochikukoRoomFactory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
