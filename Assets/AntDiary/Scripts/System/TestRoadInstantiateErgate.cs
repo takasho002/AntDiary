@@ -5,7 +5,7 @@ using AntDiary;
 using AntDiary.Scripts.Roads;
 using UnityEngine;
 
-public class TestRoadInstantiate : MonoBehaviour
+public class TestRoadInstantiateErgate : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start(){
@@ -105,10 +105,6 @@ public class TestRoadInstantiate : MonoBehaviour
         ToConstructedElem(map[2, 2]);
         ToConstructedElem(map[2, 3]);
         
-        //ここから
-        NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[5, 0].transform.position});
-        NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[2, 3].transform.position});
-        //ここまで少し追加しました後で消します
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 2].transform.position});
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 3].transform.position});
 
