@@ -41,7 +41,7 @@ namespace AntDiary
                     {
                         Image.sprite = selectedSprite;
                     }
-                });
+                }).AddTo(this);
             }
         }
 

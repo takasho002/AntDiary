@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using AntDiary.Scripts.Roads;
 using UniRx;
 using UniRx.Triggers;
@@ -156,8 +157,24 @@ namespace AntDiary
         /// <returns>生成されたGameObjectのもつAntコンポーネント。</returns>
         public Ant InstantiateAnt(AntData antData, bool registerToGameContext = true)
         {
-            //Debug.Log(antData.GetType());
-            var ant = antFactories.FirstOrDefault(f => f.DataType == antData.GetType())?.InstantiateAnt(antData);
+            
+            AntFactory matchedFactory = null;
+            foreach (var f in antFactories)
+            {
+                if (f.DataType == antData.GetType())
+                {
+                    matchedFactory = f;
+                    break;
+                }else if (matchedFactory == null && antData.GetType().IsSubclassOf(f.DataType))
+                {
+                    matchedFactory = f;
+                }
+            }
+            
+            if(!matchedFactory) Debug.LogWarning($"NestSystem: {antData.GetType()} 用のAntFactoryは登録されていません。");
+            
+            var ant = matchedFactory?.InstantiateAnt(antData);
+            
             if (ant != null)
             {
                 if (registerToGameContext)
@@ -169,6 +186,7 @@ namespace AntDiary
             }
 
             return ant;
+            
         }
 
         /// <summary>
@@ -299,6 +317,27 @@ namespace AntDiary
             {
                 GUILayout.Label($"SpawnedAnts: {spawnedAnts.Count}");
                 GUILayout.Label($"NestElements: {nestElements.Count}");
+
+                GUILayout.Label($"AntStatusRegistry");
+                foreach (var status in Data.CommonDataRegistry.CommonData)
+                {
+                    var to = status.GetType();
+                    var t = to;
+                    while (t.IsSubclassOf(typeof(AntCommonDataBase)))
+                    {
+                        if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(AntCommonData<>))
+                        {
+                            GUILayout.Label($"  {to.Name} (for {t.GenericTypeArguments[0]})");
+                            var props = t.GetProperties().Where(p => p.CanRead);
+                            foreach (var p in props)
+                            {
+                                GUILayout.Label($"   - {p.Name}: {p.GetValue(status)}");
+                            }
+                        }
+                        t = t.BaseType;
+                    }
+                }
+                
                 if (GUILayout.Button("デバッグアリのスポーン"))
                 {
                     InstantiateAnt(new DebugAntData());
