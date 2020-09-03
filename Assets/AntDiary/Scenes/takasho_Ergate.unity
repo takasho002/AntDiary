@@ -383,7 +383,7 @@ PrefabInstance:
     - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
         type: 3}
       propertyPath: nestElementFactories.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
         type: 3}
@@ -414,7 +414,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nestElementFactories.Array.data[6]
       value: 
-      objectReference: {fileID: 2073365190}
+      objectReference: {fileID: 1814329176}
     - target: {fileID: 7330755635594259107, guid: e66b6b916586e0741bb232ad81110e62,
         type: 3}
       propertyPath: antFactories.Array.data[1]
@@ -487,6 +487,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66b6b916586e0741bb232ad81110e62, type: 3}
+--- !u!1 &1814329174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814329175}
+  - component: {fileID: 1814329176}
+  m_Layer: 0
+  m_Name: ChocikukoRoomFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814329175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814329174}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.656136, y: 0.15484852, z: -2.796875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2100430258}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814329176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814329174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696b6dde9ea937d4c981b5cf98787cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugRoomPrefab: {fileID: 4543782475874227190, guid: 4d739f7816e04f34db97c5e456c8f340,
+    type: 3}
 --- !u!114 &2073365190 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 529073518300996304, guid: e66b6b916586e0741bb232ad81110e62,

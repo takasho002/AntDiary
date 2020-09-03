@@ -62,12 +62,12 @@ public class Ergate : MonoBehaviour
             }
             */
         }
-        nodeFeed = NestSystem.Instance.NestElements[0].GetNodes().ElementAt(0);
+        nodeFeed = NestSystem.Instance.NestElements[1].GetNodes().ElementAt(1);
 
        //餌と巣の位置情報はテスト用(後で削除または変更する可能性あり)
        //現在置
        //自身の座標を取得
-        antMovement.nowPlace = transform.position;
+        //antMovement.nowPlace = transform.position;
 
         //探索ごとにAStarSearcherインスタンスを作る
         IEnumerable<IPathNode> routes = NestSystem.Instance.FindRoute(nodeNest, nodeFeed);
