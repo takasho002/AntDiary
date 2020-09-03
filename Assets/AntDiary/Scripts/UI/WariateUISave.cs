@@ -7,12 +7,12 @@ namespace AntDiary
 {
     public class WariateUISave : MonoBehaviour
     {
-        private int ArchitectAntNum;
-        private int WorkAntNum;
-        private int DeffenceAntNum;
-        private int TotalAntNum;
+        private float ArchitectAntNum;
+        private float WorkAntNum;
+        private float DeffenceAntNum;
+        private float TotalAntNum;
 
-        public int FreeAntNum;
+        public float FreeAntNum;
 
         public Image ArchitectBar;
         public Image WorkBar;
@@ -44,10 +44,10 @@ namespace AntDiary
             Work = WorkBar.GetComponent<WariateUI>();
             Deffence = DeffenceBar.GetComponent<WariateUI>();
 
-            ArchitectAntNum = Architect.NumOfBar;
-            WorkAntNum = Work.NumOfBar;
-            DeffenceAntNum = Deffence.NumOfBar;
-            TotalAntNum = Architect.total;
+            ArchitectAntNum = Architect.Rate;
+            WorkAntNum = Work.Rate;
+            DeffenceAntNum = Deffence.Rate;
+            TotalAntNum = 100.0f;
 
             FreeAntNum = TotalAntNum - (ArchitectAntNum + WorkAntNum + DeffenceAntNum);
 

@@ -28,9 +28,11 @@ namespace AntDiary
         private List<Type> antjobs;
         private int jobCount;
         public int total;
+        public float fillAmount=0.0f;
 
         public string JobName;
         public int NumOfBar;
+        public float Rate=0.0f;
 
         private NestData nestdata => NestSystem.Instance?.Data;
         Dictionary<Type, int> antCounter = new Dictionary<Type, int>();
@@ -68,24 +70,25 @@ namespace AntDiary
                     total++;
                 }
             }
+            if (total == 0) total++;
             if (JobName == "Architecture")
             {
 
-                scrollbar.fillAmount = antCounter[typeof(BuilderAntData)]/total;//本来は建築アリのtypeを格納
-                otherScrollbar1.fillAmount = antCounter[typeof(ErgateAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
-                otherScrollbar2.fillAmount = antCounter[typeof(UnemployedAntData)] / total;//上に同じ
+                fillAmount = antCounter[typeof(BuilderAntData)]/total;//本来は建築アリのtypeを格納
+                //otherScrollbar1.fillAmount = antCounter[typeof(ErgateAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
+                //otherScrollbar2.fillAmount = antCounter[typeof(UnemployedAntData)] / total;//上に同じ
             }
             else if (JobName == "Work")
             {
-                scrollbar.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
-                otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
-                otherScrollbar2.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
+                fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
+                //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
+                //otherScrollbar2.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
             }
             else if (JobName == "Deffence")
             {
-                scrollbar.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
-                otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
-                otherScrollbar2.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
+                fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
+                //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
+                //otherScrollbar2.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
             }
             else
             {
@@ -114,15 +117,15 @@ namespace AntDiary
 
             if (JobName == "Architecture")
             {
-                AntJobNum.text = "建築:" + NumOfBar +"匹";
+                AntJobNum.text = "建築:" + Rate +"%";
             }
             else if (JobName == "Work")
             {
-                AntJobNum.text = "働き:" + NumOfBar + "匹";
+                AntJobNum.text = "働き:" + Rate + "%";
             }
             else if (JobName == "Deffence")
             {
-                AntJobNum.text = "防衛:" + NumOfBar + "匹";
+                AntJobNum.text = "防衛:" + Rate + "%";
             }
             AntTotal.text = "総数:" + total + "匹";
         }
@@ -132,11 +135,12 @@ namespace AntDiary
         public void OnDrag(PointerEventData data)//ドラッグ中
         {
             transform.position = new Vector3(data.position.x, transform.position.y, transform.position.z);
-            NumOfBar = (int)(scrollbar.fillAmount * total);
+            //NumOfBar = (int)(scrollbar.fillAmount * total);
+            Rate = scrollbar.fillAmount * 100;
         }
         public void OnEndDrag(PointerEventData data)//ドラッグ終わり
         {
-            transform.localPosition = new Vector3( (float)NumOfBar*300/total-150, 0, 0);
+            transform.localPosition = new Vector3(scrollbar.fillAmount * 300-150, 0, 0);
         }
     }
 }

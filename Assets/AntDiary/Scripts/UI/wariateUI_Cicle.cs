@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AntDiary;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,9 +7,9 @@ using UnityEngine.UI;
 
 public class WariateUI_Cicle : MonoBehaviour
 {
-    public Image redBar;//棒グラフの赤いバーを格納、下も同じ
-    public Image yellowBar;
-    public Image greenBar;
+    public WariateUI redBar;//棒グラフの赤いバーを格納、下も同じ
+    public WariateUI yellowBar;
+    public WariateUI greenBar;
 
     public Image redCircle;//円グラフの赤い部分のimageを格納、下も同様
     public Image yellowCircle;
@@ -18,9 +19,18 @@ public class WariateUI_Cicle : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        redCircle.fillAmount = redBar.fillAmount;
-        yellowCircle.fillAmount = yellowBar.fillAmount + redCircle.fillAmount;
-        greenCircle.fillAmount = greenBar.fillAmount + yellowCircle.fillAmount;
+        if (GraphType == "Active")
+        {
+            redCircle.fillAmount = redBar.scrollbar.fillAmount;
+            yellowCircle.fillAmount = yellowBar.scrollbar.fillAmount + redCircle.fillAmount;
+            greenCircle.fillAmount = greenBar.scrollbar.fillAmount + yellowCircle.fillAmount;
+        }
+        else
+        {
+            redCircle.fillAmount = redBar.fillAmount;
+            yellowCircle.fillAmount = yellowBar.fillAmount + redCircle.fillAmount;
+            greenCircle.fillAmount = greenBar.fillAmount + yellowCircle.fillAmount;
+        }
     }
 
     // Update is called once per frame
@@ -28,9 +38,9 @@ public class WariateUI_Cicle : MonoBehaviour
     {
         if (GraphType == "Active")
         {
-            redCircle.fillAmount = redBar.fillAmount;
-            yellowCircle.fillAmount = yellowBar.fillAmount + redCircle.fillAmount;
-            greenCircle.fillAmount = greenBar.fillAmount + yellowCircle.fillAmount;
+            redCircle.fillAmount = redBar.scrollbar.fillAmount;
+            yellowCircle.fillAmount = yellowBar.scrollbar.fillAmount + redCircle.fillAmount;
+            greenCircle.fillAmount = greenBar.scrollbar.fillAmount + yellowCircle.fillAmount;
         }
     }
 }

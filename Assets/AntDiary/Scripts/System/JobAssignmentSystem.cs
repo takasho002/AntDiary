@@ -22,10 +22,10 @@ namespace AntDiary
         private NestData nestdata => NestSystem.Instance?.Data;
         Dictionary<Type, int> antCounter = new Dictionary<Type, int>();
 
-        public int ideal_Architect;
-        public int ideal_Soilder;
-        public int ideal_Mule;
-        public int ideal_Free;
+        public float ideal_Architect;
+        public float ideal_Soilder;
+        public float ideal_Mule;
+        public float ideal_Free;
 
         void Start()
         {
@@ -59,25 +59,25 @@ namespace AntDiary
             InitAntCounter();
 
             //理想値の取得？
-            int[] ideal = new int[4] { ideal_Architect, ideal_Soilder, ideal_Mule, ideal_Free };
-            int idealtotal = ideal.Sum();
+            //int[] ideal = new int[4] { ideal_Architect, ideal_Soilder, ideal_Mule, ideal_Free };
+            //int idealtotal = ideal.Sum();
             for (int i = 0; i < jobCount; i++)
             {
                 if (antjobs[i].Name == "BuilderAntData")
                 {
-                    idealrate[i] = 100.0f*ideal[0] / idealtotal;
+                    idealrate[i] = ideal_Architect;
                 }
                 else if (antjobs[i].Name == "SoilderAntData")
                 {
-                    idealrate[i] = 100.0f * ideal[1] / idealtotal;
+                    idealrate[i] = ideal_Soilder;
                 }
                 else if (antjobs[i].Name == "ErgateAntData")
                 {
-                    idealrate[i] = 100.0f * ideal[2] / idealtotal;
+                    idealrate[i] = ideal_Mule;
                 }
                 else if (antjobs[i].Name == "UnemployedAntData")
                 {
-                    idealrate[i] = 100.0f * ideal[3] / idealtotal;
+                    idealrate[i] = ideal_Free;
                 }
             }
 
