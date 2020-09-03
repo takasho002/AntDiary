@@ -1,6 +1,9 @@
 using UnityEngine;
 
 namespace AntDiary.Scripts.Ants.SoldierAnt{
+	/// <summary>
+	/// 敵アリを追いかけるStrategy
+	/// </summary>
 	public class SoldierChaseStrategy: Strategy<SoldierAntData>{
 		private EnemyAnt _enemyAnt;
 		private NestPathNode _currentTargetNode;

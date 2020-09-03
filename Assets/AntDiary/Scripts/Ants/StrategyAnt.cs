@@ -11,7 +11,10 @@ namespace AntDiary.Scripts.Ants{
 	public abstract class StrategyAnt<T>: Ant<T> where T : StrategyAntData{
 		
 		public StrategyController<T> Controller{ get; private set; }
-		
+
+		public string GetCurrentStrategyName(){
+			return Controller.GetStrategyName();
+		}
 		
 		protected override void OnInitialized(){
 			Debug.Log("StrategyAnt Initialized");

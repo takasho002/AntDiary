@@ -17,5 +17,10 @@ namespace AntDiary{
 		/// </summary>
 		/// <returns></returns>
 		public float CombatInterval => 0.5f;
+
+		/// <summary>
+		/// 移動速度
+		/// </summary>
+		public float MovementSpeed => 1.2f;
 	}
 }

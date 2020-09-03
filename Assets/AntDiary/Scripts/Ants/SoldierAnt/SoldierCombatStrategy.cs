@@ -21,7 +21,7 @@ namespace AntDiary.Scripts.Ants.SoldierAnt{
 		public override void PeriodicUpdate(){
 			Combat();
 			
-			//戦闘距離外なら戦闘に移行
+			//戦闘距離外なら追いかけに移行
 			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) > AntData.CombatDistance){
 				Controller.ChangeStrategy(new SoldierChaseStrategy(_enemyAnt));
 				return;

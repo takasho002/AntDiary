@@ -30,6 +30,10 @@ namespace AntDiary.Scripts.Ants{
 			_currentStrategy.FinishStrategy();
 		}
 		
+		/// <summary>
+		/// Strategyを変更する
+		/// </summary>
+		/// <param name="nextStrategy"></param>
 		public void ChangeStrategy(Strategy<T> nextStrategy){
 			Debug.Log("ChangeStrategy");
 			_currentStrategy?.FinishStrategy();
@@ -37,6 +41,14 @@ namespace AntDiary.Scripts.Ants{
 			_currentStrategy = nextStrategy;
 			nextStrategy.StartStrategy(this);
 			
+		}
+
+		/// <summary>
+		/// 現在のStrategyのクラス名を取得する
+		/// </summary>
+		/// <returns></returns>
+		public string GetStrategyName(){
+			return _currentStrategy.GetType().Name;
 		}
 	}
 }
