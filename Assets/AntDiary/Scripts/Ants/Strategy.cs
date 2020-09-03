@@ -20,7 +20,7 @@ namespace AntDiary{
 		}
 		
 		public Strategy(){
-			// HostAnt = ant;
+			
 		}
 
 		/// <summary>

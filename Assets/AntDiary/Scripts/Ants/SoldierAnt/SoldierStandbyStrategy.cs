@@ -1,4 +1,5 @@
 
+using System.Linq;
 using AntDiary.Scripts.Ants;
 using AntDiary.Scripts.Ants.SoldierAnt;
 
@@ -25,8 +26,8 @@ namespace AntDiary{
 		}
 
 		protected EnemyAnt GetTargetAnt(){
-			//TODO 未実装
-			throw new System.NotImplementedException();
+			var enemyList = NestSystem.Instance.SpawnedAnt.OfType<EnemyAnt>();
+			return enemyList.First();
 		}
 
 		

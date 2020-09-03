@@ -8,6 +8,13 @@ namespace AntDiary{
 		
 		protected override Strategy<EnemyAntData> CreateInitialStrategy(){
 			throw new System.NotImplementedException();
+			
+			//わからんポイント
+			//女王アリの部屋の取得方法
+			//攻撃処理
+			//攻撃モード移行の判定
+			//攻撃速度とかのパラメータをどうやって持つか
+			//
 		}
 	}
 }

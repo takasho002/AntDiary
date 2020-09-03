@@ -1,3 +1,7 @@
+
+
+using UnityEngine;
+
 namespace AntDiary.Scripts.Ants.SoldierAnt{
 	public class SoldierCombatStrategy: Strategy<SoldierAntData>{
 		private EnemyAnt _enemyAnt;
@@ -5,13 +9,23 @@ namespace AntDiary.Scripts.Ants.SoldierAnt{
 		public SoldierCombatStrategy(EnemyAnt enemyAnt){
 			_enemyAnt = enemyAnt;
 
-			UpdateInterval = 1.0f;
+		}
+
+		public override void StartStrategy(StrategyController<SoldierAntData> controller){
+			base.StartStrategy(controller);
+			
+			//攻撃間隔
+			UpdateInterval = AntData.CombatInterval;
 		}
 
 		public override void PeriodicUpdate(){
 			Combat();
-
-			//攻撃範囲内にいるかどうかの判定も多分いる
+			
+			//戦闘距離外なら戦闘に移行
+			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) > AntData.CombatDistance){
+				Controller.ChangeStrategy(new SoldierChaseStrategy(_enemyAnt));
+				return;
+			}
 			
 			//倒した
 			if(!_enemyAnt.Data.IsAlive){

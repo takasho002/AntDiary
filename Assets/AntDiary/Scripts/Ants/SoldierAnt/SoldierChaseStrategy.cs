@@ -2,14 +2,10 @@ using UnityEngine;
 
 namespace AntDiary.Scripts.Ants.SoldierAnt{
 	public class SoldierChaseStrategy: Strategy<SoldierAntData>{
-
 		private EnemyAnt _enemyAnt;
 		private NestPathNode _currentTargetNode;
 
-		/// <summary>
-		/// 戦闘に移行する距離
-		/// </summary>
-		private float _combatDistance = 0.5f;
+		
 		
 		public SoldierChaseStrategy(EnemyAnt enemyAnt){
 			_enemyAnt = enemyAnt;
@@ -22,7 +18,7 @@ namespace AntDiary.Scripts.Ants.SoldierAnt{
 			}
 
 			//戦闘距離内なら戦闘に移行
-			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) < _combatDistance){
+			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) < AntData.CombatDistance){
 				Controller.ChangeStrategy(new SoldierCombatStrategy(_enemyAnt));
 				return;
 			}
