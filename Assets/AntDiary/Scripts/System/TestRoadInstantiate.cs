@@ -36,7 +36,8 @@ public class TestRoadInstantiate : MonoBehaviour
         map[2, 1] = InstantiateCrossShapeRoad();
         map[2, 2] = InstantiateCrossShapeRoad();
         map[2, 3] = InstantiateLShapeRoad(EnumRoadDirection.Bottom);
-        //map[2, 4] = InstantiateIShapeRoad(EnumRoadHVDirection.Horizontal);
+       // map[2, 4] = InstantiateIShapeRoad(EnumRoadHVDirection.Horizontal);
+        map[2,4] =  NestSystem.Instance.InstantiateNestElement(new StoreRoomData());       
 
         map[3, 0] = InstantiateIShapeRoad(EnumRoadHVDirection.Horizontal);
         map[3, 1] = InstantiateIShapeRoad(EnumRoadHVDirection.Horizontal);
@@ -108,7 +109,7 @@ public class TestRoadInstantiate : MonoBehaviour
         //ここから
         NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[5, 0].transform.position});
         NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[2, 3].transform.position});
-        NestSystem.Instance.InstantiateNestElement(new ChochikukoRoomData{Position = map[2,4].transform.position});
+        // NestSystem.Instance.ConnectElements(map[2,4],map[3,4]);
         //ここまで少し追加しました後で消します
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 2].transform.position});
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 3].transform.position});

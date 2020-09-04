@@ -105,8 +105,8 @@ public class TestRoadInstantiateErgate : MonoBehaviour
         ToConstructedElem(map[2, 2]);
         ToConstructedElem(map[2, 3]);
         
-        NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 2].transform.position});
-        NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 3].transform.position});
+        NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[2, 2].transform.position});
+        NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[2, 3].transform.position});
 
         
         
