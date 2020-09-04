@@ -13,6 +13,8 @@ namespace AntDiary
     [Union(4, typeof(LShapeRoadData))]
     [Union(5, typeof(CrossShapeRoadData))]
     [Union(6, typeof(TShapeRoadData))]
+    [Union(7, typeof(QueenRoomData))]
+    [Union(8, typeof(ChochikukoRoomData))]
     public abstract class NestElementData
     {
         public NestElementData()

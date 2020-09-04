@@ -316,6 +316,7 @@ namespace AntDiary
         // private bool showGraph = true;
         private IEnumerable<IPathNode> latestRoute;
         private List<TypeInfo> antDataTypes;
+        private List<TypeInfo> nestElementDataTypes;
         private bool showNestElementData = false;
         private bool showCommonData = false;
 
@@ -421,8 +422,7 @@ namespace AntDiary
 
                 GUILayout.Label("アリのスポーンテスト");
                 if (antDataTypes == null)
-                    antDataTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.DefinedTypes)
-                        .Where(t => t.IsSubclassOf(typeof(AntData))).ToList();
+                    antDataTypes = antFactories.Select(f => f.GetType().BaseType.GenericTypeArguments[0].GetTypeInfo()).ToList();
                 {
                     int i = 0;
                     GUILayout.BeginHorizontal();
@@ -443,6 +443,35 @@ namespace AntDiary
                             if (data != null)
                             {
                                 InstantiateAnt(data);
+                            }
+                        }
+                    }
+
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.Label("NEstElementのスポーンテスト");
+                if (nestElementDataTypes == null)
+                    nestElementDataTypes = nestElementFactories.Select(f => f.GetType().BaseType.GenericTypeArguments[0].GetTypeInfo()).ToList();
+                {
+                    int i = 0;
+                    GUILayout.BeginHorizontal();
+                    foreach (var nestElementDataType in nestElementDataTypes)
+                    {
+                        if (i % 4 == 0)
+                        {
+                            GUILayout.EndHorizontal();
+                            GUILayout.BeginHorizontal();
+                        }
+
+                        i++;
+
+                        if (GUILayout.Button(nestElementDataType.Name))
+                        {
+                            var constructor = nestElementDataType.GetConstructor(new Type[] { });
+                            var data = (NestElementData) constructor?.Invoke(new object[] { });
+                            if (data != null)
+                            {
+                                InstantiateNestElement(data);
                             }
                         }
                     }
