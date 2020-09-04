@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Linq;
+using UnityScript.Scripting.Pipeline;
 
 namespace AntDiary
 {
@@ -55,6 +57,14 @@ namespace AntDiary
             jobScript.ideal_Soilder = DeffenceAntNum;
             jobScript.ideal_Mule = WorkAntNum;
             jobScript.ideal_Free = FreeAntNum;
+
+            //無職リストを持ってきてジョブチェンジ
+            var unemployedAnts = NestSystem.Instance.SpawnedAnt.Where(n => n.GetType() == typeof(UnemployedAnt) && n.Data.IsAlive);
+            Debug.Log(unemployedAnts.Count());
+            for (int i = unemployedAnts.Count()-1; i >= 0 ; i--)
+            {
+                jobScript.AssignJob(unemployedAnts.ElementAt(i));
+            }
 
             Debug.Log(ArchitectAntNum+":"+WorkAntNum+":"+DeffenceAntNum);
         }

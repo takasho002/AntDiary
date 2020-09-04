@@ -74,7 +74,7 @@ namespace AntDiary
             if (JobName == "Architecture")
             {
 
-                fillAmount = antCounter[typeof(BuilderAntData)]/total;//本来は建築アリのtypeを格納
+                fillAmount = (float)antCounter[typeof(BuilderAntData)]/total;//本来は建築アリのtypeを格納
                 //otherScrollbar1.fillAmount = antCounter[typeof(ErgateAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
                 //otherScrollbar2.fillAmount = antCounter[typeof(UnemployedAntData)] / total;//上に同じ
             }

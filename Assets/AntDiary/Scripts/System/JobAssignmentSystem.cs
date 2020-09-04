@@ -94,12 +94,14 @@ namespace AntDiary
 
             //diffを元にindexをソート
             Array.Sort(diff,index);
-            //一番理想より少ない役職に変更
+            //一番理想より少ない役職を取得
             Type nextjob = antjobs[index[0]];
+            //別の仕事に割り振るのであれば元を削除して転生
             if (nextjob.GetType() == ant.Data.GetType()) return;
             AntData respawnant = (AntData)Activator.CreateInstance(nextjob);
-            Destroy(ant.gameObject);
+            ant.Data.IsAlive = false;
             NestSystem.Instance.RemoveAnt(ant);
+            Destroy(ant.gameObject);
             NestSystem.Instance.InstantiateAnt(respawnant);
         }
 
