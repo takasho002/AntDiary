@@ -9,7 +9,7 @@ namespace AntDiary{
 		protected override float MovementSpeed => SelfData.MovementSpeed;
 		
 		protected override Strategy<EnemyAntData> CreateInitialStrategy(){
-			throw new System.NotImplementedException();
+			return new EnemyMoveStrategy();
 			
 			//わからんポイント
 			//女王アリの部屋の取得方法
