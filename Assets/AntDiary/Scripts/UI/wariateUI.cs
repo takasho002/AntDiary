@@ -70,23 +70,22 @@ namespace AntDiary
                     total++;
                 }
             }
-            if (total == 0) total++;
             if (JobName == "Architecture")
             {
 
-                fillAmount = (float)antCounter[typeof(BuilderAntData)]/total;//本来は建築アリのtypeを格納
+                fillAmount = (float)antCounter[typeof(BuilderAntData)]/Math.Max(1,total);//本来は建築アリのtypeを格納
                 //otherScrollbar1.fillAmount = antCounter[typeof(ErgateAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
                 //otherScrollbar2.fillAmount = antCounter[typeof(UnemployedAntData)] / total;//上に同じ
             }
             else if (JobName == "Work")
             {
-                fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
+                fillAmount = (float)antCounter[typeof(ErgateAntData)] / Math.Max(1, total);
                 //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
                 //otherScrollbar2.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
             }
             else if (JobName == "Deffence")
             {
-                fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
+                fillAmount = (float)antCounter[typeof(UnemployedAntData)] / Math.Max(1, total);
                 //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
                 //otherScrollbar2.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
             }
@@ -117,15 +116,15 @@ namespace AntDiary
 
             if (JobName == "Architecture")
             {
-                AntJobNum.text = "建築:" + Rate +"%";
+                AntJobNum.text =  "建築:" + (Rate).ToString("f0") +"%";
             }
             else if (JobName == "Work")
             {
-                AntJobNum.text = "働き:" + Rate + "%";
+                AntJobNum.text = "働き:" + (Rate).ToString("f0") + "%";
             }
             else if (JobName == "Deffence")
             {
-                AntJobNum.text = "防衛:" + Rate + "%";
+                AntJobNum.text = "防衛:" + (Rate).ToString("f0") + "%";
             }
             AntTotal.text = "総数:" + total + "匹";
         }
