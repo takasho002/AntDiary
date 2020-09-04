@@ -5,7 +5,11 @@ namespace AntDiary.Scripts.Roads{
 	[MessagePackObject()]
 	
 	public class IShapeRoadData: RoadData{
-
+		
+		public IShapeRoadData()
+		{
+		}
+		
 		public IShapeRoadData(EnumRoadHVDirection direction){
 			Direction = direction;
 		}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using AntDiary.Scripts.Roads;
 using UniRx;
 using UniRx.Triggers;
@@ -209,7 +210,8 @@ namespace AntDiary
         /// <param name="elementData">生成に使用するNestElementData。</param>
         /// <param name="registerToGameContext">新たにGameContextに登録するかどうか。セーブデータからの生成などの際に限りfalseを指定する。</param>
         /// <returns>生成されたGameObjectのもつNestElementコンポーネント。</returns>
-        public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true)
+        public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true,
+            bool registerInstanceToNestSystem = true)
         {
             NestElementFactory matchedFactory = null;
             foreach (var f in nestElementFactories)
@@ -237,7 +239,10 @@ namespace AntDiary
                     Data.Structure.NestElements.Add(elementData);
                 }
 
-                nestElements.Add(nestElement);
+                if (registerInstanceToNestSystem)
+                {
+                    nestElements.Add(nestElement);
+                }
             }
 
             return nestElement;
@@ -311,6 +316,7 @@ namespace AntDiary
         // private bool showGraph = true;
         private IEnumerable<IPathNode> latestRoute;
         private List<TypeInfo> antDataTypes;
+        private bool showNestElementData = false;
         private bool showCommonData = false;
 
         public void OnGUIPage()
@@ -319,7 +325,47 @@ namespace AntDiary
             if (Data != null)
             {
                 GUILayout.Label($"SpawnedAnts: {spawnedAnts.Count}");
+                
+                GUILayout.BeginHorizontal();
                 GUILayout.Label($"NestElements: {nestElements.Count}");
+                if (showNestElementData && GUILayout.Button("隠す"))
+                {
+                    showNestElementData = false;
+                }
+                else if (!showNestElementData && GUILayout.Button("表示"))
+                {
+                    showNestElementData = true;
+                }
+
+                GUILayout.EndHorizontal();
+                if (showNestElementData)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var d in Data.Structure.NestElements)
+                    {
+                        if (d == null)
+                        {
+                            var c = GUI.contentColor;
+                            GUI.contentColor = Color.red;
+                            GUILayout.Label("(null)");
+                            GUI.contentColor = c;
+                            continue;
+                        }
+                        
+                        var t = d.GetType();
+                        var props = t.GetProperties().Where(p => p.CanRead);
+
+                        foreach (var p in props)
+                        {
+                            sb.Append($"{p.Name} = {p.GetValue(d)}, ");
+                        }
+                        
+                        GUILayout.Label($"{t.Name} ({sb})");
+                        
+                        sb.Clear();
+                    }
+                }
+                
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Label($"AntStatusRegistry");
