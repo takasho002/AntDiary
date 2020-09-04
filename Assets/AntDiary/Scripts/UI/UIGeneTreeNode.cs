@@ -20,6 +20,8 @@ namespace AntDiary
             Depth = depth;
             Order = order;
 
+            Label.text = TargetGene.DisplayName;
+
             ParentView.OnSelectedGeneChanged.Subscribe(gene =>
             {
                 bool isSelected = gene == TargetGene;
@@ -71,6 +73,17 @@ namespace AntDiary
             {
                 if (!image) image = GetComponent<Image>();
                 return image;
+            }
+        }
+        
+        private Text label;
+
+        public Text Label
+        {
+            get
+            {
+                if (!label) label = GetComponentInChildren<Text>();
+                return label;
             }
         }
         
