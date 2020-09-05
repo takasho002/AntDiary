@@ -48,13 +48,13 @@ namespace AntDiary
         public void GetSnappableNode(NestElement target, out NestPathNode originNode, out NestPathNode targetNode,
             out float distance)
         {
-            var nodes = Host.NestElements.Where(e => e != target).SelectMany(e => e.GetNodes());
+            var nodes = Host.NestElements.Where(e => e != target).SelectMany(e => e.GetNodes()).Where(n => n.IsExposed);
 
             NestPathNode argMinDistanceOrigin = null;
             NestPathNode argMinDistance = null;
             float minSqrDistance = float.MaxValue;
 
-            foreach (var n in target.GetNodes())
+            foreach (var n in target.GetNodes().Where(n => n.IsExposed))
             {
                 var connectables = nodes.Where(other =>
                     other.IsExposed && other.IsConnectable(n) && n.IsConnectable(other));
@@ -85,31 +85,35 @@ namespace AntDiary
         public bool PlaceElementWithAutoConnect(NestElement target, bool needToBeConnected = true,
             float autoConnectThresholdDistance = 0.01f)
         {
-            if (!IsPlaceable(target)) return false;
-
             GetSnappableNode(target, out NestPathNode originNode, out NestPathNode targetNode, out float distance);
 
             if (distance <= autoConnectThresholdDistance)
             {
                 //自動接続を行う
+                if (!IsPlaceable(target, targetNode.Host)) return false;
                 Host.ConnectElements(originNode, targetNode);
             }
-            else if (needToBeConnected) return false;
+            else
+            {
+                if (needToBeConnected) return false;
+                if (!IsPlaceable(target)) return false;
+            }
 
             Host.RegisterNestElementToGameContext(target);
 
             return true;
         }
 
-        private Collider2D[] overlapResult = new Collider2D[1];
+        private Collider2D[] overlapResult = new Collider2D[2];
 
         /// <summary>
         /// NestElementが現在の位置に設置できるかどうかを取得する。
         /// 【注意】NestElementの位置を更新した直後、同一フレーム内で呼び出すと、移動前の位置で重複判定が行われるようです。結果正しい結果が得られないことがあります。
         /// </summary>
-        /// <param name="target"></param>
+        /// <param name="target">設置するNestElement</param>
+        /// <param name="ignore">スナップ対象のNestElement。重複していても無視される。</param>
         /// <returns></returns>
-        public bool IsPlaceable(NestElement target)
+        public bool IsPlaceable(NestElement target, NestElement ignore = null)
         {
             var cf = new ContactFilter2D()
             {
@@ -117,7 +121,9 @@ namespace AntDiary
                 layerMask = LayerMask.GetMask("NestElement"),
             };
             int res = target.GetBlockingShape().OverlapCollider(cf, overlapResult);
-            //Debug.Log(res, overlapResult[0]);
+
+            //スナップ対象のNestElementとの重複を無視します。グリッド上でしか接続を行わない現状ならこういう施策が可能ですが、そうでない場合は不正な形状の巣を形成する可能性があります
+            if (ignore != null && res == 1 && overlapResult[0] == ignore.GetBlockingShape()) return true;
 
             return res == 0;
         }

@@ -113,7 +113,7 @@ namespace AntDiary
             }
             else
             {
-                nestelement = NestSystem.Instance.InstantiateNestElement(data);
+                nestelement = NestSystem.Instance.InstantiateNestElement(data, false, false);
                 nestelement.transform.position = screenToWorldPointPosition;
             }
         }
@@ -125,21 +125,29 @@ namespace AntDiary
                 position.z = 10f;
                 screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
                 nestelement.transform.position = screenToWorldPointPosition;
+                
+                //ドラッグ中にスナップ
+                nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);
 
         }
         public void PushUp()
         {
-
+/*
               if (BuildingSystem.Instance.IsPlaceable(nestelement) == false)//建築可能な領域でない
               {
                 //NestElement削除
-                  NestSystem.Instance.RemoveNestElement(nestelement);
+                  //NestSystem.Instance.RemoveNestElement(nestelement);
                   Destroy(nestelement.gameObject);
               }
               else//建築可能
               {
-                nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);//付近のノードにスナップした座標へ置く      
+                //nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);//付近のノードにスナップした座標へ置く      
                 BuildingSystem.Instance.PlaceElementWithAutoConnect(nestelement);//NestSystemへ登録
+              }
+*/
+              if (!BuildingSystem.Instance.PlaceElementWithAutoConnect(nestelement, false))
+              {
+                  Destroy(nestelement.gameObject);
               }
         }
     }
