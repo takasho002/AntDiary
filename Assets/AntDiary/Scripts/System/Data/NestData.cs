@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using MessagePack;
 using UnityEngine;
@@ -13,10 +14,14 @@ namespace AntDiary
     {
         [Key(10)]
         public List<AntData> Ants { get; set; } = new List<AntData>();
+        
         [Key(11)]
         public int StoredFood { get; set; }
+        
         [Key(12)]
         public NestStructureData Structure { get; set; } = new NestStructureData();
 
+        [Key(14)]
+        public AntCommonDataRegistryData CommonDataRegistry { get; set; } = new AntCommonDataRegistryData();
     }
 }
