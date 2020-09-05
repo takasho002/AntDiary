@@ -8,10 +8,13 @@ namespace AntDiary
     [MessagePackObject()]
     public class ErgateAntData : AntData
     {
+        public ErgateAntData()
+        {
+            
+        }
+
         [Key(100)]
         public bool IsHoldingFood { get; set; } = false;
 
-        [Key(101)]
-        public int Capacity { get; set; }
     }
 }

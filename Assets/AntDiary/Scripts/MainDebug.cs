@@ -53,7 +53,7 @@ public class MainDebug : MonoBehaviour
 
     private void CreateErgate()
     {
-        ErgateAntData data = new ErgateAntData() { Capacity = 10,IsHoldingFood = true };
+        ErgateAntData data = new ErgateAntData() {IsHoldingFood = true };
         nestsystem.InstantiateAnt(data);
     }
     private void CreateQueen()

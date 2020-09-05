@@ -39,7 +39,7 @@ namespace AntDiary
                 {
                     Chochikukonum++;
                 }
-                else if(list[i].GetType().Name == "QueenAntRoom")//仮の名前
+                else if(list[i].GetType().Name == "QueenRoom")//仮の名前
                 {
                     QweenRoomNum++;
                 }
@@ -92,10 +92,10 @@ namespace AntDiary
                 //data = new ChochikubeyaData();
                 data = new StoreRoomData();
             }
-            else if(NestName == "QueenAntRoom" && QweenRoomNum == 0)
+            else if(NestName == "QueenRoom" && QweenRoomNum == 0)
             {
                 //data = new QweenAntRoomData();
-                data = new QueenAntRoomData(){IsUnderConstruction = false };
+                data = new QueenRoomData();
             }
             else if(NestName =="Cross")
             {
@@ -107,7 +107,7 @@ namespace AntDiary
             }
             
             //貯蓄庫と女王の部屋が指定されたときシーン内に巣でにそれらの部屋があるなら出せない
-            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QueenAntRoom" && QweenRoomNum != 0))
+            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QueenRoom" && QweenRoomNum != 0))
             {
                 GetComponent<EventTrigger>().triggers.Clear();
             }

@@ -6,8 +6,8 @@ using UnityEngine;
 namespace AntDiary
 {
     [MessagePackObject()]
-    public class QueenAntRoomData : RoomData
+    public class QueenAntCommonData : AntCommonData<QueenAntData>
     {
-        //Keyは30~
+        //Keyは10~
     }
 }
