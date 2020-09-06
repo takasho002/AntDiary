@@ -12,18 +12,20 @@ namespace AntDiary
         // 初期値: Start()呼び出し時のゲーム内時刻
         private float lastSpawnedTime;
         [SerializeField] private JobAssignmentSystem JobAssignmentSystem;
+        private QueenRoom queenroom;
 
         // Start is called before the first frame update
         void Start()
         {
             lastSpawnedTime = CurrentTime;
             JobAssignmentSystem = GameObject.Find("JobAssignmentSystem").GetComponent<JobAssignmentSystem>();
+            queenroom = GetComponent<QueenRoom>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            StartCoroutine("Spawn");
+            if((queenroom.Data as QueenRoomData).IsBuilt)StartCoroutine("Spawn");
         }
 
         // 実際のアリ生成関数

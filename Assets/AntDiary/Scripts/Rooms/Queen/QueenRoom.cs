@@ -67,7 +67,17 @@ namespace AntDiary
             Vector2 y = new Vector2(0, boundingRect.height * 0.5f);
             Gizmos.DrawWireCube((Vector2)transform.position + center, new Vector3(boundingRect.width, boundingRect.height, 1));
         }
-        
+
+        protected override void OnBuildingCompleted()
+        {
+            base.OnBuildingCompleted();
+            //建築完了時に女王アリを生成
+            QueenAntData queenantdata = new QueenAntData();
+            NestSystem.Instance.InstantiateAnt(queenantdata);
+            //建築完了時にAntSpawnerを有効にする
+            SelfData.IsBuilt = true;
+        }
+
     }
     
     public static class NestSystemExtensionsQueenRoom
