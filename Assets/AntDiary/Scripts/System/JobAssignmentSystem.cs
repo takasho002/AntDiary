@@ -22,10 +22,10 @@ namespace AntDiary
         private NestData nestdata => NestSystem.Instance?.Data;
         Dictionary<Type, int> antCounter = new Dictionary<Type, int>();
 
-        public float ideal_Architect;
-        public float ideal_Soilder;
-        public float ideal_Mule;
-        public float ideal_Free;
+        public float ideal_Architect = 0f;
+        public float ideal_Soilder = 0f;
+        public float ideal_Mule = 0f;
+        public float ideal_Free = 100f;
 
         void Start()
         {
