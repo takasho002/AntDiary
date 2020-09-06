@@ -9,6 +9,7 @@ using System;
 
 public class UITitle : MonoBehaviour
 {
+    [SerializeField] GameObject saveloadUI;
     public void onClickedNewGame()
     {
         UnityEngine.Debug.Log("NewGame");
@@ -20,7 +21,8 @@ public class UITitle : MonoBehaviour
     {
         UnityEngine.Debug.Log("LoadGame");
         //SceneManager.sceneLoaded += DefaultLoad;
-        SceneManager.LoadScene("MainScene");
+        //SceneManager.LoadScene("MainScene");
+        saveloadUI.SetActive(true);
     }
 
     public void onClickedExit()

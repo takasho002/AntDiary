@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UISaveLoad : MonoBehaviour
 {
@@ -32,5 +33,14 @@ public class UISaveLoad : MonoBehaviour
     {
         //SaveSystem.Instance.LoadSaveUnitToCurrent(lastSlection);
         Debug.Log("Load"+lastSelction);
+        SceneManager.sceneLoaded += LoadData;
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void LoadData(Scene next, LoadSceneMode mode)
+    {
+        Debug.Log("hoge");
+        //SaveSystem.Instance.LoadDefaultSaveUnitToCurrent();
+        SceneManager.sceneLoaded -= LoadData;
     }
 }
