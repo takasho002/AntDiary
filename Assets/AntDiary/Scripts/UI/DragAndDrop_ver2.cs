@@ -4,7 +4,8 @@ using System.Linq;
 using System;
 using AntDiary.Scripts.Roads;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace AntDiary
 {
@@ -34,11 +35,11 @@ namespace AntDiary
             //貯蓄庫と女王の部屋の数を数えます
             for(int i=0;i<list.Count;i++)
             {
-                if(list[i].gameObject.name == "Chochikubeya(Clone)")
+                if (list[i].GetType().Name == "StoreRoom")
                 {
                     Chochikukonum++;
                 }
-                else if(list[i].gameObject.name == "QweenAntRoom(Clone)")//仮の名前
+                else if(list[i].GetType().Name == "QueenRoom")//仮の名前
                 {
                     QweenRoomNum++;
                 }
@@ -86,15 +87,15 @@ namespace AntDiary
             {
                 data = new TShapeRoadData(EnumRoadDirection.Left);
             }
-            else if(NestName == "Chochikubeya")
+            else if(NestName == "Chochikubeya" && Chochikukonum == 0)
             {
                 //data = new ChochikubeyaData();
-                data = new CrossShapeRoadData();
+                data = new StoreRoomData();
             }
-            else if(NestName == "QweenAntRoom")
+            else if(NestName == "QueenRoom" && QweenRoomNum == 0)
             {
                 //data = new QweenAntRoomData();
-                data = new CrossShapeRoadData();
+                data = new QueenRoomData();
             }
             else if(NestName =="Cross")
             {
@@ -106,9 +107,9 @@ namespace AntDiary
             }
             
             //貯蓄庫と女王の部屋が指定されたときシーン内に巣でにそれらの部屋があるなら出せない
-            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QweenAntRoom" && QweenRoomNum != 0))
+            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QueenRoom" && QweenRoomNum != 0))
             {
-                
+                GetComponent<EventTrigger>().triggers.Clear();
             }
             else
             {

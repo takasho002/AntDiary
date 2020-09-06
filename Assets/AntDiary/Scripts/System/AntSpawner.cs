@@ -11,11 +11,13 @@ namespace AntDiary
         // これでスポーン間隔を管理
         // 初期値: Start()呼び出し時のゲーム内時刻
         private float lastSpawnedTime;
+        [SerializeField] private JobAssignmentSystem JobAssignmentSystem;
 
         // Start is called before the first frame update
         void Start()
         {
             lastSpawnedTime = CurrentTime;
+            JobAssignmentSystem = GameObject.Find("JobAssignmentSystem").GetComponent<JobAssignmentSystem>();
         }
 
         // Update is called once per frame
@@ -34,7 +36,8 @@ namespace AntDiary
                 {
                     Position = transform.position,
                 };
-                NestSystem.Instance.InstantiateAnt(data);
+                var ant = NestSystem.Instance.InstantiateAnt(data);
+                JobAssignmentSystem.AssignJob(ant);
                 lastSpawnedTime = CurrentTime;
             }
             return null;

@@ -57,7 +57,7 @@ namespace AntDiary
 
         private string GetCurrentMonthAndSeasonData(int currentMonth, int seasonId)
         {
-            string text = currentMonth.ToString("00") + "月 / ";
+            string text = ((currentMonth+3) % 12 + 1).ToString("00") + "月 / ";
 
             switch (seasonId)
             {

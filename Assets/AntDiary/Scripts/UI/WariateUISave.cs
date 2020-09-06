@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Linq;
+using UnityScript.Scripting.Pipeline;
 
 namespace AntDiary
 {
     public class WariateUISave : MonoBehaviour
     {
-        private int ArchitectAntNum;
-        private int WorkAntNum;
-        private int DeffenceAntNum;
-        private int TotalAntNum;
+        private float ArchitectAntNum;
+        private float WorkAntNum;
+        private float DeffenceAntNum;
+        private float TotalAntNum;
 
-        public int FreeAntNum;
+        public float FreeAntNum;
 
         public Image ArchitectBar;
         public Image WorkBar;
         public Image DeffenceBar;
 
-        private WariateUI Architect;
-        private WariateUI Work;
-        private WariateUI Deffence;
-        private WariateUI Total;
+        [SerializeField] private WariateUI Architect;
+        [SerializeField] private WariateUI Work;
+        [SerializeField] private WariateUI Deffence;
+        [SerializeField] private WariateUI Total;
 
         GameObject JobSystem;
         JobAssignmentSystem jobScript;
@@ -44,18 +46,25 @@ namespace AntDiary
             Work = WorkBar.GetComponent<WariateUI>();
             Deffence = DeffenceBar.GetComponent<WariateUI>();
 
+            ArchitectAntNum = Architect.Rate;
+            WorkAntNum = Work.Rate;
+            DeffenceAntNum = Deffence.Rate;
+            TotalAntNum = 100.0f;
 
-            ArchitectAntNum = Architect.NumOfBar;
-            WorkAntNum = Work.NumOfBar;
-            DeffenceAntNum = Deffence.NumOfBar;
-            TotalAntNum = Total.total;
-
-            FreeAntNum = TotalAntNum - ArchitectAntNum + WorkAntNum + DeffenceAntNum;
+            FreeAntNum = TotalAntNum - (ArchitectAntNum + WorkAntNum + DeffenceAntNum);
 
             jobScript.ideal_Architect = ArchitectAntNum;
             jobScript.ideal_Soilder = DeffenceAntNum;
             jobScript.ideal_Mule = WorkAntNum;
             jobScript.ideal_Free = FreeAntNum;
+
+            //無職リストを持ってきてジョブチェンジ
+            var unemployedAnts = NestSystem.Instance.SpawnedAnt.Where(n => n.GetType() == typeof(UnemployedAnt) && n.Data.IsAlive);
+            Debug.Log(unemployedAnts.Count());
+            for (int i = unemployedAnts.Count()-1; i >= 0 ; i--)
+            {
+                jobScript.AssignJob(unemployedAnts.ElementAt(i));
+            }
 
             Debug.Log(ArchitectAntNum+":"+WorkAntNum+":"+DeffenceAntNum);
         }
