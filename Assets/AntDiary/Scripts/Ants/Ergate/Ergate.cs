@@ -11,21 +11,20 @@ using System.Linq;
 public class Ergate : MonoBehaviour
 {
     ErgateAntData data;
-    ErgateAnt Host;
+    public ErgateAnt HostAnt;
     public NestPathNode nodeNest;
     public NestPathNode nodeFeed;
 
     // public Vector2 distance;
 
+         
     void Start()
     {
         data = (ErgateAntData)GetComponent<ErgateAnt>().Data;
-        Host = ;
-        //antMovement = GetComponent<AntMovement>();
-
+        HostAnt = new ErgateAnt();
         //目的地の設定
         var elements = NestSystem.Instance.NestElements;
-        Debug.Log(NestSystem.Instance.NestElements.Count);
+        Debug.Log(elements.Count);
         foreach (var element in elements)
         {
             if (element.GetType().Name.Equals("StoreRoom"))
@@ -33,17 +32,16 @@ public class Ergate : MonoBehaviour
                 nodeNest = element.GetNodes().ElementAt(0);
             }
         }
-
-
-        nodeFeed = NestSystem.Instance.NestElements[1].GetNodes().ElementAt(1);
-        Host.StartForPathNode(nodeFeed , getFeed , Cancel);
+        nodeFeed = NestSystem.Instance.NestElements[2].GetNodes().FirstOrDefault(n => n.Name == "wild_top");
+        if(nodeFeed ==null)Debug.Log("nullです");
+        HostAnt.StartForPathNode(nodeFeed , getFeed , Cancel);
     }
 
-    void Cancel(){
-        Host.CancelMovement();
+    public void Cancel(){
+        HostAnt.CancelMovement();
     }
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
     }
     
@@ -52,7 +50,7 @@ public class Ergate : MonoBehaviour
     {
         data.IsHoldingFood = true;
         //巣に帰還
-        Host.StartForPathNode(nodeNest , leaveFeed , Cancel);
+        HostAnt.StartForPathNode(nodeNest , leaveFeed , Cancel);
     }
 
     //餌を離す
@@ -63,3 +61,4 @@ public class Ergate : MonoBehaviour
     }
 
 }
+

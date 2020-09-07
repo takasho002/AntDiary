@@ -109,7 +109,9 @@ public class TestRoadInstantiate : MonoBehaviour
         //ここから
         NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[5, 0].transform.position});
         NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[2, 3].transform.position});
-        // NestSystem.Instance.ConnectElements(map[2,4],map[3,4]);
+        var elemC = map[2,4].GetNodes().First(node => node.Name == "right");
+        var elemD = map[3,4].GetNodes().First(n => n.Name == "wild_left");
+        NestSystem.Instance.ConnectElements(elemC,elemD);
         //ここまで少し追加しました後で消します
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 2].transform.position});
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 3].transform.position});
