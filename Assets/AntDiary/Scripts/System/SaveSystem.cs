@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using MessagePack;
@@ -6,27 +7,24 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public class SaveSystem : IDebugMenu
+    public static class SaveSystem
     {
-        
-        public void SaveCurrentSaveUnit(int number)
+        public static void SaveCurrentSaveUnit(int number)
         {
             SaveSaveFile(number, SaveUnit.Current);
         }
 
-        public void LoadSaveUnitToCurrent(int number)
+        public static void LoadSaveUnitToCurrent(int number)
         {
             LoadSaveFile(number).SetAsCurrent();
         }
 
-        public void LoadDefaultSaveUnitToCurrent()
+        public static void LoadDefaultSaveUnitToCurrent()
         {
             SaveUnit.GetDefaultSaveUnit().SetAsCurrent();
         }
-        
-        
 
-        private SaveUnit SaveSaveFile(int number, SaveUnit su)
+        private static SaveUnit SaveSaveFile(int number, SaveUnit su)
         {
             string fileName = GetSaveFileName(number);
             byte[] raw = MessagePackSerializer.Serialize(su);
@@ -35,7 +33,7 @@ namespace AntDiary
             return su;
         }
         
-        private SaveUnit LoadSaveFile(int number)
+        private static SaveUnit LoadSaveFile(int number)
         {
             string fileName = GetSaveFileName(number);
             byte[] raw = System.IO.File.ReadAllBytes(fileName);
@@ -43,11 +41,15 @@ namespace AntDiary
             return su;
         }
 
-        private string GetSaveFileName(int number)
+        private static string GetSaveFileName(int number)
         {
             return $"{Application.persistentDataPath.TrimEnd('/', '\\')}/Save/{number}/saveunit.bin";
         }
-        
+
+    }
+
+    public class SaveSystemDebugMenu : IDebugMenu
+    {
         #region Debug
         public string pageTitle { get; } = "セーブ/ロード";
         public void OnGUIPage()
@@ -59,7 +61,7 @@ namespace AntDiary
             
             if (GUILayout.Button($"初期状態のデータをロード"))
             {
-                LoadDefaultSaveUnitToCurrent();
+                SaveSystem.LoadDefaultSaveUnitToCurrent();
             }
 
             for (int i = 0; i < 4; i++)
@@ -68,12 +70,12 @@ namespace AntDiary
                 
                 if (GUILayout.Button($"Load from {i}"))
                 {
-                    LoadSaveUnitToCurrent(i);
+                    SaveSystem.LoadSaveUnitToCurrent(i);
                 }
                 GUI.enabled = SaveUnit.Current != null;
                 if (GUILayout.Button($"Save to {i}"))
                 {
-                    SaveCurrentSaveUnit(i);
+                    SaveSystem.SaveCurrentSaveUnit(i);
                 }
                 GUI.enabled = true;
                 GUILayout.EndHorizontal();
