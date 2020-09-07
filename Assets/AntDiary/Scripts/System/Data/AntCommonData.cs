@@ -10,6 +10,7 @@ namespace AntDiary
     [Union(1, typeof(BuilderAntCommonData))]
     [Union(2, typeof(ErgateAntCommonData))]
     [Union(3, typeof(UnemployedAntCommonData))]
+    [Union(4, typeof(QueenAntCommonData))]
     public abstract class AntCommonDataBase
     {
         //派生クラスのメンバのKeyは10~

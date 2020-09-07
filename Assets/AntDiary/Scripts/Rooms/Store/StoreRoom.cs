@@ -18,7 +18,7 @@ namespace AntDiary
         [SerializeField] private Sprite Esanashi;
         private SpriteRenderer spriteRenderer;
 
-        public int season;
+        private int [] season = {1,1,1,1,1};
         //ここまで
 
         public override Collider2D GetBlockingShape()
@@ -77,7 +77,7 @@ namespace AntDiary
         {
             GameObject colliderObj = collision.gameObject;
             if (!colliderObj.GetComponent<ErgateAnt>().GetType().Name.Equals("ErgateAnt")) return;
-            ErgateAntData script = (ErgateAntData)colliderObj.GetComponent<ErgateAnt>().Data;
+            ErgateAnt script = (ErgateAnt)colliderObj.GetComponent<ErgateAnt>();
             Debug.Log(colliderObj.GetComponent<ErgateAnt>().GetType().Name);
 
             if (script.IsHoldingFood)
@@ -85,9 +85,9 @@ namespace AntDiary
                 // 貯蓄部屋のストックが0から増える際はspriteを餌ありに変更
                 if (NestSystem.Instance.Data.StoredFood == 0)
                 {
-                    //spriteRenderer.sprite = Esaari;
+                    spriteRenderer.sprite = Esaari;
                 }
-                NestSystem.Instance.Data.StoredFood += season * script.Capacity;
+                NestSystem.Instance.Data.StoredFood += season[TimeSystem.Instance.CurrentSeason] * script.Capacity;
                 Debug.Log(NestSystem.Instance.Data.StoredFood);
                 //script.IsHoldingFood = false;
             }

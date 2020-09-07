@@ -6,11 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-
-    path: Assets/AntDiary/Scenes/MainScene.unity
-    guid: 81cab07c7a08e2a41bacdf37c6a9b0de
+    path: Assets/AntDiary/Scenes/EndingScene.unity
+    guid: 3a44ae42554a97b44a3d32efce5480ab
   - enabled: 1
     path: Assets/AntDiary/Scenes/Title.unity
     guid: 14476fa10e0f84e4ab057cdc2213ad94
-
+  - enabled: 1
+    path: Assets/AntDiary/Scenes/MainScene.unity
+    guid: 81cab07c7a08e2a41bacdf37c6a9b0de
+  - enabled: 1
+    path: Assets/AntDiary/Scenes/GameOverScene.unity
+    guid: aac6921bf17cef34c99430a832fc5007
   m_configObjects: {}

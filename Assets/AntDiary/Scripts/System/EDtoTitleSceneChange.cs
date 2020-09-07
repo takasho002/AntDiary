@@ -16,7 +16,7 @@ public class EDtoTitleSceneChange : MonoBehaviour
     void Update()
     {
         if(Input.anyKeyDown){
-            SceneManager.LoadScene ("takasho_TitleScene");
+            SceneManager.LoadScene ("Title");
         }
     }
 }
