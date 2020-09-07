@@ -301,6 +301,26 @@ namespace AntDiary
             return edge;
         }
 
+        public IEnumerable<T> GetNestElements<T>() where T : NestElement
+        {
+            return nestElements.OfType<T>();
+        }
+        
+        public IEnumerable<T> GetAnts<T>() where T : Ant
+        {
+            return spawnedAnts.OfType<T>();
+        }
+
+        public T GetNestElement<T>() where T : NestElement
+        {
+            return GetNestElements<T>().FirstOrDefault();
+        }
+        
+        public T GetAnt<T>() where T : Ant
+        {
+            return GetAnts<T>().FirstOrDefault();
+        }
+
         public IEnumerable<IPathNode> FindRoute(NestPathNode from, NestPathNode to)
         {
             AStarSearcher searcher = new AStarSearcher(null);

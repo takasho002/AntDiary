@@ -18,6 +18,7 @@ namespace AntDiary
         [Key(0)] public float MaxHealth { get; set; }
         [Key(1)] public float BasicMovementSpeed { get; set; }
         [Key(2)] public float BasicConsumeAmount { get; set; }
+        [Key(3)] public float BasicEfficiency { get; set; }
     }
 
     /// <summary>
@@ -31,6 +32,7 @@ namespace AntDiary
             MaxHealth = 1f;
             BasicMovementSpeed = 1f;
             BasicConsumeAmount = 1f;
+            BasicEfficiency = 1f;
         }
     }
 }
