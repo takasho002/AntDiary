@@ -19,7 +19,9 @@ namespace AntDiary
             new BuilderAntCommonData(),
             new ErgateAntCommonData(),
             new UnemployedAntCommonData(),
-            new QueenAntCommonData()
+            new QueenAntCommonData(),
+            new EnemyAntCommonData(),
+            new SoldierAntCommonData(),
         };
 
         public AntCommonData<T> GetCommonDataFor<T>() where T : AntData

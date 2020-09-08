@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AntDiary
-{
-    public class AntDamageCalc : MonoBehaviour
-    {
-        [SerializeField] int ability = default; // アリのステータス取得の代わり
-        [SerializeField] Ant myself = default;
+//CombatUtilを使用してください
 
-        /// <summary>
-        /// 敵アリのHPを減算するメソッド．
-        /// 自分のAntクラスを登録しておく必要があります．
-        /// </summary>
-        /// <param name="enemy">敵アリオブジェクトを指定</param>
-        void ReduceEnemyHP(Ant enemy)
-        {
-            // enemy.Data.HP -= ability;
-        }
-    }
-}
+// namespace AntDiary
+// {
+//     public class AntDamageCalc : MonoBehaviour
+//     {
+//         [SerializeField] int ability = default; // アリのステータス取得の代わり
+//         [SerializeField] Ant myself = default;
+//
+//         /// <summary>
+//         /// 敵アリのHPを減算するメソッド．
+//         /// 自分のAntクラスを登録しておく必要があります．
+//         /// </summary>
+//         /// <param name="enemy">敵アリオブジェクトを指定</param>
+//         void ReduceEnemyHP(Ant enemy)
+//         {
+//             // enemy.Data.HP -= ability;
+//         }
+//     }
+// }
