@@ -21,7 +21,8 @@ public class Ergate : MonoBehaviour
     void Start()
     {
         data = (ErgateAntData)GetComponent<ErgateAnt>().Data;
-        HostAnt = new ErgateAnt();
+        //HostAnt = new ErgateAnt();
+        HostAnt = (ErgateAnt)GetComponent<ErgateAnt>();
         //目的地の設定
         var elements = NestSystem.Instance.NestElements;
         Debug.Log(elements.Count);
