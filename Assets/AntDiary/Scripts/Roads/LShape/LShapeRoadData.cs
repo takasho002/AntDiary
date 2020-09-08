@@ -4,6 +4,10 @@ namespace AntDiary.Scripts.Roads{
 	[MessagePackObject()]
 	public class LShapeRoadData: RoadData{
 		
+		public LShapeRoadData()
+		{
+		}
+		
 		public LShapeRoadData(EnumRoadDirection direction){
 			Direction = direction;
 		}

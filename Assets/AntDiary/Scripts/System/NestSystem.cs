@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text;
+using AntDiary.Scripts.Roads;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -55,21 +58,21 @@ namespace AntDiary
         public BuildingSystem BuildingSystem { get; set; }
 
         private readonly List<Ant> spawnedAnts = new List<Ant>();
-        
+
         /// <summary>
         /// 巣に存在するすべてのアリを取得する。
         /// </summary>
         public IReadOnlyList<Ant> SpawnedAnt => spawnedAnts;
 
         private readonly List<NestElement> nestElements = new List<NestElement>();
-        
+
         /// <summary>
         /// 巣に存在するすべてのNestElementを取得する。
         /// </summary>
         public IReadOnlyList<NestElement> NestElements => nestElements;
 
         private readonly List<NestPathElementEdge> elementEdges = new List<NestPathElementEdge>();
-        
+
         /// <summary>
         /// NestElement間の接続をすべて取得する。
         /// </summary>
@@ -155,8 +158,24 @@ namespace AntDiary
         /// <returns>生成されたGameObjectのもつAntコンポーネント。</returns>
         public Ant InstantiateAnt(AntData antData, bool registerToGameContext = true)
         {
-            //Debug.Log(antData.GetType());
-            var ant = antFactories.FirstOrDefault(f => f.DataType == antData.GetType())?.InstantiateAnt(antData);
+            AntFactory matchedFactory = null;
+            foreach (var f in antFactories)
+            {
+                if (f.DataType == antData.GetType())
+                {
+                    matchedFactory = f;
+                    break;
+                }
+                else if (matchedFactory == null && antData.GetType().IsSubclassOf(f.DataType))
+                {
+                    matchedFactory = f;
+                }
+            }
+
+            if (!matchedFactory) Debug.LogWarning($"NestSystem: {antData.GetType()} 用のAntFactoryは登録されていません。");
+
+            var ant = matchedFactory?.InstantiateAnt(antData);
+
             if (ant != null)
             {
                 if (registerToGameContext)
@@ -191,9 +210,9 @@ namespace AntDiary
         /// <param name="elementData">生成に使用するNestElementData。</param>
         /// <param name="registerToGameContext">新たにGameContextに登録するかどうか。セーブデータからの生成などの際に限りfalseを指定する。</param>
         /// <returns>生成されたGameObjectのもつNestElementコンポーネント。</returns>
-        public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true)
+        public NestElement InstantiateNestElement(NestElementData elementData, bool registerToGameContext = true,
+            bool registerInstanceToNestSystem = true)
         {
-
             NestElementFactory matchedFactory = null;
             foreach (var f in nestElementFactories)
             {
@@ -201,16 +220,18 @@ namespace AntDiary
                 {
                     matchedFactory = f;
                     break;
-                }else if (matchedFactory == null && elementData.GetType().IsSubclassOf(f.DataType))
+                }
+                else if (matchedFactory == null && elementData.GetType().IsSubclassOf(f.DataType))
                 {
                     matchedFactory = f;
                 }
             }
-            
-            if(!matchedFactory) Debug.LogWarning($"NestSystem: {elementData.GetType()} 用のNestElementFactoryは登録されていません。");
-            
+
+            if (!matchedFactory)
+                Debug.LogWarning($"NestSystem: {elementData.GetType()} 用のNestElementFactoryは登録されていません。");
+
             var nestElement = matchedFactory?.InstantiateNestElement(elementData);
-            
+
             if (nestElement != null)
             {
                 if (registerToGameContext)
@@ -218,7 +239,10 @@ namespace AntDiary
                     Data.Structure.NestElements.Add(elementData);
                 }
 
-                nestElements.Add(nestElement);
+                if (registerInstanceToNestSystem)
+                {
+                    nestElements.Add(nestElement);
+                }
             }
 
             return nestElement;
@@ -262,9 +286,9 @@ namespace AntDiary
                 throw new ArgumentException("NestElementDataが設定されていません。あらかじめ適切なNestElementDataを注入してください。");
             if (Data.Structure.NestElements.Contains(element.Data))
                 throw new ArgumentException("指定されたNestElementのDataはすでに登録されています。");
-            
+
             if (!nestElements.Contains(element)) nestElements.Add(element);
-            
+
             Data.Structure.NestElements.Add(element.Data);
         }
 
@@ -275,6 +299,26 @@ namespace AntDiary
             elementEdges.Add(edge);
             Data.Structure.ElementEdges.Add(edge.Data);
             return edge;
+        }
+
+        public IEnumerable<T> GetNestElements<T>() where T : NestElement
+        {
+            return nestElements.OfType<T>();
+        }
+        
+        public IEnumerable<T> GetAnts<T>() where T : Ant
+        {
+            return spawnedAnts.OfType<T>();
+        }
+
+        public T GetNestElement<T>() where T : NestElement
+        {
+            return GetNestElements<T>().FirstOrDefault();
+        }
+        
+        public T GetAnt<T>() where T : Ant
+        {
+            return GetAnts<T>().FirstOrDefault();
         }
 
         public IEnumerable<IPathNode> FindRoute(NestPathNode from, NestPathNode to)
@@ -288,8 +332,13 @@ namespace AntDiary
         #region Debug
 
         public string pageTitle { get; } = "巣統合システム";
-        private bool showGraph = true;
+
+        // private bool showGraph = true;
         private IEnumerable<IPathNode> latestRoute;
+        private List<TypeInfo> antDataTypes;
+        private List<TypeInfo> nestElementDataTypes;
+        private bool showNestElementData = false;
+        private bool showCommonData = false;
 
         public void OnGUIPage()
         {
@@ -297,7 +346,160 @@ namespace AntDiary
             if (Data != null)
             {
                 GUILayout.Label($"SpawnedAnts: {spawnedAnts.Count}");
+                
+                GUILayout.BeginHorizontal();
                 GUILayout.Label($"NestElements: {nestElements.Count}");
+                if (showNestElementData && GUILayout.Button("隠す"))
+                {
+                    showNestElementData = false;
+                }
+                else if (!showNestElementData && GUILayout.Button("表示"))
+                {
+                    showNestElementData = true;
+                }
+
+                GUILayout.EndHorizontal();
+                if (showNestElementData)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var d in Data.Structure.NestElements)
+                    {
+                        if (d == null)
+                        {
+                            var c = GUI.contentColor;
+                            GUI.contentColor = Color.red;
+                            GUILayout.Label("(null)");
+                            GUI.contentColor = c;
+                            continue;
+                        }
+                        
+                        var t = d.GetType();
+                        var props = t.GetProperties().Where(p => p.CanRead);
+
+                        foreach (var p in props)
+                        {
+                            sb.Append($"{p.Name} = {p.GetValue(d)}, ");
+                        }
+                        
+                        GUILayout.Label($"{t.Name} ({sb})");
+                        
+                        sb.Clear();
+                    }
+                }
+                
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label($"AntStatusRegistry");
+                if (showCommonData && GUILayout.Button("隠す"))
+                {
+                    showCommonData = false;
+                }
+                else if (!showCommonData && GUILayout.Button("表示"))
+                {
+                    showCommonData = true;
+                }
+
+                GUILayout.EndHorizontal();
+
+                if (showCommonData)
+                {
+                    GUILayout.BeginHorizontal();
+                    int i = 0;
+                    foreach (var status in Data.CommonDataRegistry.CommonData)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            GUILayout.EndHorizontal();
+                            GUILayout.BeginHorizontal();
+                        }
+
+                        i++;
+
+                        GUILayout.BeginVertical();
+
+                        var to = status.GetType();
+                        var t = to;
+                        while (t.IsSubclassOf(typeof(AntCommonDataBase)))
+                        {
+                            if (t.IsGenericType && t.GetGenericTypeDefinition() == typeof(AntCommonData<>))
+                            {
+                                GUILayout.Label($"  {to.Name} (for {t.GenericTypeArguments[0]})");
+                                var props = t.GetProperties().Where(p => p.CanRead);
+                                foreach (var p in props)
+                                {
+                                    GUILayout.Label($"   - {p.Name}: {p.GetValue(status)}");
+                                }
+                            }
+
+                            t = t.BaseType;
+                        }
+
+                        GUILayout.EndVertical();
+                    }
+
+                    GUILayout.EndHorizontal();
+                }
+
+                GUILayout.Label("アリのスポーンテスト");
+                if (antDataTypes == null)
+                    antDataTypes = antFactories.Select(f => f.GetType().BaseType.GenericTypeArguments[0].GetTypeInfo()).ToList();
+                {
+                    int i = 0;
+                    GUILayout.BeginHorizontal();
+                    foreach (var antDataType in antDataTypes)
+                    {
+                        if (i % 4 == 0)
+                        {
+                            GUILayout.EndHorizontal();
+                            GUILayout.BeginHorizontal();
+                        }
+
+                        i++;
+
+                        if (GUILayout.Button(antDataType.Name))
+                        {
+                            var constructor = antDataType.GetConstructor(new Type[] { });
+                            var data = (AntData) constructor?.Invoke(new object[] { });
+                            if (data != null)
+                            {
+                                InstantiateAnt(data);
+                            }
+                        }
+                    }
+
+                    GUILayout.EndHorizontal();
+                }
+                GUILayout.Label("NEstElementのスポーンテスト");
+                if (nestElementDataTypes == null)
+                    nestElementDataTypes = nestElementFactories.Select(f => f.GetType().BaseType.GenericTypeArguments[0].GetTypeInfo()).ToList();
+                {
+                    int i = 0;
+                    GUILayout.BeginHorizontal();
+                    foreach (var nestElementDataType in nestElementDataTypes)
+                    {
+                        if (i % 4 == 0)
+                        {
+                            GUILayout.EndHorizontal();
+                            GUILayout.BeginHorizontal();
+                        }
+
+                        i++;
+
+                        if (GUILayout.Button(nestElementDataType.Name))
+                        {
+                            var constructor = nestElementDataType.GetConstructor(new Type[] { });
+                            var data = (NestElementData) constructor?.Invoke(new object[] { });
+                            if (data != null)
+                            {
+                                InstantiateNestElement(data);
+                            }
+                        }
+                    }
+
+                    GUILayout.EndHorizontal();
+                }
+
+
                 if (GUILayout.Button("デバッグアリのスポーン"))
                 {
                     InstantiateAnt(new DebugAntData());
@@ -367,31 +569,28 @@ namespace AntDiary
                     latestRoute = FindRoute(node1, node2);
                 }
 
-                showGraph = GUILayout.Toggle(showGraph, "経路グラフを表示");
+                RoadGizmosUtil.ShowNode = GUILayout.Toggle(RoadGizmosUtil.ShowNode, "Nodeを表示");
+                RoadGizmosUtil.ShowEdge = GUILayout.Toggle(RoadGizmosUtil.ShowEdge, "Edgeを表示");
+                RoadGizmosUtil.ShowElement = GUILayout.Toggle(RoadGizmosUtil.ShowElement, "Elementのコライダを表示");
             }
         }
 
         private void OnDrawGizmos()
         {
-            if (!showGraph) return;
-            foreach (var e in nestElements)
+            // if (!showGraph) return;
+
+            foreach (var elem in nestElements)
             {
-                Gizmos.color = Color.green;
-                foreach (var edge in e.GetLocalEdges())
+                if (elem is NestBuildableElement buildableElement)
                 {
-                    var a = edge.A.WorldPosition;
-                    var b = edge.B.WorldPosition;
-                    Gizmos.DrawLine(a, b);
+                    RoadGizmosUtil.DrawBuildableElement(buildableElement);
                 }
+
+                RoadGizmosUtil.DrawEdge(elem.GetLocalEdges());
             }
 
-            Gizmos.color = Color.red;
-            foreach (var edge in elementEdges)
-            {
-                var a = edge.A.WorldPosition;
-                var b = edge.B.WorldPosition;
-                Gizmos.DrawLine(a, b);
-            }
+            RoadGizmosUtil.DrawNode(NestPathNodes);
+            RoadGizmosUtil.DrawEdge(ElementEdges);
 
             if (latestRoute != null)
             {

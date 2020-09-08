@@ -25,22 +25,6 @@ namespace AntDiary.Scripts.Roads{
 
 		public static Color NonPassingEdgeColor = new Color(0.55f, 0.00f, 0.90f);
 		
-		
-		/// <summary>
-		/// Nodeを描画するか
-		/// </summary>
-		public static bool DrawNode = true;
-		
-		/// <summary>
-		/// Edgeを描画するか
-		/// </summary>
-		public static bool DrawEdge = true;
-
-		/// <summary>
-		/// BuildableElementへの網掛けを表示するか
-		/// </summary>
-		public static bool DrawElement = true;
-		
 		/// <summary>
 		/// 建造中のElementの網掛け色
 		/// </summary>
@@ -52,35 +36,50 @@ namespace AntDiary.Scripts.Roads{
 		public static Color BuiltElementColor = new Color(0.0f, 0.75f, 1.0f, 0.3f);
 
 		
-		public static void DrawNodeWithEdge(IEnumerable<NestPathNode> nodes, IEnumerable<NestPathLocalEdge> edges){
-			// var prevColor = Gizmos.color;
+		/// <summary>
+		/// Nodeを描画するか
+		/// </summary>
+		public static bool ShowNode = true;
+		
+		/// <summary>
+		/// Edgeを描画するか
+		/// </summary>
+		public static bool ShowEdge = true;
 
-			if(DrawNode && nodes != null){
-				
-				foreach(var node in nodes){
-					
-					Gizmos.color = node.Edges.OfType<NestPathElementEdge>().Any() ? ConnectedNodeColor : NodeColor;
-					
-					Gizmos.DrawWireSphere(node.WorldPosition, 0.15f);
-				}
-			}
+		/// <summary>
+		/// BuildableElementへの網掛けを表示するか
+		/// </summary>
+		public static bool ShowElement = true;
+		
+		
+		public static void DrawNode(IEnumerable<NestPathNode> nodes){
+			if(!ShowNode || nodes == null) return;
 			
-			if(DrawEdge && edges != null){
-				
-				foreach(var edge in edges){
+			foreach(var node in nodes){
+				Gizmos.color = node.Edges.OfType<NestPathElementEdge>().Any() ? ConnectedNodeColor : NodeColor;
 					
-					// Debug.Log("Color");
-					Gizmos.color = edge.CanGetThrough ? EdgeColor : NonPassingEdgeColor;
-					// Debug.Log("Draw");
-					Gizmos.DrawLine(edge.A.WorldPosition, edge.B.WorldPosition);
-				}
+				Gizmos.DrawWireSphere(node.WorldPosition, 0.15f);
 			}
-
-			// Gizmos.color = prevColor;
-
 		}
 
-		public static void DrawBuildableElement<T>(NestBuildableElement<T> element) where T: NestBuildableElementData{
+		public static void DrawEdge(IEnumerable<IPathEdge> edges){
+			if(!ShowEdge || edges == null) return;
+			foreach(var edge in edges){
+					
+				// Debug.Log("Color");
+				Gizmos.color = edge.CanGetThrough ? EdgeColor : NonPassingEdgeColor;
+				// Debug.Log("Draw");
+				Gizmos.DrawLine(edge.A.WorldPosition, edge.B.WorldPosition);
+			}
+		}
+		
+		public static void DrawNodeWithEdge(IEnumerable<NestPathNode> nodes, IEnumerable<IPathEdge> edges){
+			DrawNode(nodes);
+			DrawEdge(edges);
+		}
+
+		public static void DrawBuildableElement(NestBuildableElement element){
+			if(!ShowElement) return;
 			if(element == null || element.Data == null) return;
 			
 			var box = element.GetBlockingShape() as BoxCollider2D;

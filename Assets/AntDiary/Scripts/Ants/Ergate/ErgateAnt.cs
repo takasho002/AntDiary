@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AntDiary
 {
-    public class ErgateAnt : Ant<ErgateAntData>
+    public class ErgateAnt : Ant<ErgateAntData,ErgateAntCommonData>
     {
         // Start is called before the first frame update
         void Start()
@@ -21,6 +21,9 @@ namespace AntDiary
         protected override float MovementSpeed { get; } = 1f;
 
         private bool pathWayStarted = false;
+
+        public bool IsHoldingFood { get => SelfData.IsHoldingFood; set => SelfData.IsHoldingFood = value; }
+        public int Capacity { get => SelfCommonData.Capacity; }
 
         protected override void Update()
         {

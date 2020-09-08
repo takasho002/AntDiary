@@ -4,7 +4,8 @@ using System.Linq;
 using System;
 using AntDiary.Scripts.Roads;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace AntDiary
 {
@@ -34,11 +35,11 @@ namespace AntDiary
             //貯蓄庫と女王の部屋の数を数えます
             for(int i=0;i<list.Count;i++)
             {
-                if(list[i].gameObject.name == "Chochikubeya(Clone)")
+                if (list[i].GetType().Name == "StoreRoom")
                 {
                     Chochikukonum++;
                 }
-                else if(list[i].gameObject.name == "QweenAntRoom(Clone)")//仮の名前
+                else if(list[i].GetType().Name == "QueenRoom")//仮の名前
                 {
                     QweenRoomNum++;
                 }
@@ -86,15 +87,15 @@ namespace AntDiary
             {
                 data = new TShapeRoadData(EnumRoadDirection.Left);
             }
-            else if(NestName == "Chochikubeya")
+            else if(NestName == "Chochikubeya" && Chochikukonum == 0)
             {
                 //data = new ChochikubeyaData();
-                data = new CrossShapeRoadData();
+                data = new StoreRoomData();
             }
-            else if(NestName == "QweenAntRoom")
+            else if(NestName == "QueenRoom" && QweenRoomNum == 0)
             {
                 //data = new QweenAntRoomData();
-                data = new CrossShapeRoadData();
+                data = new QueenRoomData();
             }
             else if(NestName =="Cross")
             {
@@ -106,13 +107,13 @@ namespace AntDiary
             }
             
             //貯蓄庫と女王の部屋が指定されたときシーン内に巣でにそれらの部屋があるなら出せない
-            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QweenAntRoom" && QweenRoomNum != 0))
+            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QueenRoom" && QweenRoomNum != 0))
             {
-                
+                GetComponent<EventTrigger>().triggers.Clear();
             }
             else
             {
-                nestelement = NestSystem.Instance.InstantiateNestElement(data);
+                nestelement = NestSystem.Instance.InstantiateNestElement(data, false, false);
                 nestelement.transform.position = screenToWorldPointPosition;
             }
         }
@@ -124,21 +125,29 @@ namespace AntDiary
                 position.z = 10f;
                 screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
                 nestelement.transform.position = screenToWorldPointPosition;
+                
+                //ドラッグ中にスナップ
+                nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);
 
         }
         public void PushUp()
         {
-
+/*
               if (BuildingSystem.Instance.IsPlaceable(nestelement) == false)//建築可能な領域でない
               {
                 //NestElement削除
-                  NestSystem.Instance.RemoveNestElement(nestelement);
+                  //NestSystem.Instance.RemoveNestElement(nestelement);
                   Destroy(nestelement.gameObject);
               }
               else//建築可能
               {
-                nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);//付近のノードにスナップした座標へ置く      
+                //nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);//付近のノードにスナップした座標へ置く      
                 BuildingSystem.Instance.PlaceElementWithAutoConnect(nestelement);//NestSystemへ登録
+              }
+*/
+              if (!BuildingSystem.Instance.PlaceElementWithAutoConnect(nestelement, false))
+              {
+                  Destroy(nestelement.gameObject);
               }
         }
     }
