@@ -31,7 +31,7 @@ public class UISaveLoad : MonoBehaviour
 
     public void ClickLoad()
     {
-        SaveSystem.LoadSaveUnitToCurrent(lastSelction);
+        //SaveSystem.LoadSaveUnitToCurrent(lastSelction);
         Debug.Log("Load"+lastSelction);
         SceneManager.sceneLoaded += LoadData;
         SceneManager.LoadScene("MainScene");
@@ -39,8 +39,7 @@ public class UISaveLoad : MonoBehaviour
 
     public void LoadData(Scene next, LoadSceneMode mode)
     {
-        Debug.Log("hoge");
-        //SaveSystem.Instance.LoadDefaultSaveUnitToCurrent();
+        SaveSystem.LoadSaveUnitToCurrent(lastSelction);
         SceneManager.sceneLoaded -= LoadData;
     }
 }
