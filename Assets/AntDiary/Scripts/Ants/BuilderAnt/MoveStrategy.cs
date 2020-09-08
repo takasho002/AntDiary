@@ -8,8 +8,8 @@ namespace AntDiary{
 	/// 建築中のElementに移動中のStrategy
 	/// </summary>
 	public class MoveStrategy : Strategy<BuilderAntData>{
-		private NestPathNode _distNode;
-		private NestBuildableElement _hostElem;
+		private NestPathNode _distNode = default;
+		private NestBuildableElement _hostElem = default;
 		
 		public MoveStrategy(NestBuildableElement host, NestPathNode distNode) : base(){
 			_distNode = distNode;

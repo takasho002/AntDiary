@@ -26,8 +26,9 @@ namespace AntDiary{
 		}
 
 		protected EnemyAnt GetTargetAnt(){
-			var enemyList = NestSystem.Instance.SpawnedAnt.OfType<EnemyAnt>();
-			return enemyList.First();
+			var enemyList = NestSystem.Instance.GetAnts<EnemyAnt>();
+			//最も近いアリにしたほうがいいかもしれない
+			return enemyList.FirstOrDefault();
 		}
 
 		

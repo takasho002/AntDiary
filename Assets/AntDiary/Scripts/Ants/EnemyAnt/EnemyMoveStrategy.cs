@@ -38,17 +38,24 @@ namespace AntDiary{
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
 		protected NestPathNode GetTargetPathNode(){
-			throw new System.NotImplementedException();
+			return NestSystemExtensionsQueenRoom.GetQueenRoom(NestSystem.Instance)?.GetNodes().FirstOrDefault();
 		}
 
 		public override void PeriodicUpdate(){
 			float Distance(Ant antA, Ant antB) => Vector2.Distance(antA.transform.position, antB.transform.position);
 
+			//最も近いアリ取得
 			var nearlyAnt = NestSystem.Instance
 				.SpawnedAnt
-				.Aggregate((result, next) =>
-					Distance(next, Controller.Ant) < Distance(result, Controller.Ant) ? next : result);
+				.Aggregate((result, next) => {
+					if(next is EnemyAnt){
+						return result;
+					}
+					return DistanceToHostAnt(next.transform.position) < DistanceToHostAnt(result.transform.position) ? next : result;
+				});
+					
 
+			
 			if(Distance(Controller.Ant, nearlyAnt) < AntData.CombatDistance){
 				Controller.ChangeStrategy(new EnemyCombatStrategy(nearlyAnt));
 			}

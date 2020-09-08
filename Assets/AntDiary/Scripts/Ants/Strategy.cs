@@ -1,4 +1,5 @@
 using AntDiary.Scripts.Ants;
+using UnityEngine;
 
 namespace AntDiary{
 	/// <summary>
@@ -41,7 +42,25 @@ namespace AntDiary{
 		/// </summary>
 		public abstract void FinishStrategy();
 
-		
+
+		/// <summary>
+		/// アリとの直線距離を返す
+		/// </summary>
+		/// <param name="pos"></param>
+		/// <returns></returns>
+		public float DistanceToHostAnt(Vector2 pos){
+			return Vector2.Distance(pos, Controller.Ant.transform.position);
+		}
+
+		/// <summary>
+		/// posAとposBでHostAntとの距離を比較し、posAの方が近いならtrue、posBの方が近いならfalseを返す
+		/// </summary>
+		/// <param name="posA"></param>
+		/// <param name="posB"></param>
+		/// <returns></returns>
+		public bool CompareDistanceToHostAnt(Vector2 posA, Vector2 posB){
+			return DistanceToHostAnt(posA) < DistanceToHostAnt(posB);
+		}
 		
 		
 	}
