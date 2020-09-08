@@ -7,13 +7,13 @@ namespace AntDiary{
 		/// <summary>
 		/// 戦闘に移行する距離
 		/// </summary>
-		public float CombatDistance => 0.5f;
+		[Key(10)] public float CombatDistance => 0.5f;
 
 		/// <summary>
 		/// 攻撃間隔
 		/// 単位は秒
 		/// </summary>
 		/// <returns></returns>
-		public float CombatInterval => 0.5f;
+		[Key(11)] public float CombatInterval => 0.5f;
 	}
 }
