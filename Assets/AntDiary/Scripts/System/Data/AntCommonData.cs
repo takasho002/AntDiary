@@ -11,6 +11,8 @@ namespace AntDiary
     [Union(2, typeof(ErgateAntCommonData))]
     [Union(3, typeof(UnemployedAntCommonData))]
     [Union(4, typeof(QueenAntCommonData))]
+    [Union(5, typeof(EnemyAntCommonData))]
+    [Union(6, typeof(SoldierAntCommonData))]
     public abstract class AntCommonDataBase
     {
         //派生クラスのメンバのKeyは10~

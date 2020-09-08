@@ -16,13 +16,19 @@ namespace AntDiary{
 
 		protected StrategyController<T> Controller{ get; set; }
 
-		public T AntData{
-			get => (T) Controller.Ant.Data;
-		}
-		
 		public Strategy(){
 			
 		}
+		
+		public T AntData{
+			get => (T) Controller.Ant.Data;
+		}
+
+		public TCommonData GetAntCommonData<TCommonData>() where TCommonData : AntCommonDataBase{
+			return NestSystem.Instance.Data.CommonDataRegistry.GetCommonData<TCommonData>();
+		}
+		
+		
 
 		/// <summary>
 		/// このStrategyに変更されたときに呼ばれる

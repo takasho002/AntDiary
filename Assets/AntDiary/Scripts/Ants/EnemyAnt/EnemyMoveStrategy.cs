@@ -54,9 +54,10 @@ namespace AntDiary{
 					return DistanceToHostAnt(next.transform.position) < DistanceToHostAnt(result.transform.position) ? next : result;
 				});
 					
+			var combatDistance = GetAntCommonData<EnemyAntCommonData>().CombatDistance;
 
 			
-			if(Distance(Controller.Ant, nearlyAnt) < AntData.CombatDistance){
+			if(Distance(Controller.Ant, nearlyAnt) < combatDistance){
 				Controller.ChangeStrategy(new EnemyCombatStrategy(nearlyAnt));
 			}
 		}

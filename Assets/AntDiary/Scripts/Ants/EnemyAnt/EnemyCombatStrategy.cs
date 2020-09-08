@@ -11,23 +11,26 @@ namespace AntDiary{
 
 		public override void StartStrategy(StrategyController<EnemyAntData> controller){
 			base.StartStrategy(controller);
-			UpdateInterval = AntData.CombatInterval;
+			UpdateInterval = GetAntCommonData<EnemyAntCommonData>().CombatInterval;
 			
 		}
 
 		public override void PeriodicUpdate(){
-			Combat();
+			var combatDistance = GetAntCommonData<EnemyAntCommonData>().CombatDistance;
+			
 			
 			//戦闘距離外なら追いかけに移行
-			if(Vector3.Distance(_targetAnt.transform.position, Controller.Ant.transform.position) > AntData.CombatDistance){
+			if(Vector3.Distance(_targetAnt.transform.position, Controller.Ant.transform.position) > combatDistance){
 				Controller.ChangeStrategy(new EnemyMoveStrategy());
 				return;
 			}
 			
-			//倒した
+			//倒してた
 			if(!_targetAnt.Data.IsAlive){
 				Controller.ChangeStrategy(new EnemyMoveStrategy());
 			}
+			
+			CombatUtil.AttackToAnt(Controller.Ant, _targetAnt);
 		}
 		
 		protected void Combat(){

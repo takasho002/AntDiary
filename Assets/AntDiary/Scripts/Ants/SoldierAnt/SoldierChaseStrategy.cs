@@ -20,8 +20,10 @@ namespace AntDiary.Scripts.Ants.SoldierAnt{
 				Controller.ChangeStrategy(new SoldierStandbyStrategy());
 			}
 
+			var combatDistance = GetAntCommonData<SoldierAntCommonData>().CombatDistance;
+			
 			//戦闘距離内なら戦闘に移行
-			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) < AntData.CombatDistance){
+			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) < combatDistance){
 				Controller.ChangeStrategy(new SoldierCombatStrategy(_enemyAnt));
 				return;
 			}

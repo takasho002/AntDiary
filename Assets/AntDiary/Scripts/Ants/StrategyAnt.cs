@@ -23,6 +23,6 @@ namespace AntDiary.Scripts.Ants{
 		}
 
 		protected abstract Strategy<T> CreateInitialStrategy();
-	
+		
 	}
 }

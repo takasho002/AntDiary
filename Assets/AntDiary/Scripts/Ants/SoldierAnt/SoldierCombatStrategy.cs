@@ -15,14 +15,15 @@ namespace AntDiary.Scripts.Ants.SoldierAnt{
 			base.StartStrategy(controller);
 			
 			//攻撃間隔
-			UpdateInterval = AntData.CombatInterval;
+
+			UpdateInterval = GetAntCommonData<SoldierAntCommonData>().CombatInterval;
 		}
 
 		public override void PeriodicUpdate(){
-			Combat();
-			
 			//戦闘距離外なら追いかけに移行
-			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) > AntData.CombatDistance){
+			var combatDistance = GetAntCommonData<SoldierAntCommonData>().CombatDistance;
+
+			if(Vector3.Distance(_enemyAnt.transform.position, Controller.Ant.transform.position) > combatDistance){
 				Controller.ChangeStrategy(new SoldierChaseStrategy(_enemyAnt));
 				return;
 			}
@@ -31,11 +32,11 @@ namespace AntDiary.Scripts.Ants.SoldierAnt{
 			if(!_enemyAnt.Data.IsAlive){
 				Controller.ChangeStrategy(new SoldierStandbyStrategy());
 			}
+			
+			CombatUtil.AttackToAnt(Controller.Ant, _enemyAnt);
 		}
 
-		protected void Combat(){
-			throw new System.NotImplementedException();
-		}
+		
 
 		public override void FinishStrategy(){
 			
