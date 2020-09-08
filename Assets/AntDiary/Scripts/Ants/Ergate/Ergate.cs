@@ -5,14 +5,13 @@ using AntDiary;
 using System.Linq;
 
 //餌運びプログラム
-//同じところを往復するプログラムを作成
-//違うところに帰りたければ修正が必要
-//
+//一つの巣から往復するプログラムを作成
 public class Ergate : MonoBehaviour
 {
     ErgateAntData data;
     public ErgateAnt HostAnt;
     public NestPathNode nodeNest;
+    //デバッグ用
     public NestPathNode nodeFeed;
 
     // public Vector2 distance;
@@ -33,13 +32,17 @@ public class Ergate : MonoBehaviour
                 nodeNest = element.GetNodes().ElementAt(0);
             }
         }
-        nodeFeed = NestSystem.Instance.NestElements[2].GetNodes().FirstOrDefault(n => n.Name == "wild_top");
-        if(nodeFeed ==null)Debug.Log("nullです");
-        HostAnt.transform.localScale = new Vector3(1/2f, 1/2f, 1);
         Vector3 a = HostAnt.transform.position;
         a.z = -1;
         HostAnt.transform.position = a;
+       
+        //以下デバッグ用
+        HostAnt.transform.localScale = new Vector3(1/2f, 1/2f, 1);
+        nodeFeed = NestSystem.Instance.NestElements[2].GetNodes().FirstOrDefault(n => n.Name == "wild_top");
+        //nodeFeed = null;
+        if(nodeFeed ==null)Debug.Log("nullです");               
         ErgateAntStart(nodeFeed);
+        //ここまで
     }
 
     private void Cancel(){
@@ -69,10 +72,13 @@ public class Ergate : MonoBehaviour
     }
 
     //Debug用スタートプログラム
-    private void ErgateAntStart(NestPathNode nodeFeed){
-        Debug.Log("start!");
-        HostAnt.StartForPathNode(nodeFeed , LeaveFeed , Cancel);
-        
+    public void ErgateAntStart(NestPathNode target){
+        if(target != null){
+            Debug.Log("start!");
+            HostAnt.StartForPathNode(target , LeaveFeed , Cancel);
+        }else{
+            Debug.Log("働きたくないでござる");
+        }        
     }
 }
 
