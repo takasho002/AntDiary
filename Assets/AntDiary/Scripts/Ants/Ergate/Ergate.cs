@@ -34,11 +34,12 @@ public class Ergate : MonoBehaviour
             }
         }
         nodeFeed = NestSystem.Instance.NestElements[2].GetNodes().FirstOrDefault(n => n.Name == "wild_top");
-        if(nodeFeed ==null)Debug.Log("nullです");
+        //if(nodeFeed ==null)Debug.Log("nullです");
         HostAnt.StartForPathNode(nodeFeed , getFeed , Cancel);
     }
 
     public void Cancel(){
+        Debug.Log("Canceled");
         HostAnt.CancelMovement();
     }
     // Update is called once per frame
