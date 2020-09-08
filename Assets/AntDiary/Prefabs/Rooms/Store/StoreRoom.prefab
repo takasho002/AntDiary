@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1631405817921666820}
   - component: {fileID: 5487679934404156647}
   - component: {fileID: 4814166621581266315}
-  - component: {fileID: 2701986034131354711}
   - component: {fileID: -551922511410206430}
+  - component: {fileID: 6267568527828368225}
   m_Layer: 0
   m_Name: StoreRoom
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ab5f9dfd45f944a1e72f956427a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingShape: {fileID: 0}
+  blockingShape: {fileID: 6267568527828368225}
   boundingRect:
     serializedVersion: 2
     x: 0
@@ -77,22 +77,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2701986034131354711
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4421009075398184910}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!212 &-551922511410206430
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,3 +127,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &6267568527828368225
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4421009075398184910}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.5, y: 2.5}
+  m_Direction: 1

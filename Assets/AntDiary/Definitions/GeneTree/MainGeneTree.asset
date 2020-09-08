@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: MainTree
   genes:
-  - id: 
+  - id: speed_0
     displayName: "\u901F\u3055"
     description: speed
     guid: 113eb6db-cbae-417d-89f9-dd7485bbdd23
@@ -24,7 +24,7 @@ MonoBehaviour:
       y: 602
       width: 247
       height: 150
-  - id: 
+  - id: speed_1
     displayName: "\u901F\u3055"
     description: speed
     guid: b9676552-434e-49a8-b27e-41d38d0b56c5
@@ -34,7 +34,7 @@ MonoBehaviour:
       y: 601
       width: 250
       height: 150
-  - id: 
+  - id: efficiency_1
     displayName: "\u4ED5\u4E8B\u7387"
     description: work
     guid: 18127d47-5c32-482e-9a7f-111ece6b2660
@@ -44,7 +44,7 @@ MonoBehaviour:
       y: -28
       width: 246
       height: 150
-  - id: 
+  - id: health_0
     displayName: HP
     description: HP
     guid: b2ae22d2-4602-40ff-8394-ee0c1f7b617c
@@ -54,7 +54,7 @@ MonoBehaviour:
       y: 328
       width: 240
       height: 150
-  - id: 
+  - id: health_1
     displayName: HP
     description: HP
     guid: 2401574d-6196-4256-a86f-7ae7233a3c25
@@ -64,7 +64,7 @@ MonoBehaviour:
       y: 328
       width: 247
       height: 150
-  - id: 
+  - id: health_2
     displayName: HP
     description: HP
     guid: 83895e1a-e2e3-4166-8f22-1cd1262238e8
@@ -74,7 +74,7 @@ MonoBehaviour:
       y: 329
       width: 247
       height: 150
-  - id: 
+  - id: efficiency_2
     displayName: "\u4ED5\u4E8B\u7387"
     description: work
     guid: 6a49a0b5-2f32-4418-8237-6065e2e4ab74
@@ -82,9 +82,9 @@ MonoBehaviour:
       serializedVersion: 2
       x: 1083
       y: -28
-      width: 248
-      height: 150
-  - id: 
+      width: 238
+      height: 153
+  - id: efficiency_0
     displayName: "\u4ED5\u4E8B\u7387"
     description: work
     guid: 19bc70c9-ac7d-472d-8705-8ba28916706c
@@ -92,9 +92,9 @@ MonoBehaviour:
       serializedVersion: 2
       x: 380
       y: -28
-      width: 247
-      height: 150
-  - id: 
+      width: 245
+      height: 147
+  - id: total_ability_1
     displayName: "\u7DCF\u5408\u80FD\u529B"
     description: total force
     guid: c508d134-b011-4eea-8df1-ba067a830c6d
@@ -102,9 +102,9 @@ MonoBehaviour:
       serializedVersion: 2
       x: 104
       y: 175
-      width: 245
+      width: 256
       height: 147
-  - id: 
+  - id: total_ability_0
     displayName: "\u7DCF\u5408\u80FD\u529B"
     description: tortal force
     guid: 5ff6b685-9421-4767-bd02-4fa5528aecea
@@ -112,7 +112,7 @@ MonoBehaviour:
       serializedVersion: 2
       x: -249
       y: 182
-      width: 241
+      width: 256
       height: 150
   edges:
   - parentGeneGuid: c508d134-b011-4eea-8df1-ba067a830c6d

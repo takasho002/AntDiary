@@ -10,6 +10,8 @@ namespace AntDiary
     public abstract class Ant : MonoBehaviour
     {
         public abstract AntData Data { get; }
+        
+        public abstract AntCommonDataBase CommonData { get; }
 
         protected abstract float MovementSpeed { get; }
 
@@ -145,7 +147,7 @@ namespace AntDiary
     /// <summary>
     /// シーン上に配置されるアリにとりつけるComponent
     /// </summary>
-    public abstract class Ant<T> : Ant where T : AntData
+    public abstract class Ant<T, TCommonData> : Ant where T : AntData where TCommonData : AntCommonData<T>
     {
         /// <summary>
         /// 外部公開用のプロパティ
@@ -156,6 +158,10 @@ namespace AntDiary
         /// クラス内から参照する用のプロパティ。Dataとインスタンスは同一
         /// </summary>
         protected T SelfData { get; private set; }
+
+        public override AntCommonDataBase CommonData => SelfCommonData;
+
+        protected TCommonData SelfCommonData { get; private set; }
 
         protected bool IsInitialized { get; private set; } = false;
 
@@ -175,15 +181,46 @@ namespace AntDiary
             {
                 SaveUnit.Current.OnBeforeSave.Subscribe(__ => Data.Position = transform.position);
             });
+
+            SelfCommonData = GetCommonData();
+
+            //体力を最大に設定
+            Data.Health = CommonData.MaxHealth;
             
             OnInitialized();
         }
+
+        protected virtual TCommonData GetCommonData()
+        {
+            if (!NestSystem.Instance.Data.CommonDataRegistry.TryGetCommonData(out TCommonData selfCommonData))
+            {
+                Debug.LogWarning($"セーブデータに{typeof(T).Name}用のAntCommonDataが見つかりませんでした。");
+                throw new NullReferenceException();
+            }
+
+            return selfCommonData;
+        }
+        
 
         /// <summary>
         /// 初期化が終了（AntDataの注入が完了）したタイミングで呼ばれる。
         /// </summary>
         protected virtual void OnInitialized()
         {
+        }
+    }
+
+    public abstract class Ant<T> : Ant<T, AntCommonData<T>> where T : AntData
+    {
+        protected override AntCommonData<T> GetCommonData()
+        {
+            if (!NestSystem.Instance.Data.CommonDataRegistry.TryGetCommonData(out AntCommonData<T> selfCommonData))
+            {
+                Debug.LogWarning($"セーブデータに{typeof(T).Name}用のAntCommonDataが見つかりませんでした。代わりに仮のデータを使用します。");
+                selfCommonData = new AntCommonData<T>();
+            }
+
+            return selfCommonData;
         }
     }
 }

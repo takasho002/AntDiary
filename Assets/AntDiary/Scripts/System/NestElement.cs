@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 namespace AntDiary
@@ -47,6 +48,14 @@ namespace AntDiary
             SelfData = antData;
             IsInitialized = true;
             gameObject.layer = LayerMask.NameToLayer("NestElement");
+            
+            //位置データをセーブデータと同期
+            SaveUnit.Current.OnBeforeSave.Subscribe(_ => Data.Position = transform.position);
+            SaveUnit.OnCurrentSaveUnitChanged.Subscribe(_ =>
+            {
+                SaveUnit.Current.OnBeforeSave.Subscribe(__ => Data.Position = transform.position);
+            });
+            
             OnInitialized();
         }
 
