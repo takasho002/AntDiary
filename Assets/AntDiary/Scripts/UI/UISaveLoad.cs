@@ -25,13 +25,13 @@ public class UISaveLoad : MonoBehaviour
 
     public void ClickSave()
     {
-        //SaveSystem.Instance.SaveCurrentSaveUnit(lastSlection);
+        SaveSystem.SaveCurrentSaveUnit(lastSelction);
         Debug.Log("Save"+lastSelction);
     }
 
     public void ClickLoad()
     {
-        //SaveSystem.Instance.LoadSaveUnitToCurrent(lastSlection);
+        SaveSystem.LoadSaveUnitToCurrent(lastSelction);
         Debug.Log("Load"+lastSelction);
         SceneManager.sceneLoaded += LoadData;
         SceneManager.LoadScene("MainScene");
