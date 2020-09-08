@@ -6,8 +6,12 @@ namespace AntDiary
 {
     public class AntDamageCalc : MonoBehaviour
     {
-        [SerializeField] int ability = default; // アリのステータス取得の代わり
         [SerializeField] Ant myself = default;
+
+        void Start()
+        {
+            myself = GetComponent<Ant>();
+        }
 
         /// <summary>
         /// 敵アリのHPを減算するメソッド．
@@ -16,7 +20,7 @@ namespace AntDiary
         /// <param name="enemy">敵アリオブジェクトを指定</param>
         void ReduceEnemyHP(Ant enemy)
         {
-            // enemy.Data.HP -= ability;
+            enemy.Data.Health -= 1/*myself.Data.Attack*/; ;
         }
     }
 }

@@ -96,13 +96,17 @@ namespace AntDiary
             Array.Sort(diff,index);
             //一番理想より少ない役職を取得
             Type nextjob = antjobs[index[0]];
-            //別の仕事に割り振るのであれば元を削除して転生
+
+            //別の仕事に割り振るのであれば場所だけコピーして元のアリは殺す
             if (nextjob.GetType() == ant.Data.GetType()) return;
-            AntData respawnant = (AntData)Activator.CreateInstance(nextjob);
+
+            AntData newantdata = (AntData)Activator.CreateInstance(nextjob);
+            var newant = NestSystem.Instance.InstantiateAnt(newantdata);
+            newant.transform.position = ant.Data.Position;
+
             ant.Data.IsAlive = false;
             NestSystem.Instance.RemoveAnt(ant);
             Destroy(ant.gameObject);
-            NestSystem.Instance.InstantiateAnt(respawnant);
         }
 
         /// <summary>
