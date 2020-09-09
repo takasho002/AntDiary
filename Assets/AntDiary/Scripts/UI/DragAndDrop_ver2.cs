@@ -49,27 +49,27 @@ namespace AntDiary
             NestElementData data;
             if(NestName == "IShapeVertical")
             {
-                data = new IShapeRoadData(EnumRoadHVDirection.Vertical);
+                data = new IShapeRoadData(EnumRoadHVDirection.Vertical) { IsUnderConstruction = true};
             }
             else if(NestName == "IShapeHorizontal")
             {
-                data = new IShapeRoadData(EnumRoadHVDirection.Horizontal);
+                data = new IShapeRoadData(EnumRoadHVDirection.Horizontal) { IsUnderConstruction = true };
             }
             else if(NestName == "LShapeBottom")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Bottom);
+                data = new LShapeRoadData(EnumRoadDirection.Bottom) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeRight")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Right);
+                data = new LShapeRoadData(EnumRoadDirection.Right) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeTop")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Top);
+                data = new LShapeRoadData(EnumRoadDirection.Top) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeLeft")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Left);
+                data = new LShapeRoadData(EnumRoadDirection.Left) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeBottom")
             {

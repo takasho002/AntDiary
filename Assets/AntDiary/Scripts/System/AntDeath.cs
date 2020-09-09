@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace AntDiary
 {
@@ -12,8 +13,8 @@ namespace AntDiary
 
         void Start()
         {
-            ant = GetComponent<Ant>();
-            animator = GetComponent<Animator>();
+            //ant = GetComponent<Ant>();
+            //animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -36,8 +37,13 @@ namespace AntDiary
         {
             if (!ant.Data.IsAlive)
             {
-                Destroy(this.gameObject);
+                StartCoroutine(DestroyAnt());
             }
+        }
+        private IEnumerator DestroyAnt()
+        {
+            yield return new WaitForSeconds(1f);
+            Destroy(ant.gameObject);
         }
     }
 }

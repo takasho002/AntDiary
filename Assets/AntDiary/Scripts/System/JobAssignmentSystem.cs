@@ -14,7 +14,7 @@ namespace AntDiary
     public class JobAssignmentSystem : MonoBehaviour
     {
         //仕事の型リスト
-        private List<Type> antjobs;
+        private List<Type> antjobs = new List<Type>{ typeof(BuilderAntData),typeof(SoldierAntData),typeof(ErgateAntData),typeof(UnemployedAntData)};
         private int jobCount;
         int total;
         //理想の割合
@@ -29,17 +29,6 @@ namespace AntDiary
 
         void Start()
         {
-            //AntDataのサブクラスから仕事をtypeリストとして取得
-            antjobs = System.Reflection.Assembly.GetAssembly(typeof(AntData)).GetTypes().Where(x => x.IsSubclassOf(typeof(AntData))).ToList();
-            //DebugAntDataは削除
-            for (int i = 0; i < antjobs.Count; i++)
-            {
-                if (antjobs[i].Name.Equals("DebugAntData")|| antjobs[i].Name.Equals("QueenAntData"))
-                {
-                    antjobs.RemoveAt(i);
-                }
-                Debug.Log(antjobs[i].Name);
-            }
             jobCount = antjobs.Count;
 
             //理想値の初期値を設定
@@ -67,7 +56,7 @@ namespace AntDiary
                 {
                     idealrate[i] = ideal_Architect;
                 }
-                else if (antjobs[i].Name == "SoilderAntData")
+                else if (antjobs[i].Name == "SoldierAntData")
                 {
                     idealrate[i] = ideal_Soilder;
                 }
