@@ -73,33 +73,33 @@ namespace AntDiary
             }
             else if (NestName == "TShapeBottom")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Bottom);
+                data = new TShapeRoadData(EnumRoadDirection.Bottom) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeRight")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Right);
+                data = new TShapeRoadData(EnumRoadDirection.Right) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeTop")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Top);
+                data = new TShapeRoadData(EnumRoadDirection.Top) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeLeft")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Left);
+                data = new TShapeRoadData(EnumRoadDirection.Left) { IsUnderConstruction = true };
             }
             else if(NestName == "Chochikubeya" && Chochikukonum == 0)
             {
                 //data = new ChochikubeyaData();
-                data = new StoreRoomData();
+                data = new StoreRoomData() { IsUnderConstruction = true };
             }
             else if(NestName == "QueenRoom" && QweenRoomNum == 0)
             {
                 //data = new QweenAntRoomData();
-                data = new QueenRoomData();
+                data = new QueenRoomData() { IsUnderConstruction = true };
             }
             else if(NestName =="Cross")
             {
-                data = new CrossShapeRoadData();
+                data = new CrossShapeRoadData() { IsUnderConstruction = true };
             }
             else
             {

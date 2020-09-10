@@ -2960,6 +2960,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: click
       objectReference: {fileID: 0}
+    - target: {fileID: 6052660737583834756, guid: 3ef919a3b62af50479a46f4abceded50,
+        type: 3}
+      propertyPath: NestName
+      value: TShapeLeft
+      objectReference: {fileID: 0}
     - target: {fileID: 8092651731582208085, guid: 3ef919a3b62af50479a46f4abceded50,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

@@ -30,7 +30,7 @@ namespace AntDiary
             return edges;
         }
 
-        public override float RequiredResources => 0;
+        public override float RequiredResources => 1;
 
         protected override void OnInitialized()
         {
@@ -74,8 +74,6 @@ namespace AntDiary
             //建築完了時に女王アリを生成
             QueenAntData queenantdata = new QueenAntData();
             NestSystem.Instance.InstantiateAnt(queenantdata);
-            //建築完了時にAntSpawnerを有効にする
-            SelfData.IsBuilt = true;
         }
 
     }
