@@ -13,6 +13,11 @@ GameObject:
   - component: {fileID: 239730709219288764}
   - component: {fileID: 239730709219288767}
   - component: {fileID: 239730709219288766}
+  - component: {fileID: 952625592346822035}
+  - component: {fileID: 7390005266184297706}
+  - component: {fileID: 431172498256398167}
+  - component: {fileID: 8233197671007893470}
+  - component: {fileID: 5376152347726625010}
   m_Layer: 0
   m_Name: SoldierAnt
   m_TagString: Untagged
@@ -129,3 +134,164 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ant: {fileID: 239730709219288764}
   animator: {fileID: 239730709219288767}
+--- !u!114 &952625592346822035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239730709219288737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00c11c621c1b7cb42ac404f3498edc60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 239730709219288767}
+  ant: {fileID: 239730709219288764}
+--- !u!82 &7390005266184297706
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239730709219288737}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &431172498256398167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239730709219288737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75b8032fc5fbdc4c85e6923ffd5c1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secategories:
+  - {fileID: 8233197671007893470}
+  - {fileID: 5376152347726625010}
+  audiosource: {fileID: 7390005266184297706}
+--- !u!114 &8233197671007893470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239730709219288737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a4b4bbc8398174eb4e4fa76123057b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: death
+  audioclips:
+  - {fileID: 8300000, guid: d2bddca75bc8bed4f8f0a7b18b4281f3, type: 3}
+  randomizePitch: 0
+  pitchRange: 0.1
+--- !u!114 &5376152347726625010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239730709219288737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a4b4bbc8398174eb4e4fa76123057b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: attack
+  audioclips:
+  - {fileID: 8300000, guid: 691fee5c7d5f4c440bb6b0ee30800110, type: 3}
+  - {fileID: 8300000, guid: 64cc81e9ba47f5b429b47ba3190753dd, type: 3}
+  randomizePitch: 0
+  pitchRange: 0.1
