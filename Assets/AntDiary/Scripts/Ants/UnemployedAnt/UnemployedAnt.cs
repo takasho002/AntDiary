@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 namespace AntDiary
 { 
-    public class UnemployedAnt : Ant<UnemployedAntData>
+    public class UnemployedAnt : Ant<UnemployedAntData,UnemployedAntCommonData>
     {
         // Start is called before the first frame update
         void Start()
@@ -19,6 +20,6 @@ namespace AntDiary
         }
 
         // DebugAntそのまま
-        protected override float MovementSpeed { get; } = 1f;
+        protected override float MovementSpeed => SelfCommonData.BasicMovementSpeed;
     }
 }
