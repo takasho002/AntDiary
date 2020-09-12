@@ -23,5 +23,6 @@ namespace AntDiary
 
         [Key(14)]
         public AntCommonDataRegistryData CommonDataRegistry { get; set; } = new AntCommonDataRegistryData();
+        
     }
 }
