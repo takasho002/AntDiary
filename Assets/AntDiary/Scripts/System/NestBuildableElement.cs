@@ -43,6 +43,7 @@ namespace AntDiary
         /// </summary>
         protected virtual void OnBuildingCompleted()
         {
+            SetImage(EnumNestImage.Built);
         }
 
         /// <summary>
@@ -52,6 +53,27 @@ namespace AntDiary
         public virtual IEnumerable<IPathNode> GetBuildingNode()
         {
             return GetNodes().Where(n => n.IsExposed).SelectMany(n => n.GetConnectedNodesForeign(true));
+        }
+
+        [SerializeField] protected SpriteRenderer spriteRenderer;
+        [SerializeField] protected Sprite built;
+        [SerializeField] protected Sprite building;
+        [SerializeField] protected Sprite spector;
+
+        public void SetImage(EnumNestImage mode)
+        {
+            switch (mode)
+            {
+                case EnumNestImage.Built:
+                    spriteRenderer.sprite = built;
+                    return;
+                case EnumNestImage.Building:
+                    spriteRenderer.sprite = building;
+                    return;
+                case EnumNestImage.Spector:
+                    spriteRenderer.sprite = spector;
+                    return;
+            }
         }
     }
 
@@ -101,7 +123,7 @@ namespace AntDiary
         /// </summary>
         protected virtual void OnInitialized()
         {
+            if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
         }
-        
     }
 }

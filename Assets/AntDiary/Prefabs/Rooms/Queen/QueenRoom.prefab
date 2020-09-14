@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6384712236507068878}
   - component: {fileID: 6506244018250985497}
   - component: {fileID: 659848008977613094}
+  - component: {fileID: 1743869409978157525}
   m_Layer: 0
   m_Name: QueenRoom
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9d1a6780afe3699478f012df40ccbc0b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1bc0e760c567b2c498443e30d2298469, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,6 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2193ecc410fbe2946b9d9459a9393b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6384712236507068878}
+  built: {fileID: 21300000, guid: 9d1a6780afe3699478f012df40ccbc0b, type: 3}
+  building: {fileID: 21300000, guid: 1bc0e760c567b2c498443e30d2298469, type: 3}
+  spector: {fileID: 21300000, guid: 9fb37c110b0ff2e41a5ac80b0443c9ed, type: 3}
   blockingShape: {fileID: 659848008977613094}
   boundingRect:
     serializedVersion: 2
@@ -128,3 +133,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6363637, y: 1.8181819}
   m_EdgeRadius: 0
+--- !u!114 &1743869409978157525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8997941612626448647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da68c9db7de1d90439779f77d8a37204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JobAssignmentSystem: {fileID: 0}
+  SpawnInterval: 60

@@ -11,8 +11,8 @@ namespace AntDiary.Scripts.Roads{
 		[SerializeField] private float radius = 2;
 
 		protected override void OnInitialized(){
-
-			switch(SelfData.Direction){
+			if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
+			switch (SelfData.Direction){
 				case EnumRoadHVDirection.Horizontal:
 					AddLocalNode("left", "left", Vector2.left * radius);
 					AddLocalNode("right", "right", Vector2.right * radius);
