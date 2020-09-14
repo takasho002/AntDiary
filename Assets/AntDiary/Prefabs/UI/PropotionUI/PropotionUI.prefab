@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 7581491301138292175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_Children:
   - {fileID: 7581491302622428396}
   - {fileID: 7581491302478491615}
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 12
 --- !u!1 &7581491301365342128
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,8 +479,10 @@ MonoBehaviour:
   AntJobNum: {fileID: 7581491301986602413}
   AntTotal: {fileID: 7581491302616351690}
   total: 0
+  fillAmount: 0
   JobName: Architecture
   NumOfBar: 0
+  Rate: 0
 --- !u!1 &7581491301634164770
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,9 +796,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0078ef0468d11f42800d02ffdcd539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBar: {fileID: 7581491301634164771}
-  yellowBar: {fileID: 7581491302915327841}
-  greenBar: {fileID: 7581491303224740519}
+  redBar: {fileID: 7581491301614254833}
+  yellowBar: {fileID: 7581491302219669042}
+  greenBar: {fileID: 7581491301674850886}
   redCircle: {fileID: 7581491302587025580}
   yellowCircle: {fileID: 7581491303155727775}
   greenCircle: {fileID: 7581491301638142099}
@@ -896,8 +898,10 @@ MonoBehaviour:
   AntJobNum: {fileID: 7581491303043921419}
   AntTotal: {fileID: 7581491302616351690}
   total: 0
+  fillAmount: 0
   JobName: Deffence
   NumOfBar: 0
+  Rate: 0
 --- !u!1 &7581491301736013698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,7 +1174,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7581491301898872255}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: PlaySE
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7581491301898872241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1199,6 +1214,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: PlaySE
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: select
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &7581491301898872242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,6 +1245,10 @@ MonoBehaviour:
   ArchitectBar: {fileID: 7581491301614254834}
   WorkBar: {fileID: 7581491302219669043}
   DeffenceBar: {fileID: 7581491301674850887}
+  Architect: {fileID: 7581491301614254833}
+  Work: {fileID: 7581491302219669042}
+  Deffence: {fileID: 7581491301674850886}
+  Total: {fileID: 0}
 --- !u!1 &7581491301986602411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1320,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1537,8 +1571,10 @@ MonoBehaviour:
   AntJobNum: {fileID: 7581491302597861510}
   AntTotal: {fileID: 7581491302616351690}
   total: 0
+  fillAmount: 0
   JobName: Work
   NumOfBar: 0
+  Rate: 0
 --- !u!1 &7581491302287810731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1854,9 +1890,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0078ef0468d11f42800d02ffdcd539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBar: {fileID: 7581491301634164771}
-  yellowBar: {fileID: 7581491302915327841}
-  greenBar: {fileID: 7581491303224740519}
+  redBar: {fileID: 7581491301614254833}
+  yellowBar: {fileID: 7581491302219669042}
+  greenBar: {fileID: 7581491301674850886}
   redCircle: {fileID: 7581491301497310847}
   yellowCircle: {fileID: 7581491302505335353}
   greenCircle: {fileID: 7581491302287810733}

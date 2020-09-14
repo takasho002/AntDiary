@@ -49,57 +49,57 @@ namespace AntDiary
             NestElementData data;
             if(NestName == "IShapeVertical")
             {
-                data = new IShapeRoadData(EnumRoadHVDirection.Vertical);
+                data = new IShapeRoadData(EnumRoadHVDirection.Vertical) { IsUnderConstruction = true};
             }
             else if(NestName == "IShapeHorizontal")
             {
-                data = new IShapeRoadData(EnumRoadHVDirection.Horizontal);
+                data = new IShapeRoadData(EnumRoadHVDirection.Horizontal) { IsUnderConstruction = true };
             }
             else if(NestName == "LShapeBottom")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Bottom);
+                data = new LShapeRoadData(EnumRoadDirection.Bottom) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeRight")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Right);
+                data = new LShapeRoadData(EnumRoadDirection.Right) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeTop")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Top);
+                data = new LShapeRoadData(EnumRoadDirection.Top) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeLeft")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Left);
+                data = new LShapeRoadData(EnumRoadDirection.Left) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeBottom")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Bottom);
+                data = new TShapeRoadData(EnumRoadDirection.Bottom) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeRight")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Right);
+                data = new TShapeRoadData(EnumRoadDirection.Right) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeTop")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Top);
+                data = new TShapeRoadData(EnumRoadDirection.Top) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeLeft")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Left);
+                data = new TShapeRoadData(EnumRoadDirection.Left) { IsUnderConstruction = true };
             }
             else if(NestName == "Chochikubeya" && Chochikukonum == 0)
             {
                 //data = new ChochikubeyaData();
-                data = new StoreRoomData();
+                data = new StoreRoomData() { IsUnderConstruction = true };
             }
             else if(NestName == "QueenRoom" && QweenRoomNum == 0)
             {
                 //data = new QweenAntRoomData();
-                data = new QueenRoomData();
+                data = new QueenRoomData() { IsUnderConstruction = true };
             }
             else if(NestName =="Cross")
             {
-                data = new CrossShapeRoadData();
+                data = new CrossShapeRoadData() { IsUnderConstruction = true };
             }
             else
             {

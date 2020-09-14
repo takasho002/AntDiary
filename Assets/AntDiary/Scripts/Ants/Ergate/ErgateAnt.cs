@@ -18,7 +18,7 @@ namespace AntDiary
         }
 
         // Update is called once per frame
-        protected override float MovementSpeed { get; } = 1f;
+        protected override float MovementSpeed => SelfCommonData.BasicMovementSpeed;
 
         private bool pathWayStarted = false;
 
@@ -27,9 +27,9 @@ namespace AntDiary
 
         protected override void Update()
         {
-            /*
+            
             base.Update();
-
+            /*
             if (!pathWayStarted)
             {
                 if (SetRandomDestination()) pathWayStarted = true;

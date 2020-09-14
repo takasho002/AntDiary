@@ -19,7 +19,7 @@ namespace AntDiary
 
         void Update()
         {
-            base.SeasonalChange(() => changeBackground.SetBackground(seasonId), () => fadeOut.BGMsystem("test2"));
+            base.SeasonalChange(() => changeBackground.SetBackground(seasonId), () => fadeOut.BGMsystem("ari_summer_master2"));
         }
     }
 }

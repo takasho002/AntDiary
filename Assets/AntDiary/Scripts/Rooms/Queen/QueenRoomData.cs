@@ -9,7 +9,6 @@ namespace AntDiary
     [MessagePackObject()]
     public class QueenRoomData : RoomData
     {
-
     }
     
 }
