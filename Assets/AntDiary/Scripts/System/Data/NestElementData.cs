@@ -17,6 +17,9 @@ namespace AntDiary
     [Union(6, typeof(TShapeRoadData))]
     [Union(7, typeof(QueenRoomData))]
     [Union(8, typeof(ChochikukoRoomData))]
+    [Union(9, typeof(GeneralPathRoadData))]
+    [Union(10, typeof(GroundData))]
+    [Union(11, typeof(MtSugarData))]
     public abstract class NestElementData
     {
         [SerializeField] private string guid = System.Guid.NewGuid().ToString();

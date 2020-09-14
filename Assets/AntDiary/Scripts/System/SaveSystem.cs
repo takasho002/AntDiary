@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using AntDiary.Scripts.Roads;
 using MessagePack;
 using UnityEngine;
 
@@ -21,11 +23,57 @@ namespace AntDiary
 
         public static void LoadDefaultSaveUnitToCurrent(DefaultEnvironmentData defaultEnvironment = null)
         {
-            var su = SaveUnit.GetDefaultSaveUnit();
+            var su = SaveUnit.GetEmptySaveUnit();
 
             //初期環境のセットアップ
             if (defaultEnvironment != null)
-                su.s_GameContext.s_NestData.Structure.NestElements.AddRange(defaultEnvironment.GeneralPathRoads);
+            {
+                var structure = su.s_GameContext.s_NestData.Structure;
+                structure.NestElements.AddRange(defaultEnvironment.GeneralPathRoads);
+                
+                //エサ備蓄
+                su.s_GameContext.s_NestData.StoredFood = defaultEnvironment.StoredFood;
+
+                //道
+                var initialRoad = new IShapeRoadData()
+                {
+                    Position = defaultEnvironment.InitialRoadPosition,
+                    Direction = EnumRoadHVDirection.Vertical
+                };
+                structure.NestElements.Add(initialRoad);
+                NestSystem.ParseNodePath(defaultEnvironment.InitialRoadBindNodePath, out string guid, out string name);
+                structure.ElementEdges.Add(new NestPathElementEdgeData()
+                {
+                    ElementGuidA = initialRoad.Guid,
+                    ElementGuidB = guid,
+                    NodeNameA = defaultEnvironment.InitialRoadNodeName,
+                    NodeNameB = name
+                });
+
+                //砂糖山
+                var sugarStack = new MtSugarData()
+                {
+                    Position = defaultEnvironment.SugarStackPosition
+                };
+                structure.NestElements.Add(sugarStack);
+                NestSystem.ParseNodePath(defaultEnvironment.SugarStackBindNodePath, out guid, out name);
+                structure.ElementEdges.Add(new NestPathElementEdgeData()
+                {
+                    ElementGuidA = sugarStack.Guid,
+                    ElementGuidB = guid,
+                    NodeNameA = defaultEnvironment.SugarStackNodeName,
+                    NodeNameB = name
+                });
+
+                //アリ
+                var ants = su.s_GameContext.s_NestData.Ants;
+                for (int i = 0; i < defaultEnvironment.BuilderAntCount; i++)
+                    ants.Add(new BuilderAntData());
+                for (int i = 0; i < defaultEnvironment.ErgateAntCount; i++)
+                    ants.Add(new ErgateAntData());
+                for (int i = 0; i < defaultEnvironment.UnemployedAntCount; i++)
+                    ants.Add(new UnemployedAntData());
+            }
 
             su.SetAsCurrent();
         }

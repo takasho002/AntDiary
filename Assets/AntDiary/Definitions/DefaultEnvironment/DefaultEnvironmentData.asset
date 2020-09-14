@@ -23,14 +23,23 @@ MonoBehaviour:
       width: 10
       height: 1
     nodeData:
-    - name: bottom
+    - name: wild_left
       position: {x: 0, y: 0}
-    - name: bottom
+    - name: wild_middle
       position: {x: 4, y: 0}
-    - name: bottom
+    - name: _right
       position: {x: 8, y: 0}
     edgeData:
     - indexA: 0
       indexB: 1
     - indexA: 1
       indexB: 2
+  initialRoadPosition: {x: 1.5, y: 1}
+  initialRoadNodeName: top
+  initialRoadBindNodePath: 62adc900-c2a9-4798-9654-799121b1f720/wild_middle
+  sugarStackPosition: {x: -5, y: 3.5}
+  sugarStackNodeName: joint
+  sugarStackBindNodePath: 62adc900-c2a9-4798-9654-799121b1f720/wild_left
+  architectAntCount: 1
+  ergateAntCount: 2
+  unemployedAntCount: 2
