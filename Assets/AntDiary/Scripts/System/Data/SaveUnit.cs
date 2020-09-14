@@ -44,10 +44,10 @@ namespace AntDiary
         private static readonly Subject<SaveUnit> onCurrentSaveUnitChanged = new Subject<SaveUnit>();
 
         /// <summary>
-        /// 初期状態のセーブデータを生成して返す。
+        /// 空のセーブデータを生成して返す。
         /// </summary>
         /// <returns></returns>
-        public static SaveUnit GetDefaultSaveUnit()
+        public static SaveUnit GetEmptySaveUnit()
         {
             var su = new SaveUnit()
             {

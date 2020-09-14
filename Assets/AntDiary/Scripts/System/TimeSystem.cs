@@ -163,6 +163,7 @@ namespace AntDiary
 
         private void LoadTime()
         {
+            Debug.Log("LoadTime");
             if (SaveUnit.Current != null)
             {
                 timeOffset = GameContext.Current.s_CurrentTime;

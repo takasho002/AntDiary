@@ -139,6 +139,51 @@ MonoBehaviour:
     type: 3}
   leftDirRoadPrefab: {fileID: 4481878659885024219, guid: 4b715ad7b58abc349b75e863e84dd2dd,
     type: 3}
+--- !u!1 &1819912758509366907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 690065195781281646}
+  - component: {fileID: 2790746955359051275}
+  m_Layer: 0
+  m_Name: GeneralPathRoadFactory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &690065195781281646
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819912758509366907}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7330755635594259116}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2790746955359051275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819912758509366907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442fbdd95dec660408d1b0248f58939c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generalPathRoadPrefab: {fileID: 8544605828376545205, guid: 2863d1ea5d23fad449ed70509457b792,
+    type: 3}
 --- !u!1 &3882576165472150745
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +449,7 @@ Transform:
   - {fileID: 8004003651767214842}
   - {fileID: 4334998042793489787}
   - {fileID: 615599578666001498}
+  - {fileID: 690065195781281646}
   m_Father: {fileID: 7330755635708001766}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -428,6 +474,7 @@ MonoBehaviour:
   - {fileID: 4864833772480513066}
   - {fileID: 7691373749618332889}
   - {fileID: 7329380204863080166}
+  - {fileID: 2790746955359051275}
 --- !u!1 &7330755635708001764
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +525,7 @@ MonoBehaviour:
   debugMenuPages:
   - {fileID: 7330755635594259107}
   - {fileID: 7330755635365534184}
+  defaultEnvironment: {fileID: 11400000, guid: 57cbe50017a91284c9bfa4e9258bbfb5, type: 2}
 --- !u!1 &7330755635714401570
 GameObject:
   m_ObjectHideFlags: 0

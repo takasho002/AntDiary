@@ -129,24 +129,25 @@ namespace AntDiary
 
             //セーブデータから巣情報をロード
 
-            //アリを生成
-            foreach (var antData in Data.Ants)
-            {
-                var ant = InstantiateAnt(antData, false);
-            }
-
             //道、部屋を生成
             foreach (var elementData in Data.Structure.NestElements)
             {
                 var element = InstantiateNestElement(elementData, false);
             }
-
+            
             //Element間の接続をロード
             foreach (var edgeData in Data.Structure.ElementEdges)
             {
                 var edge = new NestPathElementEdge(nestElements, edgeData);
                 elementEdges.Add(edge);
             }
+            
+            //アリを生成
+            foreach (var antData in Data.Ants)
+            {
+                var ant = InstantiateAnt(antData, false);
+            }
+
         }
 
 
@@ -319,6 +320,27 @@ namespace AntDiary
         public T GetAnt<T>() where T : Ant
         {
             return GetAnts<T>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// [GUID]/[Name of node]で構成されたパスからノードを取得する。
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public NestPathNode GetNodeFromPath(string path)
+        {
+            ParseNodePath(path, out string guid, out string name);
+            return nestElements.FirstOrDefault(e => e.Data.Guid == guid)?.GetNodes().FirstOrDefault(n => n.Name == name);
+        }
+
+        public static void ParseNodePath(string path, out string guid, out string name)
+        {
+            var splitted = path.Split('/');
+            if(splitted.Length != 2) throw new ArgumentException();
+
+            guid = splitted[0];
+            name = splitted[1];
         }
 
         public IEnumerable<IPathNode> FindRoute(NestPathNode from, NestPathNode to)

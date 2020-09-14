@@ -10,6 +10,8 @@ namespace AntDiary
     [Union(2, typeof(ErgateAntData))]
     [Union(3, typeof(BuilderAntData))]
     [Union(4, typeof(QueenAntData))]
+    [Union(5, typeof(EnemyAntData))]
+    [Union(6, typeof(SoldierAntData))]
     public abstract class AntData
     {
         //方針として、AntDataのメンバ(アリの複数種に共通値)のKeyは0 ~ 99, 各継承クラスのメンバのKeyは100~にしたいな～と

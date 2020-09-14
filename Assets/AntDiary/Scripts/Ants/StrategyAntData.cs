@@ -1,5 +1,5 @@
 namespace AntDiary.Scripts.Ants{
-	public class StrategyAntData: AntData{
+	public abstract class StrategyAntData: AntData{
 		//Strategy状態保存するならここに
 	}
 }
