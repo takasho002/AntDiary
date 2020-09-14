@@ -18,9 +18,9 @@ MonoBehaviour:
     name: Default Ground
     blockingShape:
       serializedVersion: 2
-      x: 0
+      x: 2.5
       y: 0.5
-      width: 10
+      width: 18
       height: 1
     nodeData:
     - name: wild_left
@@ -40,6 +40,7 @@ MonoBehaviour:
   sugarStackPosition: {x: -5, y: 3.5}
   sugarStackNodeName: joint
   sugarStackBindNodePath: 62adc900-c2a9-4798-9654-799121b1f720/wild_left
-  architectAntCount: 1
+  builderAntCount: 1
   ergateAntCount: 2
   unemployedAntCount: 2
+  storedFood: 0
