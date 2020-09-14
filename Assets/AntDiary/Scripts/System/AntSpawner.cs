@@ -26,6 +26,7 @@ namespace AntDiary
         public void StartSpawn()
         {
             queen = NestSystem.Instance.GetAnt<QueenAnt>();
+            if (!queen) return;
             if(!queenroom.IsUnderConstruction && queen != null)StartCoroutine("Spawn");
         }
 
