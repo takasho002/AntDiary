@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7909437813759340552}
   - component: {fileID: -1844336826849223139}
   - component: {fileID: -639857431045329211}
-  - component: {fileID: 1842269379945564654}
+  - component: {fileID: 938478993897643823}
   m_Layer: 0
   m_Name: ErgateAnt
   m_TagString: Untagged
@@ -134,7 +134,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!114 &1842269379945564654
+--- !u!114 &938478993897643823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5503621781716167659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e4838dd600facb44a459c80eb634b08, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d92beede22fd7341a9e93adafa7bd45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nowPlace: {x: 0, y: 0}
-  speed: 0.01
-  way: {x: 0, y: 0}
+  HostAnt: {fileID: 0}

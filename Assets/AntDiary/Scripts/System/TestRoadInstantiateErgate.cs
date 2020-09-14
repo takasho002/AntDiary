@@ -79,8 +79,8 @@ public class TestRoadInstantiateErgate : MonoBehaviour
         //横接続
         for(int i = 0; i < map.GetLength(0) - 1; i++){
             for(int j = 0; j < map.GetLength(1); j++){
-                var elemA = map[i, j]?.GetNodes().FirstOrDefault(n => n.Name == "wild_right");
-                var elemB = map[i+1, j]?.GetNodes().FirstOrDefault(n => n.Name == "wild_left");
+                var elemA = map[i, j]?.GetNodes().FirstOrDefault(n => n.Name == "right");
+                var elemB = map[i+1, j]?.GetNodes().FirstOrDefault(n => n.Name == "left");
                 if(elemA != null && elemB != null){
                     NestSystem.Instance.ConnectElements(elemA, elemB);
                 }
@@ -90,8 +90,8 @@ public class TestRoadInstantiateErgate : MonoBehaviour
         //縦接続
         for(int i = 0; i < map.GetLength(0); i++){
             for(int j = 0; j < map.GetLength(1) - 1; j++){
-                var elemA = map[i, j]?.GetNodes().FirstOrDefault(n => n.Name == "wild_top");
-                var elemB = map[i, j+1]?.GetNodes().FirstOrDefault(n => n.Name == "wild_bottom");
+                var elemA = map[i, j]?.GetNodes().FirstOrDefault(n => n.Name == "top");
+                var elemB = map[i, j+1]?.GetNodes().FirstOrDefault(n => n.Name == "bottom");
                 if(elemA != null && elemB != null){
                     NestSystem.Instance.ConnectElements(elemA, elemB);
                 }
@@ -110,7 +110,7 @@ public class TestRoadInstantiateErgate : MonoBehaviour
         NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[5, 0].transform.position});
         NestSystem.Instance.InstantiateAnt(new ErgateAntData{Position = map[2, 3].transform.position});
         var elemC = map[2,4].GetNodes().First(node => node.Name == "right");
-        var elemD = map[3,4].GetNodes().First(n => n.Name == "wild_left");
+        var elemD = map[3,4].GetNodes().First(n => n.Name == "left");
         NestSystem.Instance.ConnectElements(elemC,elemD);
         //ここまで少し追加しました後で消します
         NestSystem.Instance.InstantiateAnt(new BuilderAntData{Position = map[2, 2].transform.position});

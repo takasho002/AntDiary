@@ -11,10 +11,9 @@ public class Ergate : MonoBehaviour
     ErgateAntData data;
     public ErgateAnt HostAnt;
     public NestPathNode nodeNest;
+
     //デバッグ用
     public NestPathNode nodeFeed;
-
-    // public Vector2 distance;
 
          
     void Start()
@@ -32,13 +31,15 @@ public class Ergate : MonoBehaviour
                 nodeNest = element.GetNodes().ElementAt(0);
             }
         }
+       
+       
+        //以下デバッグ用
         Vector3 a = HostAnt.transform.position;
         a.z = -1;
         HostAnt.transform.position = a;
-       
-        //以下デバッグ用
         HostAnt.transform.localScale = new Vector3(1/2f, 1/2f, 1);
-        nodeFeed = NestSystem.Instance.NestElements[2].GetNodes().FirstOrDefault(n => n.Name == "wild_top");
+
+        nodeFeed = NestSystem.Instance.NestElements[10].GetNodes().FirstOrDefault(n => n.Name == "top");
         //nodeFeed = null;
         if(nodeFeed ==null)Debug.Log("nullです");               
         ErgateAntStart(nodeFeed);
@@ -72,7 +73,7 @@ public class Ergate : MonoBehaviour
     }
 
     //Debug用スタートプログラム
-    public void ErgateAntStart(NestPathNode target){
+    private void ErgateAntStart(NestPathNode target){
         if(target != null){
             Debug.Log("start!");
             HostAnt.StartForPathNode(target , LeaveFeed , Cancel);
