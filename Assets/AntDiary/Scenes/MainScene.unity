@@ -3511,6 +3511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JobAssignmentSystem: {fileID: 700589540}
+  SpawnInterval: 1
 --- !u!4 &1307391405
 Transform:
   m_ObjectHideFlags: 0
@@ -4437,6 +4438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1512593442}
   - component: {fileID: 1512593441}
+  - component: {fileID: 1512593443}
   m_Layer: 0
   m_Name: MainDebug
   m_TagString: Untagged
@@ -4477,6 +4479,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1512593443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512593440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12ad058f36bec974ca618e7b6e8c8f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextwave: 0
+  interval: 180
+  spawncount: 5
 --- !u!1001 &1569829845
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ namespace AntDiary
     [MessagePackObject()]
     public class QueenRoomData : RoomData
     {
-        [Key(30)]
-        public bool IsBuilt { get;set; } = false;
     }
     
 }

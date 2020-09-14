@@ -34,6 +34,7 @@ namespace AntDiary
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             Vector2 center = new Vector2(boundingRect.x, boundingRect.y);
             Vector2 x = new Vector2(boundingRect.width * 0.5f, 0);
             Vector2 y = new Vector2(0, boundingRect.height * 0.5f);
@@ -58,6 +59,7 @@ namespace AntDiary
                 new NestPathLocalEdge(nodes[3], nodes[4]),
                 new NestPathLocalEdge(nodes[4], nodes[1]),
             };
+            if(!IsUnderConstruction)GetComponent<AntSpawner>().StartSpawn();
         }
 
         private void OnDrawGizmos()
@@ -72,8 +74,9 @@ namespace AntDiary
         {
             base.OnBuildingCompleted();
             //建築完了時に女王アリを生成
-            QueenAntData queenantdata = new QueenAntData();
+            QueenAntData queenantdata = new QueenAntData() { Position = transform.position};
             NestSystem.Instance.InstantiateAnt(queenantdata);
+            GetComponent<AntSpawner>().StartSpawn();
         }
 
     }

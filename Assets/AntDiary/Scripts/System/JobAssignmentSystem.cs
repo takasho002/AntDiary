@@ -25,18 +25,15 @@ namespace AntDiary
         public float ideal_Architect = 0f;
         public float ideal_Soilder = 0f;
         public float ideal_Mule = 0f;
-        public float ideal_Free = 100f;
+        public float ideal_Free = 100.0f;
 
         void Start()
         {
             jobCount = antjobs.Count;
 
             //理想値の初期値を設定
-            idealrate = new float[jobCount] ;
-            for(int i = 0; i < idealrate.Length; i++)
-            {
-                idealrate[i] = 100.0f / idealrate.Length;
-            }
+            idealrate = new float []{0f,0f,0f,100f };
+            ideal_Free = 100f;
         }
 
         /// <summary>
@@ -47,9 +44,7 @@ namespace AntDiary
         {
             InitAntCounter();
 
-            //理想値の取得？
-            //int[] ideal = new int[4] { ideal_Architect, ideal_Soilder, ideal_Mule, ideal_Free };
-            //int idealtotal = ideal.Sum();
+            //理想値の取得
             for (int i = 0; i < jobCount; i++)
             {
                 if (antjobs[i].Name == "BuilderAntData")

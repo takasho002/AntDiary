@@ -33,7 +33,6 @@ public class AnimatorAnt : MonoBehaviour
             float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg; ;
             var scale = transform.localScale;
             var rotation = transform.eulerAngles;
-            Debug.Log(angle);
             if (v.x > 0)
             {
                 scale.x = -Math.Abs(scale.x);
