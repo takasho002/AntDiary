@@ -25,17 +25,7 @@ namespace AntDiary
         public bool IsHoldingFood { get => SelfData.IsHoldingFood; set => SelfData.IsHoldingFood = value; }
         public int Capacity { get => SelfCommonData.Capacity; }
 
-        protected override void Update()
-        {
-            /*
-            base.Update();
-
-            if (!pathWayStarted)
-            {
-                if (SetRandomDestination()) pathWayStarted = true;
-            }
-            */
-        }
+       
 
         private bool SetRandomDestination()
         {

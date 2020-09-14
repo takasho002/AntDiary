@@ -39,7 +39,7 @@ public class Ergate : MonoBehaviour
         HostAnt.transform.position = a;
         HostAnt.transform.localScale = new Vector3(1/2f, 1/2f, 1);
 
-        nodeFeed = NestSystem.Instance.NestElements[10].GetNodes().FirstOrDefault(n => n.Name == "top");
+        nodeFeed = NestSystem.Instance.NestElements[0].GetNodes().FirstOrDefault(n => n.Name == "top");
         //nodeFeed = null;
         if(nodeFeed ==null)Debug.Log("nullです");               
         ErgateAntStart(nodeFeed);
@@ -51,9 +51,6 @@ public class Ergate : MonoBehaviour
         HostAnt.CancelMovement();
     }
     // Update is called once per frame
-    public void Update()
-    {
-    }
     
     //餌を獲得
     private void GetFeed()
@@ -76,7 +73,7 @@ public class Ergate : MonoBehaviour
     private void ErgateAntStart(NestPathNode target){
         if(target != null){
             Debug.Log("start!");
-            HostAnt.StartForPathNode(target , LeaveFeed , Cancel);
+            HostAnt.StartForPathNode(target , GetFeed , Cancel);
         }else{
             Debug.Log("働きたくないでござる");
         }        
