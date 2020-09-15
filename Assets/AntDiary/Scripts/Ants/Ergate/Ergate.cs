@@ -35,7 +35,7 @@ public class Ergate : MonoBehaviour
         }
         nodeFeed = NestSystem.Instance.NestElements[2].GetNodes().FirstOrDefault(n => n.Name == "wild_top");
         //if(nodeFeed ==null)Debug.Log("nullです");
-        HostAnt.StartForPathNode(nodeFeed , getFeed , Cancel);
+        HostAnt.StartForPathNode(nodeFeed , GetFeed , Cancel);
     }
 
     public void Cancel(){
@@ -48,15 +48,15 @@ public class Ergate : MonoBehaviour
     }
     
     //餌を獲得
-    public void getFeed()
+    public void GetFeed()
     {
         data.IsHoldingFood = true;
         //巣に帰還
-        HostAnt.StartForPathNode(nodeNest , leaveFeed , Cancel);
+        HostAnt.StartForPathNode(nodeNest , LeaveFeed , Cancel);
     }
 
     //餌を離す
-    public void leaveFeed()
+    public void LeaveFeed()
     {
         //餌を持ってない状態にする
         data.IsHoldingFood = false;

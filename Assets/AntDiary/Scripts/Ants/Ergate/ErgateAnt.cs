@@ -21,19 +21,6 @@ namespace AntDiary
         protected override float MovementSpeed { get; } = 1f;
 
         private bool pathWayStarted = false;
-
-        protected override void Update()
-        {
-            /*
-            base.Update();
-
-            if (!pathWayStarted)
-            {
-                if (SetRandomDestination()) pathWayStarted = true;
-            }
-            */
-        }
-
         private bool SetRandomDestination()
         {
             var allNodes = NestSystem.Instance.NestPathNodes;
