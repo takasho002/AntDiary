@@ -33,7 +33,7 @@ public class Ergate : MonoBehaviour
         }
        
        
-        /*以下デバッグ用
+        //以下デバッグ用
         Vector3 a = HostAnt.transform.position;
         a.z = -1;
         HostAnt.transform.position = a;
@@ -43,7 +43,7 @@ public class Ergate : MonoBehaviour
         //nodeFeed = null;
         if(nodeFeed ==null)Debug.Log("nullです");               
         ErgateAntStart(nodeFeed);
-        //ここまで*/
+        //ここまで
     }
 
     private void Cancel(){
