@@ -1,26 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AntDiary.Scripts.Ants;
 using UnityEngine;
 
 namespace AntDiary{
 	/// <summary>
 	/// 建築中のElementがなく、待機してるときのStrategy
 	/// </summary>
-	public class RoundStrategy: BuilderStrategy{
-		public RoundStrategy(BuilderAnt ant) : base(ant){
+	public class RoundStrategy: Strategy<BuilderAntData>{
+		public RoundStrategy() : base(){
 			UpdateInterval = 1.0f;
 		}
 
-		public override void StartStrategy(){
-			
-		}
+		
 
 		public override void PeriodicUpdate(){
 			//到達可能なのはすでに建築済みのNodeだけだが、欲しいのはそのNodeに重なった建築中のNode
 			
 			var buildingElements = NestSystem.Instance.BuildingElements;
-			var currentNode = HostAnt.SupposeCurrentPosNode();
+			var currentNode = Controller.Ant.SupposeCurrentPosNode();
 			
 			Debug.Log($"<RoundStrategy> PeriodicUpdate building?: {buildingElements.Any()} ant:{currentNode?.WorldPosition} on {currentNode?.Host.transform.position}");
 			
@@ -44,7 +43,7 @@ namespace AntDiary{
 				NestSystem.Instance.FindRoute(tuple.Item2, currentNode).Count() >= 2);
 			
 			
-			HostAnt.ChangeStrategy(new MoveStrategy(HostAnt, distTuple.Item1, distTuple.Item2));
+			Controller.ChangeStrategy(new MoveStrategy(distTuple.Item1, distTuple.Item2));
 
 
 		}

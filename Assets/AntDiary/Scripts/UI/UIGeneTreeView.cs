@@ -164,8 +164,22 @@ namespace AntDiary
         {
             Vector2 p = evt.currentInputModule.input.mousePosition - dragStartMousePosition +
                         dragStartContainerPosition;
-            p.x = Mathf.Clamp(p.x,  -contentContainer.sizeDelta.x + maskContainer.rect.width, 0);
-            p.y = Mathf.Clamp(p.y,  -contentContainer.sizeDelta.y + maskContainer.rect.height, 0);
+            var sizeDelta = contentContainer.sizeDelta;
+            var rect = maskContainer.rect;
+            float overflow_x = -sizeDelta.x + rect.width;
+            float overflow_y = -sizeDelta.y + rect.height;
+            if (overflow_x < 0)
+            {
+                p.x = Mathf.Clamp(p.x, overflow_x, 0);
+            }
+            else p.x = Mathf.Clamp(p.x, 0, overflow_x);
+
+            if (overflow_y < 0)
+            {
+                p.y = Mathf.Clamp(p.y, overflow_y, 0);
+            }
+            else p.y = Mathf.Clamp(p.y, 0, overflow_y);
+
             contentContainer.anchoredPosition = p;
             
             evt.Use();

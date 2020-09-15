@@ -11,11 +11,11 @@ namespace AntDiary.Scripts.Roads{
 		
 		
 		protected override void OnInitialized(){
-			
-			switch(SelfData.Direction){
+			if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
+			switch (SelfData.Direction){
 				case EnumRoadDirection.Top:
-					AddLocalNode("top", "wild_top", Vector2.up * radius);
-					AddLocalNode("right", "wild_right", Vector2.right * radius);
+					AddLocalNode("top", "top", Vector2.up * radius);
+					AddLocalNode("right", "right", Vector2.right * radius);
 					AddLocalNode("center", "", Vector2.zero * radius);
 					ConnectLocalNodeToIntersection("center", new []{"top", "right"});
 					// _nodes = new[]{
@@ -23,8 +23,8 @@ namespace AntDiary.Scripts.Roads{
 					// };
 					break;
 				case EnumRoadDirection.Right:
-					AddLocalNode("right", "wild_right", Vector2.right * radius);
-					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
+					AddLocalNode("right", "right", Vector2.right * radius);
+					AddLocalNode("bottom", "bottom", Vector2.down * radius);
 					AddLocalNode("center", "", Vector2.zero * radius);
 					ConnectLocalNodeToIntersection("center", new []{"right", "bottom"});
 					// _nodes = new[]{
@@ -32,8 +32,8 @@ namespace AntDiary.Scripts.Roads{
 					// };
 					break;
 				case EnumRoadDirection.Bottom:
-					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
-					AddLocalNode("left", "wild_left", Vector2.left * radius);
+					AddLocalNode("bottom", "bottom", Vector2.down * radius);
+					AddLocalNode("left", "left", Vector2.left * radius);
 					AddLocalNode("center", "", Vector2.zero * radius);
 					ConnectLocalNodeToIntersection("center", new []{"bottom", "left"});
 					// _nodes = new[]{
@@ -41,8 +41,8 @@ namespace AntDiary.Scripts.Roads{
 					// };
 					break;
 				case EnumRoadDirection.Left:
-					AddLocalNode("left", "wild_left", Vector2.left * radius);
-					AddLocalNode("top", "wild_top", Vector2.up * radius);
+					AddLocalNode("left", "left", Vector2.left * radius);
+					AddLocalNode("top", "top", Vector2.up * radius);
 					AddLocalNode("center", "", Vector2.zero * radius);
 					ConnectLocalNodeToIntersection("center", new []{"left", "top"});
 					// _nodes = new[]{

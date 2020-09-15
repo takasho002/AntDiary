@@ -4,7 +4,8 @@ using System.Linq;
 using System;
 using AntDiary.Scripts.Roads;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace AntDiary
 {
@@ -34,11 +35,11 @@ namespace AntDiary
             //貯蓄庫と女王の部屋の数を数えます
             for(int i=0;i<list.Count;i++)
             {
-                if(list[i].gameObject.name == "Chochikubeya(Clone)")
+                if (list[i].GetType().Name == "StoreRoom")
                 {
                     Chochikukonum++;
                 }
-                else if(list[i].gameObject.name == "QweenAntRoom(Clone)")//仮の名前
+                else if(list[i].GetType().Name == "QueenRoom")//仮の名前
                 {
                     QweenRoomNum++;
                 }
@@ -48,57 +49,57 @@ namespace AntDiary
             NestElementData data;
             if(NestName == "IShapeVertical")
             {
-                data = new IShapeRoadData(EnumRoadHVDirection.Vertical);
+                data = new IShapeRoadData(EnumRoadHVDirection.Vertical) { IsUnderConstruction = true};
             }
             else if(NestName == "IShapeHorizontal")
             {
-                data = new IShapeRoadData(EnumRoadHVDirection.Horizontal);
+                data = new IShapeRoadData(EnumRoadHVDirection.Horizontal) { IsUnderConstruction = true };
             }
             else if(NestName == "LShapeBottom")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Bottom);
+                data = new LShapeRoadData(EnumRoadDirection.Bottom) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeRight")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Right);
+                data = new LShapeRoadData(EnumRoadDirection.Right) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeTop")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Top);
+                data = new LShapeRoadData(EnumRoadDirection.Top) { IsUnderConstruction = true };
             }
             else if (NestName == "LShapeLeft")
             {
-                data = new LShapeRoadData(EnumRoadDirection.Left);
+                data = new LShapeRoadData(EnumRoadDirection.Left) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeBottom")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Bottom);
+                data = new TShapeRoadData(EnumRoadDirection.Bottom) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeRight")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Right);
+                data = new TShapeRoadData(EnumRoadDirection.Right) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeTop")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Top);
+                data = new TShapeRoadData(EnumRoadDirection.Top) { IsUnderConstruction = true };
             }
             else if (NestName == "TShapeLeft")
             {
-                data = new TShapeRoadData(EnumRoadDirection.Left);
+                data = new TShapeRoadData(EnumRoadDirection.Left) { IsUnderConstruction = true };
             }
-            else if(NestName == "Chochikubeya")
+            else if(NestName == "Chochikubeya" && Chochikukonum == 0)
             {
                 //data = new ChochikubeyaData();
-                data = new CrossShapeRoadData();
+                data = new StoreRoomData() { IsUnderConstruction = true };
             }
-            else if(NestName == "QweenAntRoom")
+            else if(NestName == "QueenRoom" && QweenRoomNum == 0)
             {
                 //data = new QweenAntRoomData();
-                data = new CrossShapeRoadData();
+                data = new QueenRoomData() { IsUnderConstruction = true };
             }
             else if(NestName =="Cross")
             {
-                data = new CrossShapeRoadData();
+                data = new CrossShapeRoadData() { IsUnderConstruction = true };
             }
             else
             {
@@ -106,14 +107,15 @@ namespace AntDiary
             }
             
             //貯蓄庫と女王の部屋が指定されたときシーン内に巣でにそれらの部屋があるなら出せない
-            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QweenAntRoom" && QweenRoomNum != 0))
+            if ((NestName == "Chochikubeya" && Chochikukonum != 0) || (NestName == "QueenRoom" && QweenRoomNum != 0))
             {
-                
+                GetComponent<EventTrigger>().triggers.Clear();
             }
             else
             {
-                nestelement = NestSystem.Instance.InstantiateNestElement(data);
+                nestelement = NestSystem.Instance.InstantiateNestElement(data, false, false);
                 nestelement.transform.position = screenToWorldPointPosition;
+                (nestelement as NestBuildableElement).SetImage(EnumNestImage.Spector);
             }
         }
 
@@ -124,22 +126,38 @@ namespace AntDiary
                 position.z = 10f;
                 screenToWorldPointPosition = Camera.main.ScreenToWorldPoint(position);
                 nestelement.transform.position = screenToWorldPointPosition;
+                
+                //ドラッグ中にスナップ
+                nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);
 
         }
         public void PushUp()
         {
-
+/*
               if (BuildingSystem.Instance.IsPlaceable(nestelement) == false)//建築可能な領域でない
               {
                 //NestElement削除
-                  NestSystem.Instance.RemoveNestElement(nestelement);
+                  //NestSystem.Instance.RemoveNestElement(nestelement);
                   Destroy(nestelement.gameObject);
               }
               else//建築可能
               {
-                nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);//付近のノードにスナップした座標へ置く      
+                //nestelement.transform.position = BuildingSystem.Instance.GetSnappedPosition(nestelement);//付近のノードにスナップした座標へ置く      
                 BuildingSystem.Instance.PlaceElementWithAutoConnect(nestelement);//NestSystemへ登録
               }
+*/
+              if (!BuildingSystem.Instance.PlaceElementWithAutoConnect(nestelement, false))
+              {
+                  Destroy(nestelement.gameObject);
+              }
+            if ((nestelement as NestBuildableElement).IsUnderConstruction)
+            {
+                (nestelement as NestBuildableElement).SetImage(EnumNestImage.Building);
+            }
+            else
+            {
+                (nestelement as NestBuildableElement).SetImage(EnumNestImage.Built);
+            }
         }
     }
 }

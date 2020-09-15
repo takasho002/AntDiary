@@ -16,9 +16,8 @@ namespace AntDiary
         //ふりゾーン
         [SerializeField] private Sprite Esaari;
         [SerializeField] private Sprite Esanashi;
-        private SpriteRenderer spriteRenderer;
 
-        public int season;
+        private int [] season = {1,1,1,1};
         //ここまで
 
         public override Collider2D GetBlockingShape()
@@ -39,6 +38,7 @@ namespace AntDiary
 
         protected override void OnInitialized()
         {
+            base.OnInitialized();
             Vector2 center = new Vector2(boundingRect.x, boundingRect.y);
             Vector2 x = new Vector2(boundingRect.width * 0.5f, 0);
             Vector2 y = new Vector2(0, boundingRect.height * 0.5f);
@@ -65,7 +65,7 @@ namespace AntDiary
             };
 
             //ふりゾーン
-            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            //spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             // 貯蓄庫の初期の貯蓄量を0とする
             NestSystem.Instance.Data.StoredFood = 0;
             //ここまで
@@ -77,17 +77,17 @@ namespace AntDiary
         {
             GameObject colliderObj = collision.gameObject;
             if (!colliderObj.GetComponent<ErgateAnt>().GetType().Name.Equals("ErgateAnt")) return;
-            ErgateAntData script = (ErgateAntData)colliderObj.GetComponent<ErgateAnt>().Data;
+            ErgateAnt script = (ErgateAnt)colliderObj.GetComponent<ErgateAnt>();
             Debug.Log(colliderObj.GetComponent<ErgateAnt>().GetType().Name);
 
-            if (script.IsHoldingFood)
+            if (script.IsHoldingFood && !SelfData.IsUnderConstruction)
             {
                 // 貯蓄部屋のストックが0から増える際はspriteを餌ありに変更
                 if (NestSystem.Instance.Data.StoredFood == 0)
                 {
-                    //spriteRenderer.sprite = Esaari;
+                    spriteRenderer.sprite = Esaari;
                 }
-                NestSystem.Instance.Data.StoredFood += season * script.Capacity;
+                NestSystem.Instance.Data.StoredFood += (int)(season[TimeSystem.Instance.CurrentSeason%4] * script.Capacity);
                 Debug.Log(NestSystem.Instance.Data.StoredFood);
                 //script.IsHoldingFood = false;
             }

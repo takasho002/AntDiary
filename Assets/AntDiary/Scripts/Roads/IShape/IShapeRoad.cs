@@ -11,16 +11,16 @@ namespace AntDiary.Scripts.Roads{
 		[SerializeField] private float radius = 2;
 
 		protected override void OnInitialized(){
-
-			switch(SelfData.Direction){
+			if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
+			switch (SelfData.Direction){
 				case EnumRoadHVDirection.Horizontal:
-					AddLocalNode("left", "wild_left", Vector2.left * radius);
-					AddLocalNode("right", "wild_right", Vector2.right * radius);
+					AddLocalNode("left", "left", Vector2.left * radius);
+					AddLocalNode("right", "right", Vector2.right * radius);
 					ConnectLocalNode("left", "right");
 					break;
 				case EnumRoadHVDirection.Vertical:
-					AddLocalNode("top", "wild_top", Vector2.up * radius);
-					AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
+					AddLocalNode("top", "top", Vector2.up * radius);
+					AddLocalNode("bottom", "bottom", Vector2.down * radius);
 					ConnectLocalNode("top", "bottom");
 					break;
 			}

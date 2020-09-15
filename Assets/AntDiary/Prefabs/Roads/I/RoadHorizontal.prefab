@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e10ad51c889d51e45a193eeda3ee51c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e95fdf5ac6a5f1241a4600f542053bcf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,6 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5c6143552f49b08180d00791eb72a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7373204188142403101}
+  built: {fileID: 21300000, guid: e10ad51c889d51e45a193eeda3ee51c3, type: 3}
+  building: {fileID: 21300000, guid: e95fdf5ac6a5f1241a4600f542053bcf, type: 3}
+  spector: {fileID: 21300000, guid: dfe8dfe2d12e0d44f90a2631afbead3d, type: 3}
+  constructCost: 15
   blockingShape: {fileID: 2262531260663962503}
   radius: 2
 --- !u!61 &2262531260663962503
