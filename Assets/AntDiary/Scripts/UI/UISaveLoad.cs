@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UISaveLoad : MonoBehaviour
 {
@@ -30,7 +31,15 @@ public class UISaveLoad : MonoBehaviour
 
     public void ClickLoad()
     {
-        SaveSystem.LoadSaveUnitToCurrent(lastSelction);
+        //SaveSystem.LoadSaveUnitToCurrent(lastSelction);
         Debug.Log("Load"+lastSelction);
+        SceneManager.sceneLoaded += LoadData;
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void LoadData(Scene next, LoadSceneMode mode)
+    {
+        SaveSystem.LoadSaveUnitToCurrent(lastSelction);
+        SceneManager.sceneLoaded -= LoadData;
     }
 }

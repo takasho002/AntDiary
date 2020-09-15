@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Linq;
 using UnityScript.Scripting.Pipeline;
+using UnityEditor;
 
 namespace AntDiary
 {
@@ -32,6 +33,9 @@ namespace AntDiary
         {
             JobSystem = GameObject.Find("JobAssignmentSystem");
             jobScript = JobSystem.GetComponent<JobAssignmentSystem>();
+            Architect = ArchitectBar.GetComponent<WariateUI>();
+            Work = WorkBar.GetComponent<WariateUI>();
+            Deffence = DeffenceBar.GetComponent<WariateUI>();
         }
 
         // Update is called once per frame
@@ -40,11 +44,21 @@ namespace AntDiary
 
         }
 
+        public void OnDisable()
+        {
+            Architect.Rate = jobScript.ideal_Architect;
+            Work.Rate = jobScript.ideal_Mule;
+            Deffence.Rate = jobScript.ideal_Soilder;
+            Architect.scrollbar.fillAmount = Architect.Rate / 100;
+            Work.scrollbar.fillAmount = Work.Rate / 100;
+            Deffence.scrollbar.fillAmount = Deffence.Rate / 100;
+            Architect.transform.localPosition = new Vector3(Architect.Rate * 3 - 150, Architect.transform.localPosition.y, Architect.transform.localPosition.z);
+            Work.transform.localPosition = new Vector3(Work.Rate * 3 - 150, Work.transform.localPosition.y, Work.transform.localPosition.z);
+            Deffence.transform.localPosition = new Vector3(Deffence.Rate * 3 - 150, Deffence.transform.localPosition.y, Deffence.transform.localPosition.z);
+        }
+
         public void PushUp()
         {
-            Architect = ArchitectBar.GetComponent<WariateUI>();
-            Work = WorkBar.GetComponent<WariateUI>();
-            Deffence = DeffenceBar.GetComponent<WariateUI>();
 
             ArchitectAntNum = Architect.Rate;
             WorkAntNum = Work.Rate;

@@ -10,6 +10,8 @@ namespace AntDiary.Scripts.Roads{
 		[SerializeField] private float radius = 2;
 		
 		protected override void OnInitialized(){
+			if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
+
 			AddLocalNode("top", "top", Vector2.up * radius);
 			AddLocalNode("right", "right", Vector2.right * radius);
 			AddLocalNode("bottom", "bottom", Vector2.down * radius);

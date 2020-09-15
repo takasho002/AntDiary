@@ -22,7 +22,7 @@ namespace AntDiary
             {
                 if (NestSystem.Instance.Data.StoredFood < -50)
                 {
-                    SceneManager.LoadScene("Sayoshi_GameOver");
+                    SceneManager.LoadScene("GameOverScene");
                 }
                 timeleft = 10.0f;
             }

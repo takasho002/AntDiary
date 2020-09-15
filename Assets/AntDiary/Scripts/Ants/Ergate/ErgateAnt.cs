@@ -18,14 +18,24 @@ namespace AntDiary
         }
 
         // Update is called once per frame
-        protected override float MovementSpeed { get; } = 1f;
+        protected override float MovementSpeed => SelfCommonData.BasicMovementSpeed;
 
         private bool pathWayStarted = false;
 
         public bool IsHoldingFood { get => SelfData.IsHoldingFood; set => SelfData.IsHoldingFood = value; }
-        public int Capacity { get => SelfCommonData.Capacity; }
+        public float Capacity { get => SelfCommonData.BasicEfficiency; }
 
-       
+        protected override void Update()
+        {
+            
+            base.Update();
+            /*
+            if (!pathWayStarted)
+            {
+                if (SetRandomDestination()) pathWayStarted = true;
+            }
+            */
+        }
 
         private bool SetRandomDestination()
         {

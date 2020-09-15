@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace AntDiary
 {
@@ -19,11 +20,12 @@ namespace AntDiary
         void Update()
         {
             //AntDataからHPを読んで0以下か判定
-            if (/*ant.Data.HP=<0 &&*/ ant.Data.IsAlive)
+            if (ant.Data.Health <=0 && ant.Data.IsAlive)
             {
-                //HPが0以下ならステータスを死亡にしアニメーション再生
+                //HPが0以下ならステータスを死亡にしてセーブデータから削除し、アニメーション再生
                 ant.Data.IsAlive = false;
-                //animator.SetTrigger("Dead");
+                animator.SetTrigger("Death");
+                if(ant.GetType()!=typeof(QueenAnt))nestsystem.RemoveAnt(ant);
             }
         }
 
@@ -31,13 +33,17 @@ namespace AntDiary
         /// NestDataから自身のAntDataを削除&ゲームオブジェクト削除
         /// AnimationEventで死亡アニメ終了時に呼び出してほしい
         /// </summary>
-        void Despawn()
+        public void Despawn()
         {
             if (!ant.Data.IsAlive)
             {
-                //nestsystem.RemoveAnt(ant.Data);
-                Destroy(this.gameObject);
+                StartCoroutine(DestroyAnt());
             }
+        }
+        private IEnumerator DestroyAnt()
+        {
+            yield return new WaitForSeconds(1f);
+            Destroy(ant.gameObject);
         }
     }
 }

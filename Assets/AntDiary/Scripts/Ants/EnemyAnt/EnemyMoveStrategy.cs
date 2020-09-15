@@ -46,7 +46,7 @@ namespace AntDiary{
 
 			//最も近いアリ取得
 			var nearlyAnt = NestSystem.Instance
-				.SpawnedAnt
+				.SpawnedAnt.Where(n => n.Data.IsAlive)
 				.Aggregate((result, next) => {
 					if(next is EnemyAnt){
 						return result;

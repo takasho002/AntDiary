@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AntDiary
 {
-    public class QueenAnt : Ant<QueenAntData>
+    public class QueenAnt : Ant<QueenAntData,QueenAntCommonData>
     {
         // Start is called before the first frame update
         void Start()
@@ -18,7 +18,7 @@ namespace AntDiary
         }
 
         // Update is called once per frame
-        protected override float MovementSpeed { get; } = 1f;
+        protected override float MovementSpeed => SelfCommonData.BasicMovementSpeed;
 
         private bool pathWayStarted = false;
 
