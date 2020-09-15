@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AntDiary
 {
-    public class NestBuildableElementData : NestElementData
+    public abstract class NestBuildableElementData : NestElementData
     {
         //Keyは10~19
         [Key(10)] public bool IsUnderConstruction { get; set; } = false;

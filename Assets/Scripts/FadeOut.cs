@@ -57,7 +57,7 @@ public class FadeOut : MonoBehaviour
 
     void cBGM(string bgmName)
     {
-        if (audioSource.clip.name == bgmName)
+        if (audioSource.clip?.name == bgmName)
         {
             // すでに再生中なら変えない
             return;

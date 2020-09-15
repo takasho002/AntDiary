@@ -10,10 +10,12 @@ namespace AntDiary.Scripts.Roads{
 		[SerializeField] private float radius = 2;
 		
 		protected override void OnInitialized(){
-			AddLocalNode("top", "wild_top", Vector2.up * radius);
-			AddLocalNode("right", "wild_right", Vector2.right * radius);
-			AddLocalNode("bottom", "wild_bottom", Vector2.down * radius);
-			AddLocalNode("left", "wild_left", Vector2.left * radius);
+			if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
+
+			AddLocalNode("top", "top", Vector2.up * radius);
+			AddLocalNode("right", "right", Vector2.right * radius);
+			AddLocalNode("bottom", "bottom", Vector2.down * radius);
+			AddLocalNode("left", "left", Vector2.left * radius);
 			AddLocalNode("center", "", Vector2.zero * radius);
 			
 			ConnectLocalNodeToIntersection("center", new []{"top", "right", "bottom", "left"});

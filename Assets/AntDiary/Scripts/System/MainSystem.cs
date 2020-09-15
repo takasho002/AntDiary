@@ -13,17 +13,15 @@ namespace AntDiary
     {
         [SerializeField] private bool showDebugMenu = default;
         [SerializeField] private MonoBehaviour[] debugMenuPages = default;
+        [SerializeField] private DefaultEnvironmentData defaultEnvironment;
         private List<IDebugMenu> DebugMenuPages = new List<IDebugMenu>();
-        
-        private SaveSystem saveSystem = new SaveSystem();
-
 
         private void Start()
         {
             DebugMenuPages.AddRange(debugMenuPages.OfType<IDebugMenu>());
-            DebugMenuPages.Add(saveSystem);
+            DebugMenuPages.Add(new SaveSystemDebugMenu());
             
-            saveSystem.LoadDefaultSaveUnitToCurrent();
+            SaveSystem.LoadDefaultSaveUnitToCurrent(defaultEnvironment);
         }
 
         private void Update()

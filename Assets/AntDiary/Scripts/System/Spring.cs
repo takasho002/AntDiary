@@ -34,7 +34,7 @@ public class Spring : MonoBehaviour
             if(PlaySpringBGMornot == 0)
             {
                 changeBackground.SetBackground(0);
-                fadeOut.BGMsystem("test1");
+                fadeOut.BGMsystem("ari_spring_master2");
                 PlaySpringBGMornot = 1;
             }
         }else{

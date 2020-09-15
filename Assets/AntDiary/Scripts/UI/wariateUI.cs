@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Data.SqlClient;
 
 namespace AntDiary
 {
@@ -25,29 +26,20 @@ namespace AntDiary
 
         //割り当てUIのシステム関連
         //仕事の型リスト
-        private List<Type> antjobs;
+        private List<Type> antjobs = new List<Type>{ typeof(BuilderAntData),typeof(SoldierAntData),typeof(ErgateAntData),typeof(UnemployedAntData)};
         private int jobCount;
         public int total;
+        public float fillAmount=0.0f;
 
         public string JobName;
         public int NumOfBar;
+        public float Rate=0.0f;
 
         private NestData nestdata => NestSystem.Instance?.Data;
         Dictionary<Type, int> antCounter = new Dictionary<Type, int>();
 
         public void OnEnable()
         {
-            ////AntDataのサブクラスから仕事をtypeリストとして取得
-            antjobs = System.Reflection.Assembly.GetAssembly(typeof(AntData)).GetTypes().Where(x => x.IsSubclassOf(typeof(AntData))).ToList();
-            //DebugAntDataは削除
-            for (int i = 0; i < antjobs.Count; i++)
-            {
-                if (antjobs[i].Name.Equals("DebugAntData"))
-                {
-                    antjobs.RemoveAt(i);
-                    break;
-                }
-            }
             jobCount = antjobs.Count;
 
             antCounter.Clear();
@@ -71,21 +63,21 @@ namespace AntDiary
             if (JobName == "Architecture")
             {
 
-                scrollbar.fillAmount = antCounter[typeof(DebugAntData)]/total;//本来は建築アリのtypeを格納
-                otherScrollbar1.fillAmount = antCounter[typeof(DebugAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
-                otherScrollbar2.fillAmount = antCounter[typeof(DebugAntData)] / total;//上に同じ
+                fillAmount = (float)antCounter[typeof(BuilderAntData)]/Math.Max(1,total);//本来は建築アリのtypeを格納
+                //otherScrollbar1.fillAmount = antCounter[typeof(ErgateAntData)] / total;//本来は建築アリ以外のtype(防衛アリでも働きアリでもどっちでもいい)を格納
+                //otherScrollbar2.fillAmount = antCounter[typeof(UnemployedAntData)] / total;//上に同じ
             }
             else if (JobName == "Work")
             {
-                scrollbar.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar1.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar2.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
+                fillAmount = (float)antCounter[typeof(ErgateAntData)] / Math.Max(1, total);
+                //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
+                //otherScrollbar2.fillAmount = (float)antCounter[typeof(UnemployedAntData)] / total;
             }
             else if (JobName == "Deffence")
             {
-                scrollbar.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar1.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
-                otherScrollbar2.fillAmount = (float)antCounter[typeof(DebugAntData)] / total;
+                fillAmount = (float)antCounter[typeof(SoldierAntData)] / Math.Max(1, total);
+                //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
+                //otherScrollbar2.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
             }
             else
             {
@@ -114,15 +106,15 @@ namespace AntDiary
 
             if (JobName == "Architecture")
             {
-                AntJobNum.text = "建築:" + NumOfBar +"匹";
+                AntJobNum.text =  "建築:" + (Rate).ToString("f0") +"%";
             }
             else if (JobName == "Work")
             {
-                AntJobNum.text = "働き:" + NumOfBar + "匹";
+                AntJobNum.text = "働き:" + (Rate).ToString("f0") + "%";
             }
             else if (JobName == "Deffence")
             {
-                AntJobNum.text = "防衛:" + NumOfBar + "匹";
+                AntJobNum.text = "防衛:" + (Rate).ToString("f0") + "%";
             }
             AntTotal.text = "総数:" + total + "匹";
         }
@@ -132,11 +124,12 @@ namespace AntDiary
         public void OnDrag(PointerEventData data)//ドラッグ中
         {
             transform.position = new Vector3(data.position.x, transform.position.y, transform.position.z);
-            NumOfBar = (int)(scrollbar.fillAmount * total);
+            //NumOfBar = (int)(scrollbar.fillAmount * total);
+            Rate = scrollbar.fillAmount * 100;
         }
         public void OnEndDrag(PointerEventData data)//ドラッグ終わり
         {
-            transform.localPosition = new Vector3( (float)NumOfBar*300/total-150, 0, 0);
+            transform.localPosition = new Vector3(scrollbar.fillAmount * 300-150, 0, 0);
         }
     }
 }

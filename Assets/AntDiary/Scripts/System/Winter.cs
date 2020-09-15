@@ -33,7 +33,7 @@ public class Winter : MonoBehaviour
             //Wintertext.text = "Winter";
             if(PlayWinterBGMornot == 0){
                 changeBackground.SetBackground(3);
-                fadeOut.BGMsystem("test2");
+                fadeOut.BGMsystem("ari_winter_master");
                 PlayWinterBGMornot = 1;
             }
         }else{
