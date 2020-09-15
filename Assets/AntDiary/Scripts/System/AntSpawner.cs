@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace AntDiary
@@ -13,7 +14,6 @@ namespace AntDiary
         private float lastSpawnedTime;
         [SerializeField] private JobAssignmentSystem JobAssignmentSystem;
         private QueenRoom queenroom;
-        private QueenAnt queen;
 
         // Start is called before the first frame update
         void Start()
@@ -25,8 +25,7 @@ namespace AntDiary
         // Update is called once per frame
         public void StartSpawn()
         {
-            queen = NestSystem.Instance.GetAnt<QueenAnt>();
-            if(!queenroom.IsUnderConstruction && queen != null)StartCoroutine("Spawn");
+            if(!queenroom.IsUnderConstruction)StartCoroutine("Spawn");
         }
 
         // 実際のアリ生成関数
@@ -35,8 +34,9 @@ namespace AntDiary
             while (true)
             {
                 yield return new WaitForSeconds(SpawnInterval);
+                if (!NestSystem.Instance.GetAnts<QueenAnt>().Any()) continue;
                 // アリ生成
-                for (int i = 0; i < queen.CommonData.BasicEfficiency; i++)
+                for (int i = 0; i < NestSystem.Instance.Data.CommonDataRegistry.GetCommonData<QueenAntCommonData>().BasicEfficiency; i++)
                 {
                     UnemployedAntData data = new UnemployedAntData()
                     {

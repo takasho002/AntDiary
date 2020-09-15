@@ -11,8 +11,8 @@ namespace AntDiary.Scripts.Roads{
 		
 		
 		protected override void OnInitialized(){
-			
-			switch(SelfData.Direction){
+			if (!IsUnderConstruction) SetImage(EnumNestImage.Built);
+			switch (SelfData.Direction){
 				case EnumRoadDirection.Top:
 					AddLocalNode("top", "top", Vector2.up * radius);
 					AddLocalNode("right", "right", Vector2.right * radius);

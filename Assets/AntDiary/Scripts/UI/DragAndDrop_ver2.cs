@@ -115,6 +115,7 @@ namespace AntDiary
             {
                 nestelement = NestSystem.Instance.InstantiateNestElement(data, false, false);
                 nestelement.transform.position = screenToWorldPointPosition;
+                (nestelement as NestBuildableElement).SetImage(EnumNestImage.Spector);
             }
         }
 
@@ -149,6 +150,14 @@ namespace AntDiary
               {
                   Destroy(nestelement.gameObject);
               }
+            if ((nestelement as NestBuildableElement).IsUnderConstruction)
+            {
+                (nestelement as NestBuildableElement).SetImage(EnumNestImage.Building);
+            }
+            else
+            {
+                (nestelement as NestBuildableElement).SetImage(EnumNestImage.Built);
+            }
         }
     }
 }
