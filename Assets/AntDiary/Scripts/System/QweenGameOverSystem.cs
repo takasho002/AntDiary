@@ -12,9 +12,10 @@ namespace AntDiary
         // Start is called before the first frame update
         void Start()
         {
-            QueenAnt = (QueenAntData)gameObject.GetComponent<QueenAnt>().Data;
+            QueenAnt = (QueenAntData)GetComponent<QueenAnt>().Data;
         }
 
+        /*
         // Update is called once per frame
         void Update()
         {
@@ -22,6 +23,18 @@ namespace AntDiary
             {
                 SceneManager.LoadScene("GameOverScene");
             }
+        }
+        */
+
+        public void GameOver()
+        {
+            StartCoroutine(LoadGameOver());
+        }
+
+        private IEnumerator LoadGameOver()
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

@@ -8,6 +8,10 @@ namespace AntDiary
     [MessagePackObject()]
     public class QueenAntCommonData : AntCommonData<QueenAntData>
     {
+        public QueenAntCommonData()
+        {
+            MaxHealth = 10.0f;
+        }
         //Keyは10~
     }
 }

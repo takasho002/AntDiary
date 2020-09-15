@@ -9,7 +9,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
-public class UISaveDataButton : MonoBehaviour,IPointerEnterHandler
+public class UISaveDataButton : MonoBehaviour,IPointerEnterHandler,IPointerDownHandler
 {
     private int id;
     private UISaveLoad uisaveload;
@@ -28,6 +28,10 @@ public class UISaveDataButton : MonoBehaviour,IPointerEnterHandler
     public void ChangeData()
     {
         uisaveload.lastSelction = id;
+    }
+
+    public void OnPointerDown(PointerEventData eventdata)
+    {
         sesystem.PlaySE("click");
     }
 

@@ -62,8 +62,8 @@ namespace AntDiary
             var nodeB = elementB.GetNodes().Where(n => n.IsExposed).FirstOrDefault(n => n.Name == data.NodeNameB);
             if (nodeB == default) throw new ArgumentException("指定されたNestPathNodeが見つかりませんでした。");
             
-            if(!nodeA.IsConnectable(nodeB)) throw new ArgumentException("指定されたNestPathNodeどうしは接続を禁止しています。");
-            if(!nodeB.IsConnectable(nodeA)) throw new ArgumentException("指定されたNestPathNodeどうしは接続を禁止しています。");
+            if(!nodeA.IsConnectable(nodeB)) throw new ArgumentException($"指定されたNestPathNodeどうしは接続を禁止しています: {data.ElementGuidA}/{data.NodeNameA} -> {data.ElementGuidB}/{data.NodeNameB}");
+            if(!nodeB.IsConnectable(nodeA)) throw new ArgumentException($"指定されたNestPathNodeどうしは接続を禁止しています: {data.ElementGuidA}/{data.NodeNameA} <- {data.ElementGuidB}/{data.NodeNameB}");
 
             A = nodeA;
             B = nodeB;

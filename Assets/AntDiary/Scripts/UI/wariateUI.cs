@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Data.SqlClient;
 
 namespace AntDiary
 {
@@ -25,7 +26,7 @@ namespace AntDiary
 
         //割り当てUIのシステム関連
         //仕事の型リスト
-        private List<Type> antjobs;
+        private List<Type> antjobs = new List<Type>{ typeof(BuilderAntData),typeof(SoldierAntData),typeof(ErgateAntData),typeof(UnemployedAntData)};
         private int jobCount;
         public int total;
         public float fillAmount=0.0f;
@@ -39,17 +40,6 @@ namespace AntDiary
 
         public void OnEnable()
         {
-            ////AntDataのサブクラスから仕事をtypeリストとして取得
-            antjobs = System.Reflection.Assembly.GetAssembly(typeof(AntData)).GetTypes().Where(x => x.IsSubclassOf(typeof(AntData))).ToList();
-            //DebugAntDataは削除
-            for (int i = 0; i < antjobs.Count; i++)
-            {
-                if (antjobs[i].Name.Equals("DebugAntData")|| antjobs[i].Name.Equals("QueenAntData"))
-                {
-                    antjobs.RemoveAt(i);
-                    break;
-                }
-            }
             jobCount = antjobs.Count;
 
             antCounter.Clear();
@@ -85,7 +75,7 @@ namespace AntDiary
             }
             else if (JobName == "Deffence")
             {
-                fillAmount = (float)antCounter[typeof(UnemployedAntData)] / Math.Max(1, total);
+                fillAmount = (float)antCounter[typeof(SoldierAntData)] / Math.Max(1, total);
                 //otherScrollbar1.fillAmount = (float)antCounter[typeof(BuilderAntData)] / total;
                 //otherScrollbar2.fillAmount = (float)antCounter[typeof(ErgateAntData)] / total;
             }

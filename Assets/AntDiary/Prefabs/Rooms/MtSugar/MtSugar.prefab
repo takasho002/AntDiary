@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d959b695b02cba64f8351dedce42311c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 4282298125489527741}
+  built: {fileID: 21300000, guid: ebe635edae3dc204e8d836d6b6488610, type: 3}
+  building: {fileID: 21300000, guid: ebe635edae3dc204e8d836d6b6488610, type: 3}
+  spector: {fileID: 21300000, guid: ebe635edae3dc204e8d836d6b6488610, type: 3}
   blockingShape: {fileID: 0}
   boundingRect:
     serializedVersion: 2

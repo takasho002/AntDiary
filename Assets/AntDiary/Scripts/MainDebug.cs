@@ -14,6 +14,8 @@ public class MainDebug : MonoBehaviour
     [SerializeField] bool createQueen = false;
     [SerializeField] bool createBuilder = false;
     [SerializeField] bool createFree = false;
+    [SerializeField] bool createSoldier = false;
+    [SerializeField] bool createEnemy = false;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,16 @@ public class MainDebug : MonoBehaviour
             createFree = false;
             CreateFree();
         }
+        if (createSoldier)
+        {
+            createSoldier = false;
+            CreateSoldier();
+        }
+        if (createEnemy)
+        {
+            createEnemy = false;
+            CreateEnemy();
+        }
     }
 
     private void CreateErgate()
@@ -73,6 +85,16 @@ public class MainDebug : MonoBehaviour
         nestsystem.InstantiateAnt(data);
     }
 
+    private void CreateSoldier()
+    {
+        AntData data = new SoldierAntData();
+        nestsystem.InstantiateAnt(data);
+    }
+    private void CreateEnemy()
+    {
+        AntData data = new EnemyAntData();
+        nestsystem.InstantiateAnt(data);
+    }
     public void CreateFeedRoute()
     {
         
